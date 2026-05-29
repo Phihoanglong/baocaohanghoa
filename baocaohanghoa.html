@@ -314,6 +314,7 @@ function renderLoiTable() {
   const tbody = document.getElementById('loiBody');
 
   let filtered = HANG_LOI_DATA.filter(r => {
+    if (r.deleted) return false;
     const matchSearch = !search || r.sku.toLowerCase().includes(search) || r.product_name.toLowerCase().includes(search) || r.employee.toLowerCase().includes(search);
     const matchDefect = !filterDefect || r.defect_type === filterDefect;
     const matchBranch = !filterBranch || (r.branch||'') === filterBranch;
@@ -380,6 +381,7 @@ function renderCdTable() {
   const tbody = document.getElementById('cdBody');
 
   let filtered = CAN_DATE_DATA.filter(r => {
+    if (r.deleted) return false;
     const matchSearch = !search || r.sku.toLowerCase().includes(search) || (r.product_name||'').toLowerCase().includes(search) || r.employee.toLowerCase().includes(search);
     const matchBranch = !filterBranch || (r.branch||'') === filterBranch;
     const matchStatus = !filterStatus || getStatus('cd_', r.cd_id||r.id) === filterStatus;
