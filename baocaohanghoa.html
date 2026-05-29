@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📦 Dashboard Hàng Lỗi</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #1a1a2e; }
+
+  header {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  header h1 { font-size: 1.5rem; font-weight: 700; }
+  header .subtitle { font-size: 0.85rem; opacity: 0.85; margin-top: 3px; }
+  .last-updated { font-size: 0.8rem; opacity: 0.8; text-align: right; }
+
+  .stats-bar {
+    display: flex;
+    gap: 16px;
+    padding: 20px 30px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .stat-card {
+    flex: 1;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: center;
+    border-left: 4px solid #e74c3c;
+  }
+  .stat-card.today { border-left-color: #e67e22; }
+  .stat-card.qty { border-left-color: #8e44ad; }
+  .stat-num { font-size: 1.8rem; font-weight: 700; color: #e74c3c; }
+  .stat-card.today .stat-num { color: #e67e22; }
+  .stat-card.qty .stat-num { color: #8e44ad; }
+  .stat-label { font-size: 0.78rem; color: #666; margin-top: 2px; }
+
+  .toolbar {
+    display: flex;
+    gap: 12px;
+    padding: 16px 30px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .toolbar input, .toolbar select {
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    background: white;
+  }
+  .toolbar input { flex: 1; min-width: 180px; }
+  .btn-export {
+    padding: 8px 18px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .btn-export:hover { background: #219150; }
+
+  .table-wrapper { padding: 0 30px 30px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  thead { background: #2c3e50; color: white; }
+  th { padding: 13px 14px; text-align: left; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.3px; white-space: nowrap; }
+  td { padding: 12px 14px; font-size: 0.88rem; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafafa; }
+
+  .td-sku { font-family: monospace; font-weight: 700; color: #2980b9; font-size: 0.9rem; }
+  .td-product { font-weight: 600; }
+  .td-img img {
+    width: 70px; height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #eee;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .td-img img:hover { transform: scale(1.1); }
+  .no-img {
+    width: 70px; height: 70px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #ccc;
+  }
+  .badge-defect {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: #fde8e8;
+    color: #c0392b;
+  }
+  .badge-qty {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    background: #f3e5f5;
+    color: #7b1fa2;
+  }
+  .td-date { color: #666; font-size: 0.82rem; white-space: nowrap; }
+  .td-emp { color: #2c3e50; font-weight: 500; }
+
+  .status-select {
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+  }
+  .status-pending { background: #fff3cd; color: #856404; }
+  .status-done    { background: #d1f5e0; color: #1a7a40; }
+  tr.row-done td  { opacity: 0.45; }
+  tr.row-done td:last-child { opacity: 1; }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px;
+    color: #aaa;
+  }
+  .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+  .empty-state p { font-size: 0.95rem; }
+
+  /* Modal ảnh phóng to */
+  .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; align-items:center; justify-content:center; }
+  .modal.active { display:flex; }
+  .modal img { max-width:90vw; max-height:90vh; border-radius:12px; }
+  .modal:after { content:'✕'; position:fixed; top:20px; right:28px; color:white; font-size:2rem; cursor:pointer; }
+
+  @media (max-width: 768px) {
+    .stats-bar { flex-wrap: wrap; }
+    .table-wrapper { padding: 0 12px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🚨 Dashboard Hàng Lỗi / Hỏng</h1>
+    <div class="subtitle">Theo dõi & quản lý hàng hóa bị lỗi, hỏng hóc</div>
+  </div>
+  <div class="last-updated">
+    Cập nhật lần cuối:<br>
+    <strong id="lastUpdated">—</strong>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-card">
+    <div class="stat-num" id="statTotal">0</div>
+    <div class="stat-label">Tổng sự cố ghi nhận</div>
+  </div>
+  <div class="stat-card today">
+    <div class="stat-num" id="statToday">0</div>
+    <div class="stat-label">Hôm nay</div>
+  </div>
+  <div class="stat-card qty">
+    <div class="stat-num" id="statQty">0</div>
+    <div class="stat-label">Tổng số lượng lỗi</div>
+  </div>
+  <div class="stat-card" style="border-left-color:#27ae60">
+    <div class="stat-num" id="statPending" style="color:#e67e22">0</div>
+    <div class="stat-label">Chờ xử lý</div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <input type="text" id="searchInput" placeholder="🔍 Tìm theo SKU, tên sản phẩm, nhân viên..." oninput="renderTable()">
+  <select id="filterDefect" onchange="renderTable()">
+    <option value="">-- Tất cả loại lỗi --</option>
+  </select>
+  <select id="filterStatus" onchange="renderTable()" style="padding:8px 14px;border:1px solid #ddd;border-radius:8px;font-size:0.88rem;background:white">
+    <option value="">-- Tất cả trạng thái --</option>
+    <option value="pending">Chờ xử lý</option>
+    <option value="done">Đã xử lý</option>
+  </select>
+  <button class="btn-export" onclick="exportCSV()">⬇ Xuất CSV</button>
+</div>
+
+<div class="table-wrapper">
+  <table id="mainTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Ảnh</th>
+        <th>SKU</th>
+        <th>Tên sản phẩm</th>
+        <th>Loại lỗi</th>
+        <th>SL Lỗi</th>
+        <th>Nhân viên</th>
+        <th>Ngày giờ</th>
+        <th>Trạng thái</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<div class="modal" id="imgModal" onclick="closeModal()">
+  <img id="modalImg" src="" alt="Ảnh hàng lỗi">
+</div>
+
+<!-- ============================================================
+     DỮ LIỆU HÀNG LỖI — Claude sẽ thêm vào đây khi nhân viên báo
+     Mỗi record là 1 object trong mảng HANG_LOI_DATA
+     ============================================================ -->
+<script>
+const HANG_LOI_DATA = [
+  // --- DỮ LIỆU MẪU (xóa khi dùng thật) ---
+  {
+    id: 1,
+    sku: "SKU-DEMO-001",
+    product_name: "Sản phẩm mẫu (xóa dòng này khi dùng thật)",
+    defect_type: "Demo",
+    quantity: 1,
+    employee: "Hệ thống",
+    datetime: "2026-05-29 08:00",
+    photo: "",
+    notes: "Record mẫu để kiểm tra giao diện"
+  },
+  {
+    id: 2,
+    sku: "PVN 1345",
+    product_name: "PVN 1345",
+    defect_type: "Móp méo",
+    quantity: 5,
+    employee: "bích",
+    datetime: "2026-05-29 12:57",
+    photo: "photos/1675858726_20260529_125714.jpg",
+    notes: ""
+  },
+  {
+    id: 3,
+    sku: "PVN1234",
+    product_name: "sữa arla vị dâu",
+    defect_type: "rách vỏ",
+    quantity: 5,
+    employee: "Long Hoang",
+    datetime: "2026-05-29 13:54",
+    photo: "photos/1675858726_20260529_135457.jpg",
+    notes: ""
+  },
+  {
+    id: 4,
+    sku: "PVN1234",
+    product_name: "sữa arla vị dâu",
+    defect_type: "rách vỏ",
+    quantity: 5,
+    employee: "Long Hoang",
+    datetime: "2026-05-29 14:16",
+    photo: "photos/1675858726_20260529_141619.jpg",
+    notes: ""
+  },
+  {
+    id: 5,
+    sku: "PVN1234",
+    product_name: "sữa arla vị dâu",
+    defect_type: "rách vỏ",
+    quantity: 5,
+    employee: "Long Hoang",
+    datetime: "2026-05-29 14:28",
+    photo: "photos/1675858726_20260529_142821.jpg",
+    notes: ""
+  },
+  {
+    id: 6,
+    sku: "PVN1234",
+    product_name: "sữa arla vị dâu",
+    defect_type: "rách vỏ",
+    quantity: 5,
+    employee: "Long Hoang",
+    datetime: "2026-05-29 14:33",
+    photo: "photos/1675858726_20260529_143259.jpg",
+    notes: ""
+  },
+  {
+    id: 7,
+    sku: "PVN1234",
+    product_name: "sữa arla vị dâu",
+    defect_type: "rách vỏ",
+    quantity: 5,
+    employee: "Long Hoang",
+    datetime: "2026-05-29 14:40",
+    photo: "photos/1675858726_20260529_144041.jpg",
+    notes: ""
+  },
+  {
+    id: 8,
+    sku: "PVN1234",
+    product_name: "sữa arla vị dâu",
+    defect_type: "rách vỏ",
+    quantity: 5,
+    employee: "Long Hoang",
+    datetime: "2026-05-29 14:44",
+    photo: "photos/1675858726_20260529_144446.jpg",
+    notes: ""
+  },
+  {
+    id: 9,
+    sku: "PVN1234",
+    product_name: "sữa arla vị dâu",
+    defect_type: "rách vỏ",
+    quantity: 5,
+    employee: "Long Hoang",
+    datetime: "2026-05-29 14:49",
+    photo: "photos/1675858726_20260529_144919.jpg",
+    notes: ""
+  },
+  {
+    id: 10,
+    sku: "PVN1234",
+    product_name: "sữa arla vị dâu",
+    defect_type: "rách vỏ",
+    quantity: 5,
+    employee: "Long Hoang",
+    datetime: "2026-05-29 14:52",
+    photo: "photos/1675858726_20260529_145210.jpg",
+    notes: ""
+  },
+  {
+    id: 11,
+    sku: "PVN1234",
+    product_name: "sữa arla vị dâu",
+    defect_type: "rách vỏ",
+    quantity: 5,
+    employee: "Long Hoang",
+    datetime: "2026-05-29 17:06",
+    photo: "photos/1675858726_20260529_170623.jpg",
+    notes: ""
+  },
+  // --- CLAUDE SẼ THÊM DỮ LIỆU THẬT VÀO ĐÂY ---
+];
+
+// ============================================================
+// Trạng thái lưu vào localStorage theo ID
+// ============================================================
+function getStatus(id) {
+  return localStorage.getItem('hl_status_' + id) || 'pending';
+}
+function setStatus(id, val) {
+  localStorage.setItem('hl_status_' + id, val);
+  renderTable();
+  updateStats();
+}
+
+function renderTable() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const filterDefect = document.getElementById('filterDefect').value;
+  const filterStatus = document.getElementById('filterStatus').value;
+  const tbody = document.getElementById('tableBody');
+
+  let filtered = HANG_LOI_DATA.filter(r => {
+    const matchSearch = !search ||
+      r.sku.toLowerCase().includes(search) ||
+      r.product_name.toLowerCase().includes(search) ||
+      r.employee.toLowerCase().includes(search) ||
+      (r.notes && r.notes.toLowerCase().includes(search));
+    const matchDefect = !filterDefect || r.defect_type === filterDefect;
+    const matchStatus = !filterStatus || getStatus(r.id) === filterStatus;
+    return matchSearch && matchDefect && matchStatus;
+  });
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="icon">📭</div><p>Không có dữ liệu phù hợp</p></div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map((r, i) => {
+    const st = getStatus(r.id);
+    const isDone = st === 'done';
+    return `
+    <tr class="${isDone ? 'row-done' : ''}">
+      <td style="color:#999;font-size:0.8rem">${i+1}</td>
+      <td class="td-img">
+        ${r.photo
+          ? `<img src="${r.photo}" alt="Ảnh" onclick="openModal('${r.photo}')" title="Click để phóng to">`
+          : `<div class="no-img">📷</div>`}
+      </td>
+      <td class="td-sku">${r.sku}</td>
+      <td class="td-product">${r.product_name}</td>
+      <td><span class="badge-defect">${r.defect_type}</span></td>
+      <td><span class="badge-qty">${r.quantity}</span></td>
+      <td class="td-emp">👤 ${r.employee}</td>
+      <td class="td-date">🕐 ${r.datetime}</td>
+      <td>
+        <select class="status-select ${isDone ? 'status-done' : 'status-pending'}"
+          onchange="setStatus(${r.id}, this.value); this.className='status-select '+(this.value==='done'?'status-done':'status-pending')">
+          <option value="pending" ${!isDone?'selected':''}>⏳ Chờ xử lý</option>
+          <option value="done"    ${isDone?'selected':''}>✅ Đã xử lý</option>
+        </select>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function updateStats() {
+  const today = new Date().toISOString().slice(0,10);
+  document.getElementById('statTotal').textContent = HANG_LOI_DATA.length;
+  document.getElementById('statToday').textContent = HANG_LOI_DATA.filter(r => r.datetime.startsWith(today)).length;
+  document.getElementById('statQty').textContent = HANG_LOI_DATA.reduce((s, r) => s + (parseInt(r.quantity)||0), 0);
+  document.getElementById('statPending').textContent = HANG_LOI_DATA.filter(r => getStatus(r.id) === 'pending').length;
+
+  if (HANG_LOI_DATA.length > 0) {
+    const sorted = [...HANG_LOI_DATA].sort((a,b) => b.datetime.localeCompare(a.datetime));
+    document.getElementById('lastUpdated').textContent = sorted[0].datetime;
+  }
+
+  // Populate filter dropdown
+  const defects = [...new Set(HANG_LOI_DATA.map(r => r.defect_type))].sort();
+  const sel = document.getElementById('filterDefect');
+  const current = sel.value;
+  sel.innerHTML = '<option value="">-- Tất cả loại lỗi --</option>' +
+    defects.map(d => `<option value="${d}" ${d===current?'selected':''}>${d}</option>`).join('');
+}
+
+function openModal(src) {
+  document.getElementById('modalImg').src = src;
+  document.getElementById('imgModal').classList.add('active');
+}
+function closeModal() {
+  document.getElementById('imgModal').classList.remove('active');
+}
+
+function exportCSV() {
+  const headers = ['ID','SKU','Tên sản phẩm','Loại lỗi','Số lượng','Nhân viên','Ngày giờ','Ghi chú'];
+  const rows = HANG_LOI_DATA.map(r => [r.id, r.sku, r.product_name, r.defect_type, r.quantity, r.employee, r.datetime, r.notes||'']);
+  const csv = [headers, ...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+  const blob = new Blob(['﻿'+csv], {type:'text/csv;charset=utf-8;'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `hang_loi_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+// Init
+updateStats();
+renderTable();
+</script>
+</body>
+</html>
