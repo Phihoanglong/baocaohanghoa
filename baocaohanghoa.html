@@ -99,17 +99,27 @@
 
   .td-sku { font-family: monospace; font-weight: 700; color: #2980b9; font-size: 0.9rem; }
   .td-product { font-weight: 600; }
+  .td-img { position: relative; }
   .td-img img {
     width: 70px; height: 70px; object-fit: cover;
     border-radius: 8px; border: 2px solid #eee;
     cursor: pointer; transition: transform 0.2s;
   }
   .td-img img:hover { transform: scale(1.1); }
+  .photo-count {
+    position: absolute; bottom: 3px; right: 3px;
+    background: rgba(0,0,0,0.6); color: white;
+    font-size: 0.7rem; font-weight: 700;
+    padding: 1px 5px; border-radius: 10px; pointer-events: none;
+  }
   .no-img {
     width: 70px; height: 70px; background: #f0f0f0;
     border-radius: 8px; display: flex; align-items: center;
     justify-content: center; font-size: 1.5rem; color: #ccc;
   }
+  /* Modal gallery */
+  .modal-gallery { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+  .modal-gallery img { max-width:45vw; max-height:80vh; border-radius:8px; cursor:pointer; }
   .badge-defect { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; background: #fde8e8; color: #c0392b; }
   .badge-date   { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; background: #fff3cd; color: #856404; }
   .badge-date.urgent { background: #fde8e8; color: #c0392b; }
@@ -222,7 +232,7 @@
 </div>
 
 <div class="modal" id="imgModal" onclick="closeModal()">
-  <img id="modalImg" src="" alt="Ảnh">
+  <div class="modal-gallery" id="modalGallery"></div>
 </div>
 
 <!-- ═══════════════ DỮ LIỆU ═══════════════ -->
@@ -300,6 +310,18 @@ const HANG_LOI_DATA = [
     employee: "Long Hoang",
     datetime: "2026-05-29 22:47",
     photo: "https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_16.jpg",
+    notes: ""
+  },
+  {
+    id: 7,
+    sku: "PVN7789",
+    product_name: "Sữa chua",
+    defect_type: "rách vỏ",
+    quantity: 10,
+    branch: "MHD",
+    employee: "Long Hoang",
+    datetime: "2026-05-29 23:09",
+    photos: ["https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_17.jpg", "https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_18.jpg", "https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_16.jpg"],
     notes: ""
   },
   // --- CLAUDE SẼ THÊM DỮ LIỆU THẬT VÀO ĐÂY ---
@@ -406,7 +428,7 @@ function renderLoiTable() {
     const isDone = getStatus('hl_', r.id) === 'done';
     return `<tr class="${isDone?'row-done':''}">
       <td style="color:#999;font-size:0.8rem">${i+1}</td>
-      <td class="td-img">${r.photo ? `<img src="${r.photo}" onclick="openModal('${r.photo}')" title="Click phóng to">` : `<div class="no-img">📷</div>`}</td>
+      <td class="td-img">${photoCell(r)}</td>
       <td class="td-sku">${r.sku}</td>
       <td class="td-product">${r.product_name}</td>
       <td><span class="badge-defect">${r.defect_type}</span></td>
@@ -473,7 +495,7 @@ function renderCdTable() {
     const isDone = getStatus('cd_', id) === 'done';
     return `<tr class="${isDone?'row-done':''}">
       <td style="color:#999;font-size:0.8rem">${i+1}</td>
-      <td class="td-img">${r.photo ? `<img src="${r.photo}" onclick="openModal('${r.photo}')" title="Click phóng to">` : `<div class="no-img">📷</div>`}</td>
+      <td class="td-img">${photoCell(r)}</td>
       <td class="td-product">${r.product_name||''}</td>
       <td class="td-sku">${r.sku}</td>
       <td><span class="badge-date">${r.expiry_date}</span></td>
@@ -508,8 +530,24 @@ function exportCdCSV() {
   a.click();
 }
 
-function openModal(src) { document.getElementById('modalImg').src = src; document.getElementById('imgModal').classList.add('active'); }
+function openModal(photos) {
+  const list = Array.isArray(photos) ? photos : [photos];
+  document.getElementById('modalGallery').innerHTML = list.map(src =>
+    `<img src="${src}" onclick="event.stopPropagation()" alt="Ảnh">`
+  ).join('');
+  document.getElementById('imgModal').classList.add('active');
+}
 function closeModal() { document.getElementById('imgModal').classList.remove('active'); }
+
+function photoCell(r) {
+  const photos = r.photos || (r.photo ? [r.photo] : []);
+  if (!photos.length) return `<div class="no-img">📷</div>`;
+  const photosJson = JSON.stringify(photos).replace(/"/g, '&quot;');
+  return `<div style="position:relative;display:inline-block">
+    <img src="${photos[0]}" onclick="openModal(${photosJson})" title="Click xem ảnh">
+    ${photos.length > 1 ? `<span class="photo-count">+${photos.length}</span>` : ''}
+  </div>`;
+}
 
 // Init
 updateLoiStats(); renderLoiTable();
