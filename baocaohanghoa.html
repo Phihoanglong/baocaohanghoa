@@ -126,6 +126,11 @@
   .empty-state { text-align: center; padding: 60px; color: #aaa; }
   .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
 
+  .badge-branch { display:inline-block; padding:3px 10px; border-radius:20px; font-size:0.78rem; font-weight:700; letter-spacing:0.5px; }
+  .badge-vph  { background:#dbeafe; color:#1d4ed8; }
+  .badge-mhd  { background:#fef3c7; color:#b45309; }
+  .badge-branch-other { background:#f0f0f0; color:#555; }
+
   .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; align-items:center; justify-content:center; }
   .modal.active { display:flex; }
   .modal img { max-width:90vw; max-height:90vh; border-radius:12px; }
@@ -166,6 +171,11 @@
   <div class="toolbar">
     <input type="text" id="searchInput" placeholder="🔍 Tìm theo SKU, tên sản phẩm, nhân viên..." oninput="renderLoiTable()">
     <select id="filterDefect" onchange="renderLoiTable()"><option value="">-- Tất cả loại lỗi --</option></select>
+    <select id="filterBranchLoi" onchange="renderLoiTable()" style="padding:8px 14px;border:1px solid #ddd;border-radius:8px;font-size:0.88rem;background:white">
+      <option value="">🏪 Tất cả CN</option>
+      <option value="VPH">VPH</option>
+      <option value="MHD">MHD</option>
+    </select>
     <select id="filterStatus" onchange="renderLoiTable()" style="padding:8px 14px;border:1px solid #ddd;border-radius:8px;font-size:0.88rem;background:white">
       <option value="">-- Tất cả trạng thái --</option>
       <option value="pending">Chờ xử lý</option>
@@ -176,7 +186,7 @@
   <div class="table-wrapper">
     <table><thead><tr>
       <th>#</th><th>Ảnh</th><th>SKU</th><th>Tên sản phẩm</th>
-      <th>Loại lỗi</th><th>SL Lỗi</th><th>Nhân viên</th><th>Ngày giờ</th><th>Trạng thái</th>
+      <th>Loại lỗi</th><th>SL Lỗi</th><th>Chi nhánh</th><th>Nhân viên</th><th>Ngày giờ</th><th>Trạng thái</th>
     </tr></thead><tbody id="loiBody"></tbody></table>
   </div>
 </div>
@@ -190,7 +200,12 @@
     <div class="stat-card warn"><div class="stat-num" id="cdPending">0</div><div class="stat-label">Chờ xử lý</div></div>
   </div>
   <div class="toolbar">
-    <input type="text" id="cdSearchInput" placeholder="🔍 Tìm theo SKU, nhân viên..." oninput="renderCdTable()">
+    <input type="text" id="cdSearchInput" placeholder="🔍 Tìm theo SKU, tên sản phẩm, nhân viên..." oninput="renderCdTable()">
+    <select id="filterBranchCd" onchange="renderCdTable()" style="padding:8px 14px;border:1px solid #ddd;border-radius:8px;font-size:0.88rem;background:white">
+      <option value="">🏪 Tất cả CN</option>
+      <option value="VPH">VPH</option>
+      <option value="MHD">MHD</option>
+    </select>
     <select id="cdFilterStatus" onchange="renderCdTable()" style="padding:8px 14px;border:1px solid #ddd;border-radius:8px;font-size:0.88rem;background:white">
       <option value="">-- Tất cả trạng thái --</option>
       <option value="pending">Chờ xử lý</option>
@@ -201,7 +216,7 @@
   <div class="table-wrapper">
     <table><thead><tr>
       <th>#</th><th>Ảnh</th><th>Tên sản phẩm</th><th>SKU</th><th>Hạn sử dụng</th>
-      <th>Số lượng</th><th>Nhân viên</th><th>Ngày báo</th><th>Trạng thái</th>
+      <th>Số lượng</th><th>Chi nhánh</th><th>Nhân viên</th><th>Ngày báo</th><th>Trạng thái</th>
     </tr></thead><tbody id="cdBody"></tbody></table>
   </div>
 </div>
@@ -261,21 +276,29 @@ function switchTab(tab) {
 }
 
 // ── Hàng Lỗi ───────────────────────────────────
+function branchBadge(b) {
+  if (!b) return '<span class="badge-branch badge-branch-other">—</span>';
+  const cls = b === 'VPH' ? 'badge-vph' : b === 'MHD' ? 'badge-mhd' : 'badge-branch-other';
+  return `<span class="badge-branch ${cls}">${b}</span>`;
+}
+
 function renderLoiTable() {
   const search = document.getElementById('searchInput').value.toLowerCase();
   const filterDefect = document.getElementById('filterDefect').value;
+  const filterBranch = document.getElementById('filterBranchLoi').value;
   const filterStatus = document.getElementById('filterStatus').value;
   const tbody = document.getElementById('loiBody');
 
   let filtered = HANG_LOI_DATA.filter(r => {
     const matchSearch = !search || r.sku.toLowerCase().includes(search) || r.product_name.toLowerCase().includes(search) || r.employee.toLowerCase().includes(search);
     const matchDefect = !filterDefect || r.defect_type === filterDefect;
+    const matchBranch = !filterBranch || (r.branch||'') === filterBranch;
     const matchStatus = !filterStatus || getStatus('hl_', r.id) === filterStatus;
-    return matchSearch && matchDefect && matchStatus;
+    return matchSearch && matchDefect && matchBranch && matchStatus;
   });
 
   if (!filtered.length) {
-    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="icon">📭</div><p>Không có dữ liệu</p></div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="10"><div class="empty-state"><div class="icon">📭</div><p>Không có dữ liệu</p></div></td></tr>`;
     return;
   }
   tbody.innerHTML = filtered.map((r, i) => {
@@ -287,6 +310,7 @@ function renderLoiTable() {
       <td class="td-product">${r.product_name}</td>
       <td><span class="badge-defect">${r.defect_type}</span></td>
       <td><span class="badge-qty">${r.quantity}</span></td>
+      <td>${branchBadge(r.branch)}</td>
       <td class="td-emp">👤 ${r.employee}</td>
       <td class="td-date">🕐 ${r.datetime}</td>
       <td><select class="status-select ${isDone?'status-done':'status-pending'}"
@@ -315,8 +339,8 @@ function updateLoiStats() {
 }
 
 function exportLoiCSV() {
-  const headers = ['ID','SKU','Tên sản phẩm','Loại lỗi','Số lượng','Nhân viên','Ngày giờ'];
-  const rows = HANG_LOI_DATA.map(r => [r.id, r.sku, r.product_name, r.defect_type, r.quantity, r.employee, r.datetime]);
+  const headers = ['ID','SKU','Tên sản phẩm','Loại lỗi','Số lượng','Chi nhánh','Nhân viên','Ngày giờ'];
+  const rows = HANG_LOI_DATA.map(r => [r.id, r.sku, r.product_name, r.defect_type, r.quantity, r.branch||'', r.employee, r.datetime]);
   const csv = [headers,...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob(['﻿'+csv], {type:'text/csv;charset=utf-8;'}));
@@ -327,21 +351,24 @@ function exportLoiCSV() {
 // ── Cận Date ────────────────────────────────────
 function renderCdTable() {
   const search = document.getElementById('cdSearchInput').value.toLowerCase();
+  const filterBranch = document.getElementById('filterBranchCd').value;
   const filterStatus = document.getElementById('cdFilterStatus').value;
   const tbody = document.getElementById('cdBody');
 
   let filtered = CAN_DATE_DATA.filter(r => {
     const matchSearch = !search || r.sku.toLowerCase().includes(search) || (r.product_name||'').toLowerCase().includes(search) || r.employee.toLowerCase().includes(search);
-    const matchStatus = !filterStatus || getStatus('cd_', r.id) === filterStatus;
-    return matchSearch && matchStatus;
+    const matchBranch = !filterBranch || (r.branch||'') === filterBranch;
+    const matchStatus = !filterStatus || getStatus('cd_', r.cd_id||r.id) === filterStatus;
+    return matchSearch && matchBranch && matchStatus;
   });
 
   if (!filtered.length) {
-    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="icon">📭</div><p>Không có dữ liệu cận date</p></div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="10"><div class="empty-state"><div class="icon">📭</div><p>Không có dữ liệu cận date</p></div></td></tr>`;
     return;
   }
   tbody.innerHTML = filtered.map((r, i) => {
-    const isDone = getStatus('cd_', r.id) === 'done';
+    const id = r.cd_id || r.id;
+    const isDone = getStatus('cd_', id) === 'done';
     return `<tr class="${isDone?'row-done':''}">
       <td style="color:#999;font-size:0.8rem">${i+1}</td>
       <td class="td-img">${r.photo ? `<img src="${r.photo}" onclick="openModal('${r.photo}')" title="Click phóng to">` : `<div class="no-img">📷</div>`}</td>
@@ -349,10 +376,11 @@ function renderCdTable() {
       <td class="td-sku">${r.sku}</td>
       <td><span class="badge-date">${r.expiry_date}</span></td>
       <td><span class="badge-qty">${r.quantity}</span></td>
+      <td>${branchBadge(r.branch)}</td>
       <td class="td-emp">👤 ${r.employee}</td>
       <td class="td-date">🕐 ${r.datetime}</td>
       <td><select class="status-select ${isDone?'status-done':'status-pending'}"
-        onchange="setStatus('cd_',${r.id},this.value);this.className='status-select '+(this.value==='done'?'status-done':'status-pending')">
+        onchange="setStatus('cd_',${id},this.value);this.className='status-select '+(this.value==='done'?'status-done':'status-pending')">
         <option value="pending" ${!isDone?'selected':''}>⏳ Chờ xử lý</option>
         <option value="done" ${isDone?'selected':''}>✅ Đã xử lý</option>
       </select></td>
