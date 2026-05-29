@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📦 Dashboard Hàng Lỗi</title>
+<title>📦 Báo Cáo Hàng Hóa</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #1a1a2e; }
@@ -21,15 +21,41 @@
   header .subtitle { font-size: 0.85rem; opacity: 0.85; margin-top: 3px; }
   .last-updated { font-size: 0.8rem; opacity: 0.8; text-align: right; }
 
+  /* Tabs */
+  .tabs {
+    display: flex;
+    background: white;
+    border-bottom: 2px solid #e0e0e0;
+    padding: 0 30px;
+  }
+  .tab-btn {
+    padding: 14px 28px;
+    border: none;
+    background: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #888;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+  }
+  .tab-btn.active { color: #e74c3c; border-bottom-color: #e74c3c; }
+  .tab-btn:hover:not(.active) { color: #555; }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
   .stats-bar {
     display: flex;
     gap: 16px;
     padding: 20px 30px;
     background: white;
     border-bottom: 1px solid #e0e0e0;
+    flex-wrap: wrap;
   }
   .stat-card {
-    flex: 1;
+    flex: 1; min-width: 120px;
     background: #f8f9fa;
     border-radius: 10px;
     padding: 14px 18px;
@@ -37,36 +63,29 @@
     border-left: 4px solid #e74c3c;
   }
   .stat-card.today { border-left-color: #e67e22; }
-  .stat-card.qty { border-left-color: #8e44ad; }
+  .stat-card.qty   { border-left-color: #8e44ad; }
+  .stat-card.warn  { border-left-color: #f39c12; }
   .stat-num { font-size: 1.8rem; font-weight: 700; color: #e74c3c; }
   .stat-card.today .stat-num { color: #e67e22; }
-  .stat-card.qty .stat-num { color: #8e44ad; }
+  .stat-card.qty   .stat-num { color: #8e44ad; }
+  .stat-card.warn  .stat-num { color: #f39c12; }
   .stat-label { font-size: 0.78rem; color: #666; margin-top: 2px; }
 
   .toolbar {
-    display: flex;
-    gap: 12px;
+    display: flex; gap: 12px;
     padding: 16px 30px;
-    align-items: center;
-    flex-wrap: wrap;
+    align-items: center; flex-wrap: wrap;
   }
   .toolbar input, .toolbar select {
     padding: 8px 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 0.88rem;
-    background: white;
+    border: 1px solid #ddd; border-radius: 8px;
+    font-size: 0.88rem; background: white;
   }
   .toolbar input { flex: 1; min-width: 180px; }
   .btn-export {
-    padding: 8px 18px;
-    background: #27ae60;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.88rem;
-    font-weight: 600;
+    padding: 8px 18px; background: #27ae60;
+    color: white; border: none; border-radius: 8px;
+    cursor: pointer; font-size: 0.88rem; font-weight: 600;
   }
   .btn-export:hover { background: #219150; }
 
@@ -81,68 +100,32 @@
   .td-sku { font-family: monospace; font-weight: 700; color: #2980b9; font-size: 0.9rem; }
   .td-product { font-weight: 600; }
   .td-img img {
-    width: 70px; height: 70px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid #eee;
-    cursor: pointer;
-    transition: transform 0.2s;
+    width: 70px; height: 70px; object-fit: cover;
+    border-radius: 8px; border: 2px solid #eee;
+    cursor: pointer; transition: transform 0.2s;
   }
   .td-img img:hover { transform: scale(1.1); }
   .no-img {
-    width: 70px; height: 70px;
-    background: #f0f0f0;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: #ccc;
+    width: 70px; height: 70px; background: #f0f0f0;
+    border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; font-size: 1.5rem; color: #ccc;
   }
-  .badge-defect {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    background: #fde8e8;
-    color: #c0392b;
-  }
-  .badge-qty {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    background: #f3e5f5;
-    color: #7b1fa2;
-  }
+  .badge-defect { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; background: #fde8e8; color: #c0392b; }
+  .badge-date   { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; background: #fff3cd; color: #856404; }
+  .badge-date.urgent { background: #fde8e8; color: #c0392b; }
+  .badge-qty    { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; background: #f3e5f5; color: #7b1fa2; }
   .td-date { color: #666; font-size: 0.82rem; white-space: nowrap; }
-  .td-emp { color: #2c3e50; font-weight: 500; }
+  .td-emp  { color: #2c3e50; font-weight: 500; }
 
-  .status-select {
-    padding: 5px 10px;
-    border-radius: 20px;
-    border: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    outline: none;
-  }
+  .status-select { padding: 5px 10px; border-radius: 20px; border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; outline: none; }
   .status-pending { background: #fff3cd; color: #856404; }
   .status-done    { background: #d1f5e0; color: #1a7a40; }
   tr.row-done td  { opacity: 0.45; }
   tr.row-done td:last-child { opacity: 1; }
 
-  .empty-state {
-    text-align: center;
-    padding: 60px;
-    color: #aaa;
-  }
+  .empty-state { text-align: center; padding: 60px; color: #aaa; }
   .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
-  .empty-state p { font-size: 0.95rem; }
 
-  /* Modal ảnh phóng to */
   .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; align-items:center; justify-content:center; }
   .modal.active { display:flex; }
   .modal img { max-width:90vw; max-height:90vh; border-radius:12px; }
@@ -151,6 +134,8 @@
   @media (max-width: 768px) {
     .stats-bar { flex-wrap: wrap; }
     .table-wrapper { padding: 0 12px 20px; }
+    .tabs { padding: 0 12px; }
+    .tab-btn { padding: 12px 16px; font-size: 0.85rem; }
   }
 </style>
 </head>
@@ -158,77 +143,76 @@
 
 <header>
   <div>
-    <h1>🚨 Dashboard Hàng Lỗi / Hỏng</h1>
-    <div class="subtitle">Theo dõi & quản lý hàng hóa bị lỗi, hỏng hóc</div>
+    <h1>📦 Báo Cáo Hàng Hóa</h1>
+    <div class="subtitle">Theo dõi hàng lỗi & hàng cận date</div>
   </div>
-  <div class="last-updated">
-    Cập nhật lần cuối:<br>
-    <strong id="lastUpdated">—</strong>
-  </div>
+  <div class="last-updated">Cập nhật lần cuối:<br><strong id="lastUpdated">—</strong></div>
 </header>
 
-<div class="stats-bar">
-  <div class="stat-card">
-    <div class="stat-num" id="statTotal">0</div>
-    <div class="stat-label">Tổng sự cố ghi nhận</div>
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('loi')">🚨 Hàng Lỗi</button>
+  <button class="tab-btn" onclick="switchTab('candate')">⏰ Cận Date</button>
+</div>
+
+<!-- ═══════════════ TAB HÀNG LỖI ═══════════════ -->
+<div id="tab-loi" class="tab-content active">
+  <div class="stats-bar">
+    <div class="stat-card"><div class="stat-num" id="statTotal">0</div><div class="stat-label">Tổng sự cố</div></div>
+    <div class="stat-card today"><div class="stat-num" id="statToday">0</div><div class="stat-label">Hôm nay</div></div>
+    <div class="stat-card qty"><div class="stat-num" id="statQty">0</div><div class="stat-label">Tổng SL lỗi</div></div>
+    <div class="stat-card warn"><div class="stat-num" id="statPending">0</div><div class="stat-label">Chờ xử lý</div></div>
   </div>
-  <div class="stat-card today">
-    <div class="stat-num" id="statToday">0</div>
-    <div class="stat-label">Hôm nay</div>
+  <div class="toolbar">
+    <input type="text" id="searchInput" placeholder="🔍 Tìm theo SKU, tên sản phẩm, nhân viên..." oninput="renderLoiTable()">
+    <select id="filterDefect" onchange="renderLoiTable()"><option value="">-- Tất cả loại lỗi --</option></select>
+    <select id="filterStatus" onchange="renderLoiTable()" style="padding:8px 14px;border:1px solid #ddd;border-radius:8px;font-size:0.88rem;background:white">
+      <option value="">-- Tất cả trạng thái --</option>
+      <option value="pending">Chờ xử lý</option>
+      <option value="done">Đã xử lý</option>
+    </select>
+    <button class="btn-export" onclick="exportLoiCSV()">⬇ Xuất CSV</button>
   </div>
-  <div class="stat-card qty">
-    <div class="stat-num" id="statQty">0</div>
-    <div class="stat-label">Tổng số lượng lỗi</div>
-  </div>
-  <div class="stat-card" style="border-left-color:#27ae60">
-    <div class="stat-num" id="statPending" style="color:#e67e22">0</div>
-    <div class="stat-label">Chờ xử lý</div>
+  <div class="table-wrapper">
+    <table><thead><tr>
+      <th>#</th><th>Ảnh</th><th>SKU</th><th>Tên sản phẩm</th>
+      <th>Loại lỗi</th><th>SL Lỗi</th><th>Nhân viên</th><th>Ngày giờ</th><th>Trạng thái</th>
+    </tr></thead><tbody id="loiBody"></tbody></table>
   </div>
 </div>
 
-<div class="toolbar">
-  <input type="text" id="searchInput" placeholder="🔍 Tìm theo SKU, tên sản phẩm, nhân viên..." oninput="renderTable()">
-  <select id="filterDefect" onchange="renderTable()">
-    <option value="">-- Tất cả loại lỗi --</option>
-  </select>
-  <select id="filterStatus" onchange="renderTable()" style="padding:8px 14px;border:1px solid #ddd;border-radius:8px;font-size:0.88rem;background:white">
-    <option value="">-- Tất cả trạng thái --</option>
-    <option value="pending">Chờ xử lý</option>
-    <option value="done">Đã xử lý</option>
-  </select>
-  <button class="btn-export" onclick="exportCSV()">⬇ Xuất CSV</button>
-</div>
-
-<div class="table-wrapper">
-  <table id="mainTable">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Ảnh</th>
-        <th>SKU</th>
-        <th>Tên sản phẩm</th>
-        <th>Loại lỗi</th>
-        <th>SL Lỗi</th>
-        <th>Nhân viên</th>
-        <th>Ngày giờ</th>
-        <th>Trạng thái</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>
+<!-- ═══════════════ TAB CẬN DATE ═══════════════ -->
+<div id="tab-candate" class="tab-content">
+  <div class="stats-bar">
+    <div class="stat-card"><div class="stat-num" id="cdTotal">0</div><div class="stat-label">Tổng SP cận date</div></div>
+    <div class="stat-card today"><div class="stat-num" id="cdToday">0</div><div class="stat-label">Báo hôm nay</div></div>
+    <div class="stat-card qty"><div class="stat-num" id="cdQty">0</div><div class="stat-label">Tổng số lượng</div></div>
+    <div class="stat-card warn"><div class="stat-num" id="cdPending">0</div><div class="stat-label">Chờ xử lý</div></div>
+  </div>
+  <div class="toolbar">
+    <input type="text" id="cdSearchInput" placeholder="🔍 Tìm theo SKU, nhân viên..." oninput="renderCdTable()">
+    <select id="cdFilterStatus" onchange="renderCdTable()" style="padding:8px 14px;border:1px solid #ddd;border-radius:8px;font-size:0.88rem;background:white">
+      <option value="">-- Tất cả trạng thái --</option>
+      <option value="pending">Chờ xử lý</option>
+      <option value="done">Đã xử lý</option>
+    </select>
+    <button class="btn-export" onclick="exportCdCSV()">⬇ Xuất CSV</button>
+  </div>
+  <div class="table-wrapper">
+    <table><thead><tr>
+      <th>#</th><th>Ảnh</th><th>Tên sản phẩm</th><th>SKU</th><th>Hạn sử dụng</th>
+      <th>Số lượng</th><th>Nhân viên</th><th>Ngày báo</th><th>Trạng thái</th>
+    </tr></thead><tbody id="cdBody"></tbody></table>
+  </div>
 </div>
 
 <div class="modal" id="imgModal" onclick="closeModal()">
-  <img id="modalImg" src="" alt="Ảnh hàng lỗi">
+  <img id="modalImg" src="" alt="Ảnh">
 </div>
 
-<!-- ============================================================
-     DỮ LIỆU HÀNG LỖI — Claude sẽ thêm vào đây khi nhân viên báo
-     Mỗi record là 1 object trong mảng HANG_LOI_DATA
-     ============================================================ -->
+<!-- ═══════════════ DỮ LIỆU ═══════════════ -->
 <script>
 const HANG_LOI_DATA = [
-  // --- DỮ LIỆU MẪU (xóa khi dùng thật) ---
   {
     id: 1,
     sku: "SKU-DEMO-001",
@@ -240,278 +224,155 @@ const HANG_LOI_DATA = [
     photo: "",
     notes: "Record mẫu để kiểm tra giao diện"
   },
-  {
-    id: 2,
-    sku: "PVN 1345",
-    product_name: "PVN 1345",
-    defect_type: "Móp méo",
-    quantity: 5,
-    employee: "bích",
-    datetime: "2026-05-29 12:57",
-    photo: "photos/1675858726_20260529_125714.jpg",
-    notes: ""
-  },
-  {
-    id: 3,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 13:54",
-    photo: "photos/1675858726_20260529_135457.jpg",
-    notes: ""
-  },
-  {
-    id: 4,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 14:16",
-    photo: "photos/1675858726_20260529_141619.jpg",
-    notes: ""
-  },
-  {
-    id: 5,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 14:28",
-    photo: "photos/1675858726_20260529_142821.jpg",
-    notes: ""
-  },
-  {
-    id: 6,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 14:33",
-    photo: "photos/1675858726_20260529_143259.jpg",
-    notes: ""
-  },
-  {
-    id: 7,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 14:40",
-    photo: "photos/1675858726_20260529_144041.jpg",
-    notes: ""
-  },
-  {
-    id: 8,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 14:44",
-    photo: "photos/1675858726_20260529_144446.jpg",
-    notes: ""
-  },
-  {
-    id: 9,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 14:49",
-    photo: "photos/1675858726_20260529_144919.jpg",
-    notes: ""
-  },
-  {
-    id: 10,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 14:52",
-    photo: "photos/1675858726_20260529_145210.jpg",
-    notes: ""
-  },
-  {
-    id: 11,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 17:06",
-    photo: "photos/1675858726_20260529_170623.jpg",
-    notes: ""
-  },
-  {
-    id: 12,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 17:10",
-    photo: "https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_5.jpg",
-    notes: ""
-  },
-  {
-    id: 13,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 17:14",
-    photo: "https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_6.jpg",
-    notes: ""
-  },
-  {
-    id: 14,
-    sku: "PVN1234",
-    product_name: "sữa arla vị dâu",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 17:16",
-    photo: "https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_7.jpg",
-    notes: ""
-  },
-  {
-    id: 15,
-    sku: "PVN1234",
-    product_name: "Sữa chua",
-    defect_type: "rách vỏ",
-    quantity: 5,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 17:38",
-    photo: "https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_8.jpg",
-    notes: ""
-  },
-  {
-    id: 16,
-    sku: "PVN1234",
-    product_name: "Sữa bột arla",
-    defect_type: "móp",
-    quantity: 3,
-    employee: "Long Hoang",
-    datetime: "2026-05-29 18:02",
-    photo: "https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_9.jpg",
-    notes: ""
-  },
   // --- CLAUDE SẼ THÊM DỮ LIỆU THẬT VÀO ĐÂY ---
 ];
 
-// ============================================================
-// Trạng thái lưu vào localStorage theo ID
-// ============================================================
-function getStatus(id) {
-  return localStorage.getItem('hl_status_' + id) || 'pending';
+const CAN_DATE_DATA = [
+  // --- CLAUDE THÊM CẬN DATE VÀO ĐÂY ---
+];
+
+// ── Trạng thái ──────────────────────────────────
+function getStatus(prefix, id) {
+  return localStorage.getItem(prefix + id) || 'pending';
 }
-function setStatus(id, val) {
-  localStorage.setItem('hl_status_' + id, val);
-  renderTable();
-  updateStats();
+function setStatus(prefix, id, val) {
+  localStorage.setItem(prefix + id, val);
+  if (prefix === 'hl_') { renderLoiTable(); updateLoiStats(); }
+  else { renderCdTable(); updateCdStats(); }
 }
 
-function renderTable() {
+// ── Tab switching ───────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── Hàng Lỗi ───────────────────────────────────
+function renderLoiTable() {
   const search = document.getElementById('searchInput').value.toLowerCase();
   const filterDefect = document.getElementById('filterDefect').value;
   const filterStatus = document.getElementById('filterStatus').value;
-  const tbody = document.getElementById('tableBody');
+  const tbody = document.getElementById('loiBody');
 
   let filtered = HANG_LOI_DATA.filter(r => {
-    const matchSearch = !search ||
-      r.sku.toLowerCase().includes(search) ||
-      r.product_name.toLowerCase().includes(search) ||
-      r.employee.toLowerCase().includes(search) ||
-      (r.notes && r.notes.toLowerCase().includes(search));
+    const matchSearch = !search || r.sku.toLowerCase().includes(search) || r.product_name.toLowerCase().includes(search) || r.employee.toLowerCase().includes(search);
     const matchDefect = !filterDefect || r.defect_type === filterDefect;
-    const matchStatus = !filterStatus || getStatus(r.id) === filterStatus;
+    const matchStatus = !filterStatus || getStatus('hl_', r.id) === filterStatus;
     return matchSearch && matchDefect && matchStatus;
   });
 
-  if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="icon">📭</div><p>Không có dữ liệu phù hợp</p></div></td></tr>`;
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="icon">📭</div><p>Không có dữ liệu</p></div></td></tr>`;
     return;
   }
-
   tbody.innerHTML = filtered.map((r, i) => {
-    const st = getStatus(r.id);
-    const isDone = st === 'done';
-    return `
-    <tr class="${isDone ? 'row-done' : ''}">
+    const isDone = getStatus('hl_', r.id) === 'done';
+    return `<tr class="${isDone?'row-done':''}">
       <td style="color:#999;font-size:0.8rem">${i+1}</td>
-      <td class="td-img">
-        ${r.photo
-          ? `<img src="${r.photo}" alt="Ảnh" onclick="openModal('${r.photo}')" title="Click để phóng to">`
-          : `<div class="no-img">📷</div>`}
-      </td>
+      <td class="td-img">${r.photo ? `<img src="${r.photo}" onclick="openModal('${r.photo}')" title="Click phóng to">` : `<div class="no-img">📷</div>`}</td>
       <td class="td-sku">${r.sku}</td>
       <td class="td-product">${r.product_name}</td>
       <td><span class="badge-defect">${r.defect_type}</span></td>
       <td><span class="badge-qty">${r.quantity}</span></td>
       <td class="td-emp">👤 ${r.employee}</td>
       <td class="td-date">🕐 ${r.datetime}</td>
-      <td>
-        <select class="status-select ${isDone ? 'status-done' : 'status-pending'}"
-          onchange="setStatus(${r.id}, this.value); this.className='status-select '+(this.value==='done'?'status-done':'status-pending')">
-          <option value="pending" ${!isDone?'selected':''}>⏳ Chờ xử lý</option>
-          <option value="done"    ${isDone?'selected':''}>✅ Đã xử lý</option>
-        </select>
-      </td>
+      <td><select class="status-select ${isDone?'status-done':'status-pending'}"
+        onchange="setStatus('hl_',${r.id},this.value);this.className='status-select '+(this.value==='done'?'status-done':'status-pending')">
+        <option value="pending" ${!isDone?'selected':''}>⏳ Chờ xử lý</option>
+        <option value="done" ${isDone?'selected':''}>✅ Đã xử lý</option>
+      </select></td>
     </tr>`;
   }).join('');
 }
 
-function updateStats() {
+function updateLoiStats() {
   const today = new Date().toISOString().slice(0,10);
   document.getElementById('statTotal').textContent = HANG_LOI_DATA.length;
   document.getElementById('statToday').textContent = HANG_LOI_DATA.filter(r => r.datetime.startsWith(today)).length;
-  document.getElementById('statQty').textContent = HANG_LOI_DATA.reduce((s, r) => s + (parseInt(r.quantity)||0), 0);
-  document.getElementById('statPending').textContent = HANG_LOI_DATA.filter(r => getStatus(r.id) === 'pending').length;
-
+  document.getElementById('statQty').textContent = HANG_LOI_DATA.reduce((s,r) => s + (parseInt(r.quantity)||0), 0);
+  document.getElementById('statPending').textContent = HANG_LOI_DATA.filter(r => getStatus('hl_', r.id) === 'pending').length;
   if (HANG_LOI_DATA.length > 0) {
     const sorted = [...HANG_LOI_DATA].sort((a,b) => b.datetime.localeCompare(a.datetime));
     document.getElementById('lastUpdated').textContent = sorted[0].datetime;
   }
-
-  // Populate filter dropdown
   const defects = [...new Set(HANG_LOI_DATA.map(r => r.defect_type))].sort();
   const sel = document.getElementById('filterDefect');
-  const current = sel.value;
-  sel.innerHTML = '<option value="">-- Tất cả loại lỗi --</option>' +
-    defects.map(d => `<option value="${d}" ${d===current?'selected':''}>${d}</option>`).join('');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">-- Tất cả loại lỗi --</option>' + defects.map(d => `<option value="${d}" ${d===cur?'selected':''}>${d}</option>`).join('');
 }
 
-function openModal(src) {
-  document.getElementById('modalImg').src = src;
-  document.getElementById('imgModal').classList.add('active');
-}
-function closeModal() {
-  document.getElementById('imgModal').classList.remove('active');
-}
-
-function exportCSV() {
-  const headers = ['ID','SKU','Tên sản phẩm','Loại lỗi','Số lượng','Nhân viên','Ngày giờ','Ghi chú'];
-  const rows = HANG_LOI_DATA.map(r => [r.id, r.sku, r.product_name, r.defect_type, r.quantity, r.employee, r.datetime, r.notes||'']);
-  const csv = [headers, ...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
-  const blob = new Blob(['﻿'+csv], {type:'text/csv;charset=utf-8;'});
+function exportLoiCSV() {
+  const headers = ['ID','SKU','Tên sản phẩm','Loại lỗi','Số lượng','Nhân viên','Ngày giờ'];
+  const rows = HANG_LOI_DATA.map(r => [r.id, r.sku, r.product_name, r.defect_type, r.quantity, r.employee, r.datetime]);
+  const csv = [headers,...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
+  a.href = URL.createObjectURL(new Blob(['﻿'+csv], {type:'text/csv;charset=utf-8;'}));
   a.download = `hang_loi_${new Date().toISOString().slice(0,10)}.csv`;
   a.click();
 }
 
+// ── Cận Date ────────────────────────────────────
+function renderCdTable() {
+  const search = document.getElementById('cdSearchInput').value.toLowerCase();
+  const filterStatus = document.getElementById('cdFilterStatus').value;
+  const tbody = document.getElementById('cdBody');
+
+  let filtered = CAN_DATE_DATA.filter(r => {
+    const matchSearch = !search || r.sku.toLowerCase().includes(search) || (r.product_name||'').toLowerCase().includes(search) || r.employee.toLowerCase().includes(search);
+    const matchStatus = !filterStatus || getStatus('cd_', r.id) === filterStatus;
+    return matchSearch && matchStatus;
+  });
+
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="icon">📭</div><p>Không có dữ liệu cận date</p></div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = filtered.map((r, i) => {
+    const isDone = getStatus('cd_', r.id) === 'done';
+    return `<tr class="${isDone?'row-done':''}">
+      <td style="color:#999;font-size:0.8rem">${i+1}</td>
+      <td class="td-img">${r.photo ? `<img src="${r.photo}" onclick="openModal('${r.photo}')" title="Click phóng to">` : `<div class="no-img">📷</div>`}</td>
+      <td class="td-product">${r.product_name||''}</td>
+      <td class="td-sku">${r.sku}</td>
+      <td><span class="badge-date">${r.expiry_date}</span></td>
+      <td><span class="badge-qty">${r.quantity}</span></td>
+      <td class="td-emp">👤 ${r.employee}</td>
+      <td class="td-date">🕐 ${r.datetime}</td>
+      <td><select class="status-select ${isDone?'status-done':'status-pending'}"
+        onchange="setStatus('cd_',${r.id},this.value);this.className='status-select '+(this.value==='done'?'status-done':'status-pending')">
+        <option value="pending" ${!isDone?'selected':''}>⏳ Chờ xử lý</option>
+        <option value="done" ${isDone?'selected':''}>✅ Đã xử lý</option>
+      </select></td>
+    </tr>`;
+  }).join('');
+}
+
+function updateCdStats() {
+  const today = new Date().toISOString().slice(0,10);
+  document.getElementById('cdTotal').textContent = CAN_DATE_DATA.length;
+  document.getElementById('cdToday').textContent = CAN_DATE_DATA.filter(r => r.datetime.startsWith(today)).length;
+  document.getElementById('cdQty').textContent = CAN_DATE_DATA.reduce((s,r) => s + (parseInt(r.quantity)||0), 0);
+  document.getElementById('cdPending').textContent = CAN_DATE_DATA.filter(r => getStatus('cd_', r.id) === 'pending').length;
+}
+
+function exportCdCSV() {
+  const headers = ['ID','Tên sản phẩm','SKU','Hạn sử dụng','Số lượng','Nhân viên','Ngày báo'];
+  const rows = CAN_DATE_DATA.map(r => [r.cd_id||r.id, r.product_name||'', r.sku, r.expiry_date, r.quantity, r.employee, r.datetime]);
+  const csv = [headers,...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['﻿'+csv], {type:'text/csv;charset=utf-8;'}));
+  a.download = `can_date_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+function openModal(src) { document.getElementById('modalImg').src = src; document.getElementById('imgModal').classList.add('active'); }
+function closeModal() { document.getElementById('imgModal').classList.remove('active'); }
+
 // Init
-updateStats();
-renderTable();
+updateLoiStats(); renderLoiTable();
+updateCdStats();  renderCdTable();
 </script>
 </body>
 </html>
