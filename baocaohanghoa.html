@@ -678,6 +678,8 @@ function openModal(photos, startIdx) {
   _modalIdx = startIdx || 0;
   _showModalPhoto();
   document.getElementById('imgModal').classList.add('active');
+  // Thêm history entry giả để back gesture đóng modal thay vì thoát trang
+  history.pushState({ modal: true }, '');
 }
 
 function _showModalPhoto() {
@@ -693,7 +695,16 @@ function modalNav(dir) {
   _showModalPhoto();
 }
 
-function closeModal() { document.getElementById('imgModal').classList.remove('active'); }
+function closeModal() {
+  document.getElementById('imgModal').classList.remove('active');
+}
+
+// Bắt back gesture / nút back → đóng modal
+window.addEventListener('popstate', function(e) {
+  if (document.getElementById('imgModal').classList.contains('active')) {
+    closeModal();
+  }
+});
 
 // Đóng modal khi click nền đen
 document.getElementById('imgModal').addEventListener('click', function(e) {
