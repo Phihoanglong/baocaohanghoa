@@ -710,19 +710,29 @@ document.addEventListener('keydown', function(e) {
 
 // Swipe cảm ứng
 (function() {
-  let _tx = 0, _ty = 0;
+  let _tx = 0, _ty = 0, _moved = false;
   const el = document.getElementById('imgModal');
   el.addEventListener('touchstart', function(e) {
     _tx = e.touches[0].clientX;
     _ty = e.touches[0].clientY;
+    _moved = false;
   }, { passive: true });
+  el.addEventListener('touchmove', function(e) {
+    const dx = e.touches[0].clientX - _tx;
+    const dy = e.touches[0].clientY - _ty;
+    // Nếu vuốt ngang thì chặn browser back/forward
+    if (Math.abs(dx) > Math.abs(dy)) {
+      e.preventDefault();
+      _moved = true;
+    }
+  }, { passive: false });
   el.addEventListener('touchend', function(e) {
     const dx = e.changedTouches[0].clientX - _tx;
     const dy = e.changedTouches[0].clientY - _ty;
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
       dx < 0 ? modalNav(1) : modalNav(-1);
     } else if (Math.abs(dy) > 80 && Math.abs(dx) < 40) {
-      closeModal(); // vuốt xuống để đóng
+      closeModal();
     }
   }, { passive: true });
 })();
