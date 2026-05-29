@@ -154,11 +154,47 @@
   .modal-arrow[disabled] { opacity:0.2; cursor:default; pointer-events:none; }
   .modal-counter { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,0.75); font-size:0.9rem; background:rgba(0,0,0,0.4); padding:4px 14px; border-radius:20px; }
 
+  /* Card layout mobile */
+  .card-list { display:none; padding: 0 12px 24px; }
+  .card {
+    background: white; border-radius: 14px; margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08); overflow: hidden;
+  }
+  .card-top { display:flex; gap:12px; padding:12px; align-items:flex-start; }
+  .card-photo { flex-shrink:0; position:relative; }
+  .card-photo img { width:80px; height:80px; object-fit:cover; border-radius:10px; cursor:pointer; border:2px solid #eee; }
+  .card-photo .photo-count { position:absolute; bottom:3px; right:3px; background:rgba(0,0,0,0.6); color:white; font-size:0.68rem; font-weight:700; padding:1px 5px; border-radius:10px; }
+  .card-photo .no-img { width:80px; height:80px; background:#f0f0f0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:#ccc; }
+  .card-info { flex:1; min-width:0; }
+  .card-sku { font-family:monospace; font-weight:700; color:#2980b9; font-size:0.95rem; }
+  .card-name { font-weight:600; font-size:0.92rem; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .card-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:6px; align-items:center; }
+  .card-bottom { display:flex; align-items:center; justify-content:space-between; padding:8px 12px; border-top:1px solid #f0f0f0; background:#fafafa; }
+  .card-meta { font-size:0.75rem; color:#888; }
+  .card.row-done { opacity:0.5; }
+  .card.row-done .card-bottom { opacity:1; }
+
   @media (max-width: 768px) {
-    .stats-bar { flex-wrap: wrap; }
-    .table-wrapper { padding: 0 12px 20px; }
-    .tabs { padding: 0 12px; }
-    .tab-btn { padding: 12px 16px; font-size: 0.85rem; }
+    header { padding: 14px 16px; }
+    header h1 { font-size: 1.2rem; }
+    .stats-bar { flex-wrap: wrap; padding: 12px 16px; gap: 8px; }
+    .stat-card { min-width: 70px; padding: 10px 10px; }
+    .stat-num { font-size: 1.3rem; }
+    .toolbar { padding: 10px 12px; gap: 8px; }
+    .toolbar input { min-width: 100%; }
+    .tabs { padding: 0 8px; }
+    .tab-btn { padding: 10px 12px; font-size: 0.82rem; }
+
+    /* Ẩn bảng, hiện card */
+    .table-wrapper { display: none; }
+    .card-list { display: block; }
+
+    /* Modal mobile */
+    .modal-arrow { width: 44px; height: 44px; font-size: 1.6rem; }
+    .modal-arrow.prev { left: 4px; }
+    .modal-arrow.next { right: 4px; }
+    .modal-img-wrap img { max-width: 96vw; max-height: 82vh; }
+    .modal-close { top: 10px; right: 14px; font-size: 1.6rem; }
   }
 </style>
 </head>
@@ -207,6 +243,7 @@
       <th>Loại lỗi</th><th>SL Lỗi</th><th>Chi nhánh</th><th>Nhân viên</th><th>Ngày giờ</th><th>Trạng thái</th>
     </tr></thead><tbody id="loiBody"></tbody></table>
   </div>
+  <div class="card-list" id="loiCards"></div>
 </div>
 
 <!-- ═══════════════ TAB CẬN DATE ═══════════════ -->
@@ -237,6 +274,7 @@
       <th>Số lượng</th><th>Chi nhánh</th><th>Nhân viên</th><th>Ngày báo</th><th>Trạng thái</th>
     </tr></thead><tbody id="cdBody"></tbody></table>
   </div>
+  <div class="card-list" id="cdCards"></div>
 </div>
 
 <div class="modal" id="imgModal">
@@ -481,6 +519,38 @@ function renderLoiTable() {
       </select></td>
     </tr>`;
   }).join('');
+
+  // Card layout (mobile)
+  document.getElementById('loiCards').innerHTML = filtered.map(r => {
+    const isDone = getStatus('hl_', r.id) === 'done';
+    const photos = r.photos || (r.photo ? [r.photo] : []);
+    const photosJson = JSON.stringify(photos).replace(/"/g,'&quot;');
+    const photoHtml = photos.length
+      ? `<div class="card-photo"><img src="${photos[0]}" onclick="openModal(${photosJson})">${photos.length>1?`<span class="photo-count">+${photos.length}</span>`:''}</div>`
+      : `<div class="card-photo"><div class="no-img">📷</div></div>`;
+    return `<div class="card ${isDone?'row-done':''}">
+      <div class="card-top">
+        ${photoHtml}
+        <div class="card-info">
+          <div class="card-sku">${r.sku}</div>
+          <div class="card-name">${r.product_name}</div>
+          <div class="card-tags">
+            <span class="badge-defect">${r.defect_type}</span>
+            <span class="badge-qty">${r.quantity}</span>
+            ${branchBadge(r.branch)}
+          </div>
+        </div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-meta">👤 ${r.employee} &nbsp;🕐 ${r.datetime}</div>
+        <select class="status-select ${isDone?'status-done':'status-pending'}"
+          onchange="setStatus('hl_',${r.id},this.value);this.className='status-select '+(this.value==='done'?'status-done':'status-pending')">
+          <option value="pending" ${!isDone?'selected':''}>⏳ Chờ xử lý</option>
+          <option value="done" ${isDone?'selected':''}>✅ Đã xử lý</option>
+        </select>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 function updateLoiStats() {
@@ -547,6 +617,39 @@ function renderCdTable() {
         <option value="done" ${isDone?'selected':''}>✅ Đã xử lý</option>
       </select></td>
     </tr>`;
+  }).join('');
+
+  // Card layout (mobile)
+  document.getElementById('cdCards').innerHTML = filtered.map(r => {
+    const id = r.cd_id || r.id;
+    const isDone = getStatus('cd_', id) === 'done';
+    const photos = r.photos || (r.photo ? [r.photo] : []);
+    const photosJson = JSON.stringify(photos).replace(/"/g,'&quot;');
+    const photoHtml = photos.length
+      ? `<div class="card-photo"><img src="${photos[0]}" onclick="openModal(${photosJson})">${photos.length>1?`<span class="photo-count">+${photos.length}</span>`:''}</div>`
+      : `<div class="card-photo"><div class="no-img">📷</div></div>`;
+    return `<div class="card ${isDone?'row-done':''}">
+      <div class="card-top">
+        ${photoHtml}
+        <div class="card-info">
+          <div class="card-sku">${r.sku}</div>
+          <div class="card-name">${r.product_name||''}</div>
+          <div class="card-tags">
+            <span class="badge-date">📅 ${r.expiry_date}</span>
+            <span class="badge-qty">${r.quantity}</span>
+            ${branchBadge(r.branch)}
+          </div>
+        </div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-meta">👤 ${r.employee} &nbsp;🕐 ${r.datetime}</div>
+        <select class="status-select ${isDone?'status-done':'status-pending'}"
+          onchange="setStatus('cd_',${id},this.value);this.className='status-select '+(this.value==='done'?'status-done':'status-pending')">
+          <option value="pending" ${!isDone?'selected':''}>⏳ Chờ xử lý</option>
+          <option value="done" ${isDone?'selected':''}>✅ Đã xử lý</option>
+        </select>
+      </div>
+    </div>`;
   }).join('');
 }
 
