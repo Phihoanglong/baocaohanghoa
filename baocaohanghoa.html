@@ -671,7 +671,7 @@ function renderCdTable() {
     const matchBranch = !filterBranch || (r.branch||'') === filterBranch;
     const matchStatus = !filterStatus || getStatus('cd_', r.cd_id||r.id) === filterStatus;
     return matchSearch && matchBranch && matchStatus;
-  });
+  }).sort((a, b) => daysLeft(a.expiry_date) - daysLeft(b.expiry_date));
 
   if (!filtered.length) {
     tbody.innerHTML = `<tr><td colspan="10"><div class="empty-state"><div class="icon">📭</div><p>Không có dữ liệu cận date</p></div></td></tr>`;
