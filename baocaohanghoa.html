@@ -460,66 +460,6 @@ const HANG_LOI_DATA = [
     photos: ["https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_25.jpg"],
     notes: ""
   },
-  {
-    id: 15,
-    sku: "PVN12345",
-    product_name: "Kendamil",
-    defect_type: "móp",
-    quantity: 10,
-    branch: "VPH",
-    employee: "Long Hoang",
-    datetime: "2026-05-30 13:14",
-    photos: ["https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_26.jpg"],
-    notes: ""
-  },
-  {
-    id: 16,
-    sku: "PVN12345",
-    product_name: "Kendamil",
-    defect_type: "móp",
-    quantity: 10,
-    branch: "VPH",
-    employee: "Long Hoang",
-    datetime: "2026-05-30 13:17",
-    photos: ["https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_25.jpg"],
-    notes: ""
-  },
-  {
-    id: 17,
-    sku: "PVN12345",
-    product_name: "Kendamil",
-    defect_type: "móp",
-    quantity: 10,
-    branch: "VPH",
-    employee: "Long Hoang",
-    datetime: "2026-05-30 13:23",
-    photos: ["https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_27.jpg"],
-    notes: ""
-  },
-  {
-    id: 18,
-    sku: "PVN12345",
-    product_name: "Kendamil",
-    defect_type: "móp",
-    quantity: 10,
-    branch: "VPH",
-    employee: "Long Hoang",
-    datetime: "2026-05-30 13:38",
-    photos: ["https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_28.jpg"],
-    notes: ""
-  },
-  {
-    id: 19,
-    sku: "PVN12345",
-    product_name: "Kendamil",
-    defect_type: "móp",
-    quantity: 10,
-    branch: "VPH",
-    employee: "Long Hoang",
-    datetime: "2026-05-31 09:03",
-    photos: ["https://api.telegram.org/file/bot8979570388:AAH8TYRpvk4eyMXCXAgyIyp8o18BLSVIpd0/photos/file_29.jpg"],
-    notes: ""
-  },
   // --- CLAUDE SẼ THÊM DỮ LIỆU THẬT VÀO ĐÂY ---
 ];
 
@@ -697,6 +637,25 @@ function exportLoiCSV() {
   a.href = URL.createObjectURL(new Blob(['﻿'+csv], {type:'text/csv;charset=utf-8;'}));
   a.download = `hang_loi_${new Date().toISOString().slice(0,10)}.csv`;
   a.click();
+}
+
+// ── Cận Date helpers ─────────────────────────────
+function daysLeft(expiry_date) {
+  if (!expiry_date) return 9999;
+  const parts = expiry_date.split('/');
+  if (parts.length !== 3) return 9999;
+  const d = new Date(parseInt(parts[2]), parseInt(parts[1])-1, parseInt(parts[0]));
+  const today = new Date(); today.setHours(0,0,0,0);
+  return Math.ceil((d - today) / 86400000);
+}
+
+function daysTag(expiry_date) {
+  const days = daysLeft(expiry_date);
+  if (days < 0)  return `<span class="tag-days tag-expired">Đã hết hạn</span>`;
+  if (days === 0) return `<span class="tag-days tag-expired">Hết hạn hôm nay</span>`;
+  if (days <= 7)  return `<span class="tag-days tag-danger">🔴 Còn ${days} ngày</span>`;
+  if (days <= 30) return `<span class="tag-days tag-warn">🟠 Còn ${days} ngày</span>`;
+  return `<span class="tag-days tag-ok">🟢 Còn ${days} ngày</span>`;
 }
 
 // ── Cận Date ────────────────────────────────────
