@@ -685,7 +685,7 @@ function renderCdTable() {
       <td class="td-img">${photoCell(r)}</td>
       <td class="td-product">${r.product_name||''}</td>
       <td class="td-sku">${r.sku}</td>
-      <td><span class="badge-date">${r.expiry_date}</span></td>
+      <td><span class="badge-date">${r.expiry_date}</span><br>${daysTag(r.expiry_date)}</td>
       <td><span class="badge-qty">${r.quantity}</span></td>
       <td>${branchBadge(r.branch)}</td>
       <td class="td-emp">👤 ${r.employee}</td>
