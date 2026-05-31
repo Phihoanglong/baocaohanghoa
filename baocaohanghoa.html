@@ -715,6 +715,7 @@ function renderCdTable() {
           <div class="card-name">${r.product_name||''}</div>
           <div class="card-tags">
             <span class="badge-date">📅 ${r.expiry_date}</span>
+            ${daysTag(r.expiry_date)}
             <span class="badge-qty">${r.quantity}</span>
             ${branchBadge(r.branch)}
           </div>
