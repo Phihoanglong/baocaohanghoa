@@ -850,7 +850,8 @@ function photoCell(r) {
   if (!photos.length) return `<div class="no-img">📷</div>`;
   const photosJson = JSON.stringify(photos).replace(/"/g, '&quot;');
   return `<div style="position:relative;display:inline-block">
-    <img src="${photos[0]}" onclick="openModal(${photosJson})" title="Click xem ảnh">
+    <img src="${photos[0]}" onclick="openModal(${photosJson})" title="Click xem ảnh"
+      onerror="this.onerror=null;this.src='';this.outerHTML='<div class=\'no-img\' title=\'Ảnh đã hết hạn\'>🖼️</div>'">
     ${photos.length > 1 ? `<span class="photo-count">+${photos.length}</span>` : ''}
   </div>`;
 }
