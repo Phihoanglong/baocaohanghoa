@@ -603,7 +603,7 @@ function renderLoiTable() {
     const photos = r.photos || (r.photo ? [r.photo] : []);
     const photosJson = JSON.stringify(photos).replace(/"/g,'&quot;');
     const photoHtml = photos.length
-      ? `<div class="card-photo"><img src="${photos[0]}" onclick="openModal(${photosJson})">${photos.length>1?`<span class="photo-count">+${photos.length}</span>`:''}</div>`
+      ? `<div class="card-photo"><img src="${photos[0]}" onclick="openModal(${photosJson})" onerror="this.onerror=null;this.src='';this.outerHTML='<div class=\\'no-img\\' title=\\'Ảnh đã hết hạn\\'>🖼️</div>'">${photos.length>1?`<span class="photo-count">+${photos.length}</span>`:''}</div>`
       : `<div class="card-photo"><div class="no-img">📷</div></div>`;
     return `<div class="card ${isDone?'row-done':''}">
       <div class="card-top">
@@ -722,7 +722,7 @@ function renderCdTable() {
     const photos = r.photos || (r.photo ? [r.photo] : []);
     const photosJson = JSON.stringify(photos).replace(/"/g,'&quot;');
     const photoHtml = photos.length
-      ? `<div class="card-photo"><img src="${photos[0]}" onclick="openModal(${photosJson})">${photos.length>1?`<span class="photo-count">+${photos.length}</span>`:''}</div>`
+      ? `<div class="card-photo"><img src="${photos[0]}" onclick="openModal(${photosJson})" onerror="this.onerror=null;this.src='';this.outerHTML='<div class=\\'no-img\\' title=\\'Ảnh đã hết hạn\\'>🖼️</div>'">${photos.length>1?`<span class="photo-count">+${photos.length}</span>`:''}</div>`
       : `<div class="card-photo"><div class="no-img">📷</div></div>`;
     return `<div class="card ${isDone?'row-done':''}">
       <div class="card-top">
