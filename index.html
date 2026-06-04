@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang Anh Baby – Mẹ tin chọn, Bé khỏe vui</title>
+<meta name="description" content="Trang Anh Baby Store – Cửa hàng mẹ & bé chính hãng: sữa, thực phẩm, bỉm tã, đồ dùng, giày dép cho bé. Giao nhanh Hà Nội.">
+<style>
+  :root{
+    --primary:#2ec4b6;
+    --primary-dark:#22a89b;
+    --accent:#ff7a59;
+    --accent-dark:#f25c3b;
+    --pink:#ff6b9d;
+    --yellow:#ffd166;
+    --bg:#fbf9f6;
+    --card:#ffffff;
+    --text:#2d2d34;
+    --muted:#8c8c97;
+    --line:#eef0f0;
+    --shadow:0 6px 22px rgba(45,45,52,.07);
+    --shadow-lg:0 14px 40px rgba(45,45,52,.14);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  .container{max-width:1200px;margin:0 auto;padding:0 18px}
+
+  /* ── Announcement bar ── */
+  .announce{background:linear-gradient(90deg,var(--primary),#37d0c1);color:#fff;text-align:center;font-size:.82rem;font-weight:600;padding:7px 12px;letter-spacing:.2px}
+  .announce span{opacity:.95}
+
+  /* ── Header ── */
+  header{background:var(--card);position:sticky;top:0;z-index:90;box-shadow:0 2px 14px rgba(0,0,0,.05)}
+  .head-row{display:flex;align-items:center;gap:18px;padding:14px 0}
+  .logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
+  .logo-badge{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--pink));display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 5px 14px rgba(46,196,182,.35)}
+  .logo-text b{font-size:1.22rem;font-weight:800;letter-spacing:-.3px;display:block;line-height:1.1}
+  .logo-text b i{color:var(--primary);font-style:normal}
+  .logo-text small{font-size:.72rem;color:var(--muted);font-weight:600}
+
+  .search{flex:1;display:flex;align-items:center;background:#f3f4f4;border:1.5px solid transparent;border-radius:30px;padding:0 6px 0 16px;transition:.2s;max-width:520px}
+  .search:focus-within{background:#fff;border-color:var(--primary);box-shadow:0 0 0 3px rgba(46,196,182,.12)}
+  .search input{flex:1;border:none;background:none;outline:none;padding:11px 6px;font-size:.92rem;color:var(--text)}
+  .search button{width:38px;height:38px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+
+  .head-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+  .hotline{display:flex;align-items:center;gap:9px;padding:6px 14px;border-radius:30px;background:#fff4ef;color:var(--accent-dark)}
+  .hotline .ic{font-size:1.2rem}
+  .hotline small{display:block;font-size:.68rem;color:var(--muted);font-weight:600}
+  .hotline b{font-size:.95rem;letter-spacing:.3px}
+  .cart-btn{position:relative;display:flex;align-items:center;gap:8px;background:var(--text);color:#fff;padding:11px 16px;border-radius:30px;font-weight:700;font-size:.9rem;transition:.2s}
+  .cart-btn:hover{background:#000;transform:translateY(-1px)}
+  .cart-count{position:absolute;top:-6px;right:-6px;min-width:21px;height:21px;padding:0 5px;border-radius:11px;background:var(--accent);color:#fff;font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid #fff;transform:scale(0);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+  .cart-count.show{transform:scale(1)}
+
+  /* ── Category nav ── */
+  .catnav{background:var(--card);border-top:1px solid var(--line);position:sticky;top:75px;z-index:80}
+  .catnav-inner{display:flex;gap:8px;overflow-x:auto;padding:11px 18px;max-width:1200px;margin:0 auto;scrollbar-width:none}
+  .catnav-inner::-webkit-scrollbar{display:none}
+  .chip{flex-shrink:0;display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:30px;background:#f3f4f4;color:#555;font-weight:600;font-size:.86rem;white-space:nowrap;transition:.18s}
+  .chip:hover{background:#e7f8f6;color:var(--primary-dark)}
+  .chip.active{background:var(--primary);color:#fff;box-shadow:0 5px 13px rgba(46,196,182,.32)}
+
+  /* ── Hero ── */
+  .hero{padding:26px 0 8px}
+  .hero-card{position:relative;overflow:hidden;border-radius:26px;background:linear-gradient(120deg,#e8faf7 0%,#fff3ee 60%,#fdeef4 100%);padding:42px 44px;display:flex;align-items:center;gap:30px}
+  .hero-text{flex:1;min-width:0;z-index:2}
+  .hero-tag{display:inline-block;background:#fff;color:var(--primary-dark);font-weight:700;font-size:.78rem;padding:6px 14px;border-radius:30px;margin-bottom:14px;box-shadow:var(--shadow)}
+  .hero-text h1{font-size:2.35rem;font-weight:800;letter-spacing:-.8px;line-height:1.12;margin-bottom:12px}
+  .hero-text h1 em{font-style:normal;color:var(--primary)}
+  .hero-text p{color:#5e5e68;font-size:1rem;max-width:440px;margin-bottom:22px}
+  .hero-cta{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;font-weight:700;font-size:.98rem;padding:14px 26px;border-radius:30px;box-shadow:0 10px 24px rgba(255,122,89,.36);transition:.2s}
+  .hero-cta:hover{background:var(--accent-dark);transform:translateY(-2px)}
+  .hero-emoji{font-size:9rem;line-height:1;filter:drop-shadow(0 14px 24px rgba(0,0,0,.12));flex-shrink:0}
+  .hero-blob{position:absolute;border-radius:50%;opacity:.5}
+  .hero-blob.b1{width:220px;height:220px;background:#bff0ea;right:-40px;top:-60px}
+  .hero-blob.b2{width:150px;height:150px;background:#ffd9cb;right:130px;bottom:-50px}
+
+  /* ── Trust row ── */
+  .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:22px 0}
+  .trust-item{background:var(--card);border-radius:var(--radius);padding:16px 18px;display:flex;align-items:center;gap:13px;box-shadow:var(--shadow)}
+  .trust-item .ic{font-size:1.7rem;flex-shrink:0}
+  .trust-item b{display:block;font-size:.9rem}
+  .trust-item small{color:var(--muted);font-size:.76rem}
+
+  /* ── Section heading ── */
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin:14px 0 18px}
+  .sec-head h2{font-size:1.5rem;font-weight:800;letter-spacing:-.4px}
+  .sec-head h2 span{color:var(--primary)}
+  .sec-head p{color:var(--muted);font-size:.85rem;margin-top:2px}
+  .result-count{color:var(--muted);font-size:.84rem;font-weight:600}
+
+  /* ── Product grid ── */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding-bottom:30px}
+  .pcard{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.22s;border:1px solid transparent}
+  .pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:#eafaf7}
+  .pcard-img{position:relative;aspect-ratio:1/1;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+  .pcard:hover .pcard-img img{transform:scale(1.06)}
+  .pcard-emoji{font-size:4.6rem;line-height:1;filter:drop-shadow(0 8px 12px rgba(0,0,0,.1))}
+  .pbadge{position:absolute;top:11px;left:11px;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:30px;color:#fff;letter-spacing:.3px;z-index:2}
+  .pbadge.sale{background:var(--accent)}
+  .pbadge.hot{background:var(--pink)}
+  .pbadge.new{background:var(--primary)}
+  .wish{position:absolute;top:9px;right:9px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:1rem;opacity:0;transform:scale(.6);transition:.2s;z-index:2}
+  .pcard:hover .wish{opacity:1;transform:scale(1)}
+  .wish.on{opacity:1;transform:scale(1)}
+  .pcard-body{padding:13px 14px 15px;display:flex;flex-direction:column;flex:1}
+  .pcat{font-size:.7rem;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+  .pname{font-size:.93rem;font-weight:700;line-height:1.32;margin-bottom:7px;min-height:2.5em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .prate{display:flex;align-items:center;gap:5px;font-size:.76rem;color:var(--muted);margin-bottom:9px}
+  .prate .stars{color:var(--yellow);letter-spacing:1px}
+  .pprice-row{display:flex;align-items:baseline;gap:8px;margin-bottom:11px;flex-wrap:wrap}
+  .pprice{font-size:1.12rem;font-weight:800;color:var(--accent-dark)}
+  .pold{font-size:.82rem;color:#b8b8c0;text-decoration:line-through}
+  .padd{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;background:#eafaf7;color:var(--primary-dark);font-weight:700;font-size:.86rem;padding:11px;border-radius:12px;transition:.18s}
+  .padd:hover{background:var(--primary);color:#fff}
+  .padd:active{transform:scale(.97)}
+
+  .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
+  .empty .ic{font-size:3.4rem;margin-bottom:12px}
+
+  /* ── Cart drawer ── */
+  .overlay{position:fixed;inset:0;background:rgba(30,30,38,.5);opacity:0;visibility:hidden;transition:.3s;z-index:100;backdrop-filter:blur(2px)}
+  .overlay.show{opacity:1;visibility:visible}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:420px;max-width:92vw;background:var(--bg);z-index:101;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);box-shadow:-10px 0 40px rgba(0,0,0,.18)}
+  .drawer.show{transform:translateX(0)}
+  .drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;background:var(--card);border-bottom:1px solid var(--line)}
+  .drawer-head h3{font-size:1.12rem;font-weight:800;display:flex;align-items:center;gap:9px}
+  .drawer-close{width:36px;height:36px;border-radius:50%;background:#f1f2f2;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#666;transition:.2s}
+  .drawer-close:hover{background:#e6e7e7}
+  .cart-items{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:11px}
+  .citem{display:flex;gap:12px;background:var(--card);border-radius:14px;padding:11px;box-shadow:var(--shadow);position:relative}
+  .citem-img{width:64px;height:64px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2rem;overflow:hidden}
+  .citem-img img{width:100%;height:100%;object-fit:cover}
+  .citem-info{flex:1;min-width:0}
+  .citem-info b{font-size:.86rem;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
+  .citem-price{color:var(--accent-dark);font-weight:800;font-size:.92rem;margin-top:3px}
+  .qty{display:inline-flex;align-items:center;gap:0;margin-top:8px;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .qty button{width:28px;height:28px;background:#f5f6f6;font-size:1rem;font-weight:700;color:#555;display:flex;align-items:center;justify-content:center;transition:.15s}
+  .qty button:hover{background:var(--primary);color:#fff}
+  .qty span{min-width:34px;text-align:center;font-weight:700;font-size:.86rem}
+  .citem-del{position:absolute;top:9px;right:9px;color:#c9c9d0;font-size:.95rem;transition:.15s}
+  .citem-del:hover{color:var(--accent-dark)}
+  .cart-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);text-align:center;padding:30px}
+  .cart-empty .ic{font-size:4rem;margin-bottom:14px;opacity:.6}
+  .cart-empty button{margin-top:18px;background:var(--primary);color:#fff;font-weight:700;padding:11px 22px;border-radius:30px;font-size:.9rem}
+  .cart-foot{background:var(--card);border-top:1px solid var(--line);padding:16px 20px 20px}
+  .cart-row{display:flex;justify-content:space-between;align-items:center;font-size:.88rem;color:#666;margin-bottom:7px}
+  .cart-total{display:flex;justify-content:space-between;align-items:baseline;margin:10px 0 14px;padding-top:12px;border-top:1px dashed var(--line)}
+  .cart-total span{font-weight:700;font-size:.95rem}
+  .cart-total b{font-size:1.4rem;font-weight:800;color:var(--accent-dark)}
+  .checkout-btn{width:100%;background:var(--accent);color:#fff;font-weight:800;font-size:1rem;padding:15px;border-radius:14px;box-shadow:0 10px 22px rgba(255,122,89,.34);transition:.2s;display:flex;align-items:center;justify-content:center;gap:9px}
+  .checkout-btn:hover{background:var(--accent-dark);transform:translateY(-2px)}
+  .checkout-btn:disabled{background:#d8d8dd;box-shadow:none;cursor:not-allowed;transform:none}
+
+  /* ── Checkout modal ── */
+  .modal{position:fixed;inset:0;z-index:110;display:none;align-items:center;justify-content:center;padding:18px}
+  .modal.show{display:flex}
+  .modal-box{background:var(--bg);border-radius:24px;max-width:760px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:var(--shadow-lg);animation:pop .3s cubic-bezier(.34,1.56,.64,1)}
+  @keyframes pop{from{transform:scale(.92) translateY(14px);opacity:0}to{transform:none;opacity:1}}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:20px 26px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:2;border-radius:24px 24px 0 0}
+  .modal-head h3{font-size:1.25rem;font-weight:800}
+  .checkout-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:0}
+  .checkout-form{padding:24px 26px}
+  .checkout-summary{padding:24px 26px;background:#f6f7f7;border-left:1px solid var(--line)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:.84rem;font-weight:700;margin-bottom:7px}
+  .field label .req{color:var(--accent-dark)}
+  .field input,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font-size:.92rem;font-family:inherit;background:#fff;transition:.18s;color:var(--text)}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(46,196,182,.12)}
+  .field input.err{border-color:var(--accent-dark);box-shadow:0 0 0 3px rgba(242,92,59,.1)}
+  .field textarea{resize:vertical;min-height:64px}
+  .field-msg{font-size:.76rem;color:var(--accent-dark);margin-top:5px;display:none}
+  .field-msg.show{display:block}
+  .pay-opts{display:flex;flex-direction:column;gap:10px}
+  .pay-opt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;cursor:pointer;transition:.18s;background:#fff}
+  .pay-opt:hover{border-color:#cfeeea}
+  .pay-opt.sel{border-color:var(--primary);background:#f1fbf9}
+  .pay-opt input{accent-color:var(--primary);width:18px;height:18px}
+  .pay-opt .pi{font-size:1.4rem}
+  .pay-opt b{font-size:.88rem;display:block}
+  .pay-opt small{font-size:.74rem;color:var(--muted)}
+  .sum-title{font-size:1rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .sum-list{display:flex;flex-direction:column;gap:11px;margin-bottom:16px;max-height:230px;overflow-y:auto}
+  .sum-item{display:flex;gap:11px;align-items:center}
+  .sum-item .si-img{width:46px;height:46px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem;overflow:hidden;background:#fff}
+  .sum-item .si-img img{width:100%;height:100%;object-fit:cover}
+  .sum-item .si-info{flex:1;min-width:0}
+  .sum-item .si-info b{font-size:.8rem;font-weight:600;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .sum-item .si-info small{font-size:.74rem;color:var(--muted)}
+  .sum-item .si-price{font-weight:700;font-size:.84rem;color:var(--text);white-space:nowrap}
+  .sum-row{display:flex;justify-content:space-between;font-size:.86rem;color:#666;margin-bottom:8px}
+  .sum-total{display:flex;justify-content:space-between;align-items:baseline;margin:12px 0 18px;padding-top:13px;border-top:1px dashed #d8dada}
+  .sum-total span{font-weight:700}
+  .sum-total b{font-size:1.5rem;font-weight:800;color:var(--accent-dark)}
+  .place-btn{width:100%;background:var(--accent);color:#fff;font-weight:800;font-size:1.02rem;padding:15px;border-radius:14px;box-shadow:0 10px 22px rgba(255,122,89,.34);transition:.2s;display:flex;align-items:center;justify-content:center;gap:9px}
+  .place-btn:hover{background:var(--accent-dark);transform:translateY(-2px)}
+  .safe-note{text-align:center;font-size:.74rem;color:var(--muted);margin-top:11px}
+
+  /* ── Success ── */
+  .success{padding:46px 30px;text-align:center}
+  .success .check{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#37d0c1);display:flex;align-items:center;justify-content:center;font-size:2.8rem;color:#fff;margin:0 auto 22px;box-shadow:0 12px 30px rgba(46,196,182,.4);animation:pop .4s cubic-bezier(.34,1.56,.64,1)}
+  .success h3{font-size:1.5rem;font-weight:800;margin-bottom:8px}
+  .success p{color:#666;font-size:.92rem;margin-bottom:6px}
+  .order-code{display:inline-block;background:#fff4ef;color:var(--accent-dark);font-weight:800;font-size:1.05rem;letter-spacing:1px;padding:9px 22px;border-radius:12px;margin:14px 0 6px}
+  .success-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .success-actions a,.success-actions button{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:30px;font-weight:700;font-size:.9rem;transition:.2s}
+  .sa-zalo{background:#0068ff;color:#fff}
+  .sa-zalo:hover{background:#0052cc;transform:translateY(-2px)}
+  .sa-call{background:var(--accent);color:#fff}
+  .sa-call:hover{background:var(--accent-dark);transform:translateY(-2px)}
+  .sa-cont{background:#eef0f0;color:#444}
+  .sa-cont:hover{background:#e3e5e5}
+
+  /* ── Toast ── */
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--text);color:#fff;padding:13px 22px;border-radius:30px;font-weight:600;font-size:.9rem;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-lg);z-index:120;transition:transform .35s cubic-bezier(.34,1.56,.64,1);max-width:90vw}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+  .toast .ti{color:var(--primary);font-size:1.1rem}
+
+  /* ── Footer ── */
+  footer{background:#23232a;color:#c7c7cf;margin-top:30px;padding:46px 0 26px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:34px}
+  .foot-col h4{color:#fff;font-size:.95rem;font-weight:700;margin-bottom:16px}
+  .foot-brand .logo-badge{margin-bottom:14px}
+  .foot-brand p{font-size:.85rem;line-height:1.7;max-width:280px}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .foot-col ul li{font-size:.86rem;transition:.15s}
+  .foot-col ul li a:hover{color:var(--primary)}
+  .foot-contact li{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;line-height:1.5}
+  .foot-contact .ic{flex-shrink:0}
+  .foot-social{display:flex;gap:10px;margin-top:14px}
+  .foot-social a{width:40px;height:40px;border-radius:11px;background:#33333d;display:flex;align-items:center;justify-content:center;font-size:1.15rem;transition:.2s}
+  .foot-social a:hover{background:var(--primary);transform:translateY(-3px)}
+  .foot-bottom{border-top:1px solid #33333d;margin-top:34px;padding-top:20px;text-align:center;font-size:.8rem;color:#85858f}
+
+  /* ── Scroll top ── */
+  .totop{position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-size:1.3rem;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(14px);transition:.25s;z-index:70}
+  .totop.show{opacity:1;visibility:visible;transform:none}
+  .totop:hover{background:var(--primary-dark)}
+
+  /* ── Responsive ── */
+  @media(max-width:980px){
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .trust{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:26px}
+  }
+  @media(max-width:720px){
+    .hotline{display:none}
+    .head-row{flex-wrap:wrap;gap:12px;padding:11px 0}
+    .logo{order:1}
+    .head-actions{order:2;margin-left:auto}
+    .search{order:3;flex-basis:100%;max-width:none}
+    .catnav{top:118px}
+    .hero-card{padding:28px 24px;flex-direction:column;text-align:center;gap:8px}
+    .hero-text h1{font-size:1.8rem}
+    .hero-emoji{font-size:6rem;order:-1}
+    .hero-blob{display:none}
+    .checkout-grid{grid-template-columns:1fr}
+    .checkout-summary{border-left:none;border-top:1px solid var(--line)}
+    .sec-head h2{font-size:1.25rem}
+  }
+  @media(max-width:540px){
+    .grid{grid-template-columns:repeat(2,1fr);gap:13px}
+    .pcard-emoji{font-size:3.6rem}
+    .pname{font-size:.86rem}
+    .pprice{font-size:1rem}
+    .trust{grid-template-columns:1fr 1fr;gap:10px}
+    .trust-item{padding:12px}
+    .trust-item .ic{font-size:1.4rem}
+    .cart-btn span.lbl{display:none}
+    .hero-text h1{font-size:1.55rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- Announcement -->
+<div class="announce"><span>🚚 Miễn phí giao hàng nội thành Hà Nội cho đơn từ 300.000đ · Cam kết chính hãng 100%</span></div>
+
+<!-- Header -->
+<header>
+  <div class="container head-row">
+    <a href="#" class="logo" onclick="filterCat('all');return false">
+      <div class="logo-badge">🍼</div>
+      <div class="logo-text"><b>Trang Anh <i>Baby</i></b><small>Mẹ tin chọn · Bé khỏe vui</small></div>
+    </a>
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Tìm sữa, bỉm, đồ dùng cho bé..." oninput="render()">
+      <button onclick="document.getElementById('searchInput').focus()">🔍</button>
+    </div>
+    <div class="head-actions">
+      <a href="tel:0936223622" class="hotline">
+        <span class="ic">📞</span>
+        <span><small>Hotline đặt hàng</small><b>0936 223 622</b></span>
+      </a>
+      <button class="cart-btn" onclick="openCart()">
+        🛒 <span class="lbl">Giỏ hàng</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+  <nav class="catnav">
+    <div class="catnav-inner" id="catnav"></div>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-card">
+      <div class="hero-blob b1"></div>
+      <div class="hero-blob b2"></div>
+      <div class="hero-text">
+        <span class="hero-tag">✨ Cửa hàng mẹ &amp; bé uy tín tại Hà Nội</span>
+        <h1>Chăm bé yêu<br>bằng những điều <em>tốt nhất</em></h1>
+        <p>Sữa, thực phẩm, bỉm tã và đồ dùng chính hãng — chọn lọc an toàn cho làn da và sức khỏe của con.</p>
+        <a href="#products" class="hero-cta">Mua sắm ngay 🛍️</a>
+      </div>
+      <div class="hero-emoji">🧸</div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust -->
+<section class="container">
+  <div class="trust">
+    <div class="trust-item"><span class="ic">✅</span><div><b>Chính hãng 100%</b><small>Cam kết hàng thật</small></div></div>
+    <div class="trust-item"><span class="ic">🚚</span><div><b>Giao nhanh 2h</b><small>Nội thành Hà Nội</small></div></div>
+    <div class="trust-item"><span class="ic">🔄</span><div><b>Đổi trả 7 ngày</b><small>Yên tâm mua sắm</small></div></div>
+    <div class="trust-item"><span class="ic">💬</span><div><b>Tư vấn tận tâm</b><small>Mẹ bỉm đồng hành</small></div></div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="container" id="products">
+  <div class="sec-head">
+    <div>
+      <h2>Sản phẩm <span>cho bé yêu</span></h2>
+      <p>Tuyển chọn an toàn, được các mẹ tin dùng</p>
+    </div>
+    <div class="result-count" id="resultCount"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col foot-brand">
+        <div class="logo-badge">🍼</div>
+        <h4>Trang Anh Baby Store</h4>
+        <p>Cửa hàng đồ dùng tiện lợi cho bé yêu. Đồng hành cùng mẹ trên hành trình chăm sóc con khỏe mạnh mỗi ngày.</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/tranganhbabystore.com.vn" target="_blank" rel="noopener" title="Facebook">📘</a>
+          <a href="https://zalo.me/0936223622" target="_blank" rel="noopener" title="Zalo">💬</a>
+          <a href="https://shopee.vn/tranganhbabystore" target="_blank" rel="noopener" title="Shopee">🛒</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Danh mục</h4>
+        <ul id="footCats"></ul>
+      </div>
+      <div class="foot-col">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="#">Chính sách đổi trả</a></li>
+          <li><a href="#">Hướng dẫn đặt hàng</a></li>
+          <li><a href="#">Vận chuyển &amp; giao nhận</a></li>
+          <li><a href="#">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Liên hệ</h4>
+        <ul class="foot-contact">
+          <li><span class="ic">📍</span><span>25 Vũ Phạm Hàm, Yên Hòa, Cầu Giấy, Hà Nội</span></li>
+          <li><span class="ic">📞</span><a href="tel:0936223622">0936 223 622</a></li>
+          <li><span class="ic">✉️</span><a href="mailto:tranganhbabystore@gmail.com">tranganhbabystore@gmail.com</a></li>
+          <li><span class="ic">🕘</span><span>Mở cửa: 8:00 – 21:30 hằng ngày</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Trang Anh Baby Store · Thiết kế thân thiện cho mẹ và bé 💕</div>
+  </div>
+</footer>
+
+<!-- Cart drawer -->
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>🛒 Giỏ hàng <span id="drawerCount" style="color:var(--muted);font-weight:600;font-size:.9rem"></span></h3>
+    <button class="drawer-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot" id="cartFoot">
+    <div class="cart-row"><span>Tạm tính</span><span id="cartSubtotal">0đ</span></div>
+    <div class="cart-row"><span>Phí giao hàng</span><span id="cartShip">—</span></div>
+    <div class="cart-total"><span>Tổng cộng</span><b id="cartTotal">0đ</b></div>
+    <button class="checkout-btn" id="checkoutBtn" onclick="openCheckout()">Tiến hành đặt hàng →</button>
+  </div>
+</aside>
+
+<!-- Checkout modal -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-box" id="checkoutBox"></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"><span class="ti">✔️</span><span id="toastMsg"></span></div>
+
+<!-- Scroll top -->
+<button class="totop" id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+/* ════════ DỮ LIỆU SẢN PHẨM ════════
+   Sửa/thêm sản phẩm tại đây. img: đường dẫn ảnh (hoặc null để dùng icon).
+   badge: 'sale' | 'hot' | 'new' | null */
+const CATS = [
+  {id:'all',   name:'Tất cả',           icon:'🌈'},
+  {id:'sua',   name:'Sữa & Dinh dưỡng', icon:'🥛'},
+  {id:'food',  name:'Thực phẩm cho bé',  icon:'🍼'},
+  {id:'bim',   name:'Bỉm & Tã',          icon:'🧷'},
+  {id:'dodung',name:'Đồ dùng',           icon:'🍽️'},
+  {id:'giay',  name:'Giày dép',          icon:'👟'},
+  {id:'dochoi',name:'Đồ chơi',           icon:'🧸'},
+  {id:'mom',   name:'Cho mẹ',            icon:'🤱'},
+];
+
+const PRODUCTS = [
+  {id:1, name:'Sữa tươi Arla Organic hộp quà (set 3 vị)', cat:'sua', price:185000, old:220000, img:'photos/photos_file_22.jpg', emoji:'🥛', badge:'hot', rate:4.9, sold:'1,2k'},
+  {id:2, name:'Sữa tươi hữu cơ Horizon Mỹ 236ml (lốc 6)', cat:'sua', price:198000, old:null, emoji:'🥛', badge:'new', rate:4.8, sold:'860'},
+  {id:3, name:'Sữa công thức số 1 cho bé 0-6 tháng 800g', cat:'sua', price:545000, old:599000, emoji:'🍼', badge:'sale', rate:4.9, sold:'2,1k'},
+  {id:4, name:'Sữa chua uống men sống cho bé (lốc 4)', cat:'sua', price:36000, old:null, emoji:'🥤', badge:null, rate:4.7, sold:'940'},
+
+  {id:5, name:'Nước hầm xương cô đặc Hiroshi Nhật', cat:'food', price:129000, old:155000, emoji:'🍲', badge:'sale', rate:4.8, sold:'730'},
+  {id:6, name:'Bột ăn dặm rau củ hữu cơ cho bé 6m+', cat:'food', price:89000, old:null, emoji:'🥣', badge:null, rate:4.7, sold:'520'},
+  {id:7, name:'Váng sữa phô mai bổ sung canxi (vỉ 6)', cat:'food', price:62000, old:75000, emoji:'🧀', badge:'sale', rate:4.6, sold:'410'},
+  {id:8, name:'Bánh ăn dặm hình thú cho bé tập nhai', cat:'food', price:45000, old:null, emoji:'🍪', badge:'hot', rate:4.9, sold:'1,5k'},
+
+  {id:9, name:'Bỉm dán Merries size S 82 miếng', cat:'bim', price:329000, old:389000, emoji:'🧷', badge:'sale', rate:4.9, sold:'3,4k'},
+  {id:10,name:'Bỉm quần Moony Natural size M 46 miếng', cat:'bim', price:285000, old:null, emoji:'🩲', badge:'hot', rate:4.8, sold:'2,0k'},
+  {id:11,name:'Khăn ướt cao cấp không mùi (gói 80)', cat:'bim', price:39000, old:49000, emoji:'🧻', badge:'sale', rate:4.7, sold:'5,1k'},
+
+  {id:12,name:'Bình sữa cổ rộng chống sặc 240ml', cat:'dodung', price:159000, old:189000, emoji:'🍼', badge:'sale', rate:4.8, sold:'1,1k'},
+  {id:13,name:'Bộ thìa dĩa silicon ăn dặm cho bé', cat:'dodung', price:79000, old:null, emoji:'🥄', badge:'new', rate:4.7, sold:'690'},
+  {id:14,name:'Yếm ăn dặm silicon chống thấm', cat:'dodung', price:55000, old:69000, emoji:'🦺', badge:null, rate:4.6, sold:'880'},
+  {id:15,name:'Máy hâm sữa & tiệt trùng 2 trong 1', cat:'dodung', price:489000, old:559000, emoji:'♨️', badge:'hot', rate:4.9, sold:'430'},
+
+  {id:16,name:'Giày tập đi đế mềm chống trượt cho bé', cat:'giay', price:135000, old:165000, emoji:'👟', badge:'sale', rate:4.8, sold:'760'},
+  {id:17,name:'Dép sandal quai dán mềm mại mùa hè', cat:'giay', price:99000, old:null, emoji:'🩴', badge:'new', rate:4.6, sold:'340'},
+
+  {id:18,name:'Bộ xếp hình gỗ phát triển trí tuệ', cat:'dochoi', price:175000, old:210000, emoji:'🧩', badge:'sale', rate:4.9, sold:'1,3k'},
+  {id:19,name:'Gấu bông cao cấp ôm ngủ siêu mềm', cat:'dochoi', price:149000, old:null, emoji:'🧸', badge:'hot', rate:5.0, sold:'2,7k'},
+  {id:20,name:'Lục lạc & gặm nướu an toàn cho bé sơ sinh', cat:'dochoi', price:65000, old:79000, emoji:'🎲', badge:null, rate:4.7, sold:'600'},
+
+  {id:21,name:'Trà lợi sữa thảo mộc cho mẹ sau sinh', cat:'mom', price:119000, old:139000, emoji:'🍵', badge:'sale', rate:4.8, sold:'910'},
+  {id:22,name:'Miếng lót thấm sữa kháng khuẩn (hộp 60)', cat:'mom', price:79000, old:null, emoji:'🤱', badge:null, rate:4.7, sold:'1,0k'},
+];
+
+const FREE_SHIP_FROM = 300000;
+const SHIP_FEE = 25000;
+
+/* ════════ STATE ════════ */
+let currentCat = 'all';
+let cart = loadCart();
+
+function loadCart(){ try{ return JSON.parse(localStorage.getItem('tab_cart')||'[]'); }catch(e){ return []; } }
+function saveCart(){ localStorage.setItem('tab_cart', JSON.stringify(cart)); }
+const fmt = n => n.toLocaleString('vi-VN')+'đ';
+const prod = id => PRODUCTS.find(p=>p.id===id);
+
+/* ════════ RENDER CATEGORIES ════════ */
+function buildCats(){
+  document.getElementById('catnav').innerHTML = CATS.map(c=>
+    `<button class="chip${c.id===currentCat?' active':''}" onclick="filterCat('${c.id}')">${c.icon} ${c.name}</button>`
+  ).join('');
+  document.getElementById('footCats').innerHTML = CATS.filter(c=>c.id!=='all').map(c=>
+    `<li><a href="#products" onclick="filterCat('${c.id}')">${c.icon} ${c.name}</a></li>`
+  ).join('');
+}
+function filterCat(id){
+  currentCat = id;
+  buildCats();
+  render();
+  document.getElementById('products').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ════════ RENDER PRODUCTS ════════ */
+function imgHTML(p, cls){
+  if(p.img) return `<img src="${p.img}" alt="${p.name}" loading="lazy">`;
+  const grads = ['#e8faf7','#fff3ee','#fdeef4','#fef7e0','#eef4ff','#f3f0ff'];
+  const bg = grads[p.id % grads.length];
+  return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,${bg},#ffffff)"><span class="${cls||'pcard-emoji'}">${p.emoji}</span></div>`;
+}
+function render(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  let list = PRODUCTS.filter(p => currentCat==='all' || p.cat===currentCat);
+  if(q) list = list.filter(p => p.name.toLowerCase().includes(q));
+
+  document.getElementById('resultCount').textContent = list.length+' sản phẩm';
+
+  const grid = document.getElementById('grid');
+  if(!list.length){
+    grid.innerHTML = `<div class="empty"><div class="ic">🔍</div><h3>Không tìm thấy sản phẩm</h3><p>Thử từ khóa khác hoặc chọn danh mục khác nhé!</p></div>`;
+    return;
+  }
+  grid.innerHTML = list.map(p=>{
+    const badge = p.badge ? `<span class="pbadge ${p.badge}">${p.badge==='sale'?'GIẢM GIÁ':p.badge==='hot'?'BÁN CHẠY':'MỚI VỀ'}</span>` : '';
+    const old = p.old ? `<span class="pold">${fmt(p.old)}</span>` : '';
+    return `<div class="pcard">
+      <div class="pcard-img">${badge}${imgHTML(p)}<button class="wish" onclick="toast('Đã thêm vào yêu thích 💖')">🤍</button></div>
+      <div class="pcard-body">
+        <div class="pcat">${CATS.find(c=>c.id===p.cat).name}</div>
+        <div class="pname">${p.name}</div>
+        <div class="prate"><span class="stars">★★★★★</span> ${p.rate} · đã bán ${p.sold}</div>
+        <div class="pprice-row"><span class="pprice">${fmt(p.price)}</span>${old}</div>
+        <button class="padd" onclick="addToCart(${p.id})">🛒 Thêm vào giỏ</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ════════ CART ════════ */
+function addToCart(id){
+  const item = cart.find(i=>i.id===id);
+  if(item) item.qty++;
+  else cart.push({id, qty:1});
+  saveCart(); updateCart();
+  toast('Đã thêm vào giỏ hàng 🛒');
+}
+function changeQty(id, d){
+  const item = cart.find(i=>i.id===id);
+  if(!item) return;
+  item.qty += d;
+  if(item.qty<=0) cart = cart.filter(i=>i.id!==id);
+  saveCart(); updateCart();
+}
+function removeItem(id){ cart = cart.filter(i=>i.id!==id); saveCart(); updateCart(); }
+
+function cartCount(){ return cart.reduce((s,i)=>s+i.qty,0); }
+function cartSubtotal(){ return cart.reduce((s,i)=>s+prod(i.id).price*i.qty,0); }
+function shipFee(){ const sub=cartSubtotal(); return (sub===0||sub>=FREE_SHIP_FROM)?0:SHIP_FEE; }
+
+function updateCart(){
+  const count = cartCount();
+  const badge = document.getElementById('cartCount');
+  badge.textContent = count;
+  badge.classList.toggle('show', count>0);
+  document.getElementById('drawerCount').textContent = count?`(${count} sản phẩm)`:'';
+
+  const wrap = document.getElementById('cartItems');
+  const foot = document.getElementById('cartFoot');
+  if(!cart.length){
+    wrap.innerHTML = `<div class="cart-empty"><div class="ic">🛒</div><b>Giỏ hàng đang trống</b><p style="font-size:.85rem;margin-top:6px">Hãy chọn vài món cho bé yêu nhé!</p><button onclick="closeCart()">Tiếp tục mua sắm</button></div>`;
+    foot.style.display='none';
+    return;
+  }
+  foot.style.display='block';
+  wrap.innerHTML = cart.map(i=>{
+    const p = prod(i.id);
+    return `<div class="citem">
+      <div class="citem-img">${imgHTML(p,'')}</div>
+      <div class="citem-info">
+        <b>${p.name}</b>
+        <div class="citem-price">${fmt(p.price)}</div>
+        <div class="qty">
+          <button onclick="changeQty(${p.id},-1)">−</button>
+          <span>${i.qty}</span>
+          <button onclick="changeQty(${p.id},1)">+</button>
+        </div>
+      </div>
+      <button class="citem-del" onclick="removeItem(${p.id})" title="Xóa">🗑️</button>
+    </div>`;
+  }).join('');
+
+  const sub = cartSubtotal(), ship = shipFee();
+  document.getElementById('cartSubtotal').textContent = fmt(sub);
+  document.getElementById('cartShip').innerHTML = ship===0 ? '<b style="color:var(--primary)">Miễn phí</b>' : fmt(ship);
+  document.getElementById('cartTotal').textContent = fmt(sub+ship);
+}
+
+/* ════════ DRAWER / MODAL ════════ */
+function openCart(){ document.getElementById('drawer').classList.add('show'); document.getElementById('overlay').classList.add('show'); document.body.style.overflow='hidden'; }
+function closeCart(){ document.getElementById('drawer').classList.remove('show'); if(!document.getElementById('checkoutModal').classList.contains('show')){document.getElementById('overlay').classList.remove('show'); document.body.style.overflow='';} }
+function closeAll(){ closeCart(); closeCheckout(); }
+
+function openCheckout(){
+  if(!cart.length) return;
+  renderCheckout();
+  document.getElementById('drawer').classList.remove('show');
+  document.getElementById('checkoutModal').classList.add('show');
+  document.getElementById('overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeCheckout(){ document.getElementById('checkoutModal').classList.remove('show'); document.getElementById('overlay').classList.remove('show'); document.body.style.overflow=''; }
+
+function renderCheckout(){
+  const sub = cartSubtotal(), ship = shipFee(), total = sub+ship;
+  const items = cart.map(i=>{
+    const p=prod(i.id);
+    return `<div class="sum-item">
+      <div class="si-img">${imgHTML(p,'')}</div>
+      <div class="si-info"><b>${p.name}</b><small>SL: ${i.qty} × ${fmt(p.price)}</small></div>
+      <div class="si-price">${fmt(p.price*i.qty)}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('checkoutBox').innerHTML = `
+    <div class="modal-head">
+      <h3>📝 Thông tin đặt hàng</h3>
+      <button class="drawer-close" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="checkout-grid">
+      <div class="checkout-form">
+        <div class="field">
+          <label>Họ và tên <span class="req">*</span></label>
+          <input type="text" id="ckName" placeholder="VD: Nguyễn Thị Hương">
+          <div class="field-msg" id="errName">Vui lòng nhập họ tên</div>
+        </div>
+        <div class="field">
+          <label>Số điện thoại <span class="req">*</span></label>
+          <input type="tel" id="ckPhone" placeholder="VD: 0936 223 622" inputmode="numeric">
+          <div class="field-msg" id="errPhone">Số điện thoại chưa hợp lệ (10 số)</div>
+        </div>
+        <div class="field">
+          <label>Địa chỉ nhận hàng <span class="req">*</span></label>
+          <input type="text" id="ckAddr" placeholder="Số nhà, đường, phường/xã, quận/huyện">
+          <div class="field-msg" id="errAddr">Vui lòng nhập địa chỉ giao hàng</div>
+        </div>
+        <div class="field">
+          <label>Ghi chú đơn hàng</label>
+          <textarea id="ckNote" placeholder="VD: Giao giờ hành chính, gọi trước khi đến..."></textarea>
+        </div>
+        <div class="field">
+          <label>Hình thức thanh toán</label>
+          <div class="pay-opts" id="payOpts">
+            <label class="pay-opt sel"><input type="radio" name="pay" value="cod" checked onchange="selPay(this)"><span class="pi">💵</span><span><b>Thanh toán khi nhận hàng (COD)</b><small>Kiểm tra hàng rồi mới trả tiền</small></span></label>
+            <label class="pay-opt"><input type="radio" name="pay" value="bank" onchange="selPay(this)"><span class="pi">🏦</span><span><b>Chuyển khoản ngân hàng</b><small>Nhân viên gửi thông tin sau khi đặt</small></span></label>
+          </div>
+        </div>
+      </div>
+      <div class="checkout-summary">
+        <div class="sum-title">🛍️ Đơn hàng của bạn</div>
+        <div class="sum-list">${items}</div>
+        <div class="sum-row"><span>Tạm tính</span><span>${fmt(sub)}</span></div>
+        <div class="sum-row"><span>Phí giao hàng</span><span>${ship===0?'<b style="color:var(--primary)">Miễn phí</b>':fmt(ship)}</span></div>
+        <div class="sum-total"><span>Tổng thanh toán</span><b>${fmt(total)}</b></div>
+        <button class="place-btn" onclick="placeOrder()">Đặt hàng ngay 🎉</button>
+        <div class="safe-note">🔒 Thông tin của bạn được bảo mật an toàn</div>
+      </div>
+    </div>`;
+}
+function selPay(el){ document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('sel')); el.closest('.pay-opt').classList.add('sel'); }
+
+function placeOrder(){
+  const name = document.getElementById('ckName');
+  const phone = document.getElementById('ckPhone');
+  const addr = document.getElementById('ckAddr');
+  let ok = true;
+  const check = (el, errId, cond)=>{
+    const e = document.getElementById(errId);
+    if(cond){ el.classList.add('err'); e.classList.add('show'); ok=false; }
+    else{ el.classList.remove('err'); e.classList.remove('show'); }
+  };
+  check(name,'errName', name.value.trim().length<2);
+  check(phone,'errPhone', !/^0\d{9}$/.test(phone.value.replace(/\s/g,'')));
+  check(addr,'errAddr', addr.value.trim().length<5);
+  if(!ok){ document.querySelector('.field input.err').scrollIntoView({behavior:'smooth',block:'center'}); return; }
+
+  const code = 'TAB'+Date.now().toString().slice(-6);
+  const total = cartSubtotal()+shipFee();
+  const orderText =
+`🧾 ĐƠN HÀNG ${code}
+Khách: ${name.value.trim()} - ${phone.value.trim()}
+Địa chỉ: ${addr.value.trim()}
+─────────────
+${cart.map(i=>{const p=prod(i.id);return `• ${p.name} x${i.qty} = ${fmt(p.price*i.qty)}`;}).join('\n')}
+─────────────
+TỔNG: ${fmt(total)} (${document.querySelector('input[name=pay]:checked').value==='cod'?'COD':'Chuyển khoản'})`;
+
+  // Lưu đơn vào localStorage (lịch sử cục bộ)
+  try{
+    const orders = JSON.parse(localStorage.getItem('tab_orders')||'[]');
+    orders.push({code, at:new Date().toISOString(), name:name.value.trim(), phone:phone.value.trim(), addr:addr.value.trim(), note:document.getElementById('ckNote').value.trim(), items:cart, total});
+    localStorage.setItem('tab_orders', JSON.stringify(orders));
+  }catch(e){}
+
+  lastOrderText = orderText;
+  document.getElementById('checkoutBox').innerHTML = `
+    <div class="success">
+      <div class="check">✓</div>
+      <h3>Đặt hàng thành công!</h3>
+      <p>Cảm ơn <b>${name.value.trim()}</b> đã tin chọn Trang Anh Baby 💕</p>
+      <p>Nhân viên sẽ gọi <b>${phone.value.trim()}</b> để xác nhận đơn trong ít phút.</p>
+      <div class="order-code">Mã đơn: ${code}</div>
+      <p style="font-size:.85rem">Tổng thanh toán: <b style="color:var(--accent-dark)">${fmt(total)}</b></p>
+      <div class="success-actions">
+        <a class="sa-zalo" href="https://zalo.me/0936223622" target="_blank" rel="noopener" onclick="copyOrder()">💬 Gửi đơn qua Zalo</a>
+        <a class="sa-call" href="tel:0936223622">📞 Gọi xác nhận</a>
+        <button class="sa-cont" onclick="finishOrder()">Tiếp tục mua sắm</button>
+      </div>
+    </div>`;
+  cart = []; saveCart(); updateCart();
+}
+let lastOrderText = '';
+function copyOrder(){ try{ navigator.clipboard.writeText(lastOrderText); toast('Đã sao chép đơn — dán vào Zalo nhé 📋'); }catch(e){} }
+function finishOrder(){ closeCheckout(); }
+
+/* ════════ TOAST ════════ */
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+/* ════════ MISC ════════ */
+window.addEventListener('scroll', ()=>{
+  document.getElementById('totop').classList.toggle('show', window.scrollY>500);
+});
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeAll(); });
+
+/* ════════ INIT ════════ */
+buildCats();
+render();
+updateCart();
+</script>
+</body>
+</html>
