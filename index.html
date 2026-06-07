@@ -13,14 +13,14 @@
     --accent-dark:#f25c3b;
     --pink:#ff6b9d;
     --yellow:#ffd166;
-    --bg:#fbf9f6;
+    --bg:#f4f5f6;
     --card:#ffffff;
     --text:#2d2d34;
     --muted:#8c8c97;
     --line:#eef0f0;
-    --shadow:0 6px 22px rgba(45,45,52,.07);
+    --shadow:0 4px 16px rgba(45,45,52,.06);
     --shadow-lg:0 14px 40px rgba(45,45,52,.14);
-    --radius:18px;
+    --radius:14px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -28,102 +28,151 @@
   img{max-width:100%;display:block}
   a{color:inherit;text-decoration:none}
   button{font-family:inherit;cursor:pointer;border:none;background:none}
-  .container{max-width:1200px;margin:0 auto;padding:0 18px}
+  .container{max-width:1240px;margin:0 auto;padding:0 16px}
 
-  /* ── Announcement bar ── */
-  .announce{background:linear-gradient(90deg,var(--primary),#37d0c1);color:#fff;text-align:center;font-size:.82rem;font-weight:600;padding:7px 12px;letter-spacing:.2px}
-  .announce span{opacity:.95}
+  /* ── Top utility bar ── */
+  .topbar{background:#23232a;color:#b9b9c2;font-size:.78rem}
+  .topbar-inner{max-width:1240px;margin:0 auto;padding:7px 16px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .topbar a{transition:.15s}.topbar a:hover{color:#fff}
+  .topbar-left,.topbar-right{display:flex;gap:18px;align-items:center}
+  .topbar-left span{color:var(--yellow);font-weight:600}
 
-  /* ── Header ── */
-  header{background:var(--card);position:sticky;top:0;z-index:90;box-shadow:0 2px 14px rgba(0,0,0,.05)}
-  .head-row{display:flex;align-items:center;gap:18px;padding:14px 0}
+  /* ── Main header ── */
+  .main-header{background:linear-gradient(120deg,var(--primary),#37d0c1)}
+  .head-row{display:flex;align-items:center;gap:22px;padding:16px 0}
   .logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
-  .logo-badge{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--pink));display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 5px 14px rgba(46,196,182,.35)}
-  .logo-text b{font-size:1.22rem;font-weight:800;letter-spacing:-.3px;display:block;line-height:1.1}
-  .logo-text b i{color:var(--primary);font-style:normal}
-  .logo-text small{font-size:.72rem;color:var(--muted);font-weight:600}
+  .logo-badge{width:48px;height:48px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 5px 14px rgba(0,0,0,.15)}
+  .logo-text b{font-size:1.3rem;font-weight:800;letter-spacing:-.3px;display:block;line-height:1.05;color:#fff}
+  .logo-text small{font-size:.74rem;color:rgba(255,255,255,.9);font-weight:600}
 
-  .search{flex:1;display:flex;align-items:center;background:#f3f4f4;border:1.5px solid transparent;border-radius:30px;padding:0 6px 0 16px;transition:.2s;max-width:520px}
-  .search:focus-within{background:#fff;border-color:var(--primary);box-shadow:0 0 0 3px rgba(46,196,182,.12)}
-  .search input{flex:1;border:none;background:none;outline:none;padding:11px 6px;font-size:.92rem;color:var(--text)}
-  .search button{width:38px;height:38px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+  .search{flex:1;display:flex;align-items:center;background:#fff;border-radius:30px;padding:0 6px 0 18px;max-width:560px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+  .search input{flex:1;border:none;background:none;outline:none;padding:12px 6px;font-size:.93rem;color:var(--text)}
+  .search button{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;transition:.2s}
+  .search button:hover{background:var(--accent-dark)}
 
-  .head-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
-  .hotline{display:flex;align-items:center;gap:9px;padding:6px 14px;border-radius:30px;background:#fff4ef;color:var(--accent-dark)}
-  .hotline .ic{font-size:1.2rem}
-  .hotline small{display:block;font-size:.68rem;color:var(--muted);font-weight:600}
-  .hotline b{font-size:.95rem;letter-spacing:.3px}
-  .cart-btn{position:relative;display:flex;align-items:center;gap:8px;background:var(--text);color:#fff;padding:11px 16px;border-radius:30px;font-weight:700;font-size:.9rem;transition:.2s}
-  .cart-btn:hover{background:#000;transform:translateY(-1px)}
-  .cart-count{position:absolute;top:-6px;right:-6px;min-width:21px;height:21px;padding:0 5px;border-radius:11px;background:var(--accent);color:#fff;font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid #fff;transform:scale(0);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+  .head-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+  .haction{display:flex;align-items:center;gap:9px;padding:7px 12px;border-radius:12px;color:#fff;transition:.18s}
+  .haction:hover{background:rgba(255,255,255,.16)}
+  .haction .ic{font-size:1.35rem}
+  .haction small{display:block;font-size:.68rem;opacity:.9;font-weight:500}
+  .haction b{font-size:.88rem;letter-spacing:.2px;white-space:nowrap}
+  .cart-btn{position:relative}
+  .cart-count{position:absolute;top:0;left:24px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--accent);color:#fff;font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid #fff;transform:scale(0);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
   .cart-count.show{transform:scale(1)}
 
-  /* ── Category nav ── */
-  .catnav{background:var(--card);border-top:1px solid var(--line);position:sticky;top:75px;z-index:80}
-  .catnav-inner{display:flex;gap:8px;overflow-x:auto;padding:11px 18px;max-width:1200px;margin:0 auto;scrollbar-width:none}
-  .catnav-inner::-webkit-scrollbar{display:none}
-  .chip{flex-shrink:0;display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:30px;background:#f3f4f4;color:#555;font-weight:600;font-size:.86rem;white-space:nowrap;transition:.18s}
-  .chip:hover{background:#e7f8f6;color:var(--primary-dark)}
-  .chip.active{background:var(--primary);color:#fff;box-shadow:0 5px 13px rgba(46,196,182,.32)}
+  /* ── Main nav ── */
+  .mainnav{background:var(--card);box-shadow:var(--shadow);position:sticky;top:0;z-index:85}
+  .mainnav-inner{display:flex;align-items:stretch;gap:4px;max-width:1240px;margin:0 auto;padding:0 16px}
+  .allcat-btn{display:flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-weight:700;font-size:.9rem;padding:0 20px;border-radius:0 0 4px 4px;white-space:nowrap}
+  .allcat-btn .bars{display:flex;flex-direction:column;gap:3px}
+  .allcat-btn .bars i{width:17px;height:2px;background:#fff;border-radius:2px;display:block}
+  .navlinks{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+  .navlinks::-webkit-scrollbar{display:none}
+  .navlinks a{display:flex;align-items:center;gap:6px;padding:13px 14px;font-size:.88rem;font-weight:600;color:#444;white-space:nowrap;border-bottom:3px solid transparent;transition:.15s}
+  .navlinks a:hover{color:var(--primary-dark)}
+  .navlinks a.active{color:var(--primary-dark);border-bottom-color:var(--primary)}
+  .navlinks a .hot{color:var(--accent-dark)}
 
-  /* ── Hero ── */
-  .hero{padding:26px 0 8px}
-  .hero-card{position:relative;overflow:hidden;border-radius:26px;background:linear-gradient(120deg,#e8faf7 0%,#fff3ee 60%,#fdeef4 100%);padding:42px 44px;display:flex;align-items:center;gap:30px}
-  .hero-text{flex:1;min-width:0;z-index:2}
-  .hero-tag{display:inline-block;background:#fff;color:var(--primary-dark);font-weight:700;font-size:.78rem;padding:6px 14px;border-radius:30px;margin-bottom:14px;box-shadow:var(--shadow)}
-  .hero-text h1{font-size:2.35rem;font-weight:800;letter-spacing:-.8px;line-height:1.12;margin-bottom:12px}
-  .hero-text h1 em{font-style:normal;color:var(--primary)}
-  .hero-text p{color:#5e5e68;font-size:1rem;max-width:440px;margin-bottom:22px}
-  .hero-cta{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;font-weight:700;font-size:.98rem;padding:14px 26px;border-radius:30px;box-shadow:0 10px 24px rgba(255,122,89,.36);transition:.2s}
-  .hero-cta:hover{background:var(--accent-dark);transform:translateY(-2px)}
-  .hero-emoji{font-size:9rem;line-height:1;filter:drop-shadow(0 14px 24px rgba(0,0,0,.12));flex-shrink:0}
-  .hero-blob{position:absolute;border-radius:50%;opacity:.5}
-  .hero-blob.b1{width:220px;height:220px;background:#bff0ea;right:-40px;top:-60px}
-  .hero-blob.b2{width:150px;height:150px;background:#ffd9cb;right:130px;bottom:-50px}
+  /* ── HERO ZONE: 3 columns ── */
+  .hero-zone{display:grid;grid-template-columns:248px 1fr 286px;gap:16px;padding:18px 0}
+  /* sidebar categories */
+  .side-cats{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;align-self:start}
+  .side-cats-head{background:var(--primary);color:#fff;font-weight:700;font-size:.92rem;padding:13px 18px;display:flex;align-items:center;gap:9px}
+  .side-cats a{display:flex;align-items:center;gap:12px;padding:12px 18px;font-size:.88rem;font-weight:500;color:#3a3a44;border-bottom:1px solid var(--line);transition:.15s}
+  .side-cats a:last-child{border-bottom:none}
+  .side-cats a:hover{background:#f1fbf9;color:var(--primary-dark);padding-left:22px}
+  .side-cats a .ci{font-size:1.2rem;width:24px;text-align:center}
+  .side-cats a .arrow{margin-left:auto;color:#cdcdd4;font-size:.8rem}
+  /* main slider */
+  .slider{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:340px}
+  .slide{position:absolute;inset:0;opacity:0;transition:opacity .7s;display:flex;align-items:center;padding:46px;gap:20px}
+  .slide.active{opacity:1;position:relative}
+  .slide-text{flex:1;z-index:2}
+  .slide-tag{display:inline-block;background:rgba(255,255,255,.85);color:var(--accent-dark);font-weight:700;font-size:.74rem;padding:5px 13px;border-radius:30px;margin-bottom:13px}
+  .slide-text h2{font-size:2.1rem;font-weight:800;line-height:1.12;letter-spacing:-.6px;margin-bottom:11px}
+  .slide-text p{font-size:.98rem;color:#444;max-width:340px;margin-bottom:18px}
+  .slide-cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:700;font-size:.92rem;padding:12px 24px;border-radius:30px;box-shadow:0 8px 20px rgba(255,122,89,.34);transition:.2s}
+  .slide-cta:hover{background:var(--accent-dark);transform:translateY(-2px)}
+  .slide-emoji{font-size:8rem;line-height:1;filter:drop-shadow(0 12px 20px rgba(0,0,0,.14));flex-shrink:0}
+  .slider-dots{position:absolute;bottom:16px;left:46px;display:flex;gap:8px;z-index:5}
+  .slider-dots button{width:10px;height:10px;border-radius:50%;background:rgba(0,0,0,.2);transition:.2s}
+  .slider-dots button.on{background:var(--accent);width:26px;border-radius:6px}
+  .slider-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#444;z-index:5;opacity:0;transition:.2s}
+  .slider:hover .slider-arrow{opacity:1}
+  .slider-arrow.prev{left:12px}.slider-arrow.next{right:12px}
+  .slider-arrow:hover{background:#fff}
+  /* side banners */
+  .hero-side{display:flex;flex-direction:column;gap:16px}
+  .promo{flex:1;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;transition:.2s;min-height:120px}
+  .promo:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .promo small{font-weight:700;font-size:.74rem;opacity:.8}
+  .promo b{font-size:1.15rem;font-weight:800;line-height:1.2;margin:4px 0 8px;max-width:70%}
+  .promo span.go{font-size:.8rem;font-weight:700;color:var(--accent-dark)}
+  .promo .pe{position:absolute;right:14px;bottom:8px;font-size:3.4rem;opacity:.9}
 
-  /* ── Trust row ── */
-  .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:22px 0}
-  .trust-item{background:var(--card);border-radius:var(--radius);padding:16px 18px;display:flex;align-items:center;gap:13px;box-shadow:var(--shadow)}
-  .trust-item .ic{font-size:1.7rem;flex-shrink:0}
-  .trust-item b{display:block;font-size:.9rem}
-  .trust-item small{color:var(--muted);font-size:.76rem}
+  /* ── Service strip ── */
+  .service{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding-bottom:18px}
+  .service-item{background:var(--card);border-radius:var(--radius);padding:15px 18px;display:flex;align-items:center;gap:13px;box-shadow:var(--shadow)}
+  .service-item .ic{font-size:1.7rem;flex-shrink:0}
+  .service-item b{display:block;font-size:.88rem}
+  .service-item small{color:var(--muted);font-size:.75rem}
 
-  /* ── Section heading ── */
-  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin:14px 0 18px}
-  .sec-head h2{font-size:1.5rem;font-weight:800;letter-spacing:-.4px}
-  .sec-head h2 span{color:var(--primary)}
-  .sec-head p{color:var(--muted);font-size:.85rem;margin-top:2px}
-  .result-count{color:var(--muted);font-size:.84rem;font-weight:600}
+  /* ── Section block ── */
+  .block{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden}
+  .block-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line)}
+  .block-title{display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:800;letter-spacing:-.3px}
+  .block-title .bi{font-size:1.4rem}
+  .block-seeall{font-size:.84rem;font-weight:700;color:var(--primary-dark);display:flex;align-items:center;gap:5px;transition:.15s}
+  .block-seeall:hover{gap:9px}
+  /* flash sale special */
+  .flash .block-head{background:linear-gradient(90deg,var(--accent),#ff9776);border-bottom:none}
+  .flash .block-title{color:#fff}
+  .flash .block-seeall{color:#fff}
+  .countdown{display:flex;align-items:center;gap:6px;margin-left:6px}
+  .countdown .cd{background:#23232a;color:#fff;font-weight:800;font-size:.85rem;padding:4px 8px;border-radius:6px;min-width:30px;text-align:center;font-variant-numeric:tabular-nums}
+  .countdown .sep{color:#fff;font-weight:800}
 
-  /* ── Product grid ── */
-  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding-bottom:30px}
-  .pcard{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.22s;border:1px solid transparent}
+  /* ── Product grid (in block) ── */
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;padding:18px 20px}
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.22s}
   .pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:#eafaf7}
-  .pcard-img{position:relative;aspect-ratio:1/1;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .pcard-img{position:relative;aspect-ratio:1/1;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fafbfb}
   .pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
   .pcard:hover .pcard-img img{transform:scale(1.06)}
-  .pcard-emoji{font-size:4.6rem;line-height:1;filter:drop-shadow(0 8px 12px rgba(0,0,0,.1))}
-  .pbadge{position:absolute;top:11px;left:11px;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:30px;color:#fff;letter-spacing:.3px;z-index:2}
+  .pcard-emoji{font-size:4.2rem;line-height:1;filter:drop-shadow(0 8px 12px rgba(0,0,0,.1))}
+  .pbadge{position:absolute;top:10px;left:10px;font-size:.68rem;font-weight:800;padding:4px 9px;border-radius:30px;color:#fff;letter-spacing:.3px;z-index:2}
   .pbadge.sale{background:var(--accent)}
   .pbadge.hot{background:var(--pink)}
   .pbadge.new{background:var(--primary)}
-  .wish{position:absolute;top:9px;right:9px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:1rem;opacity:0;transform:scale(.6);transition:.2s;z-index:2}
-  .pcard:hover .wish{opacity:1;transform:scale(1)}
-  .wish.on{opacity:1;transform:scale(1)}
-  .pcard-body{padding:13px 14px 15px;display:flex;flex-direction:column;flex:1}
-  .pcat{font-size:.7rem;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
-  .pname{font-size:.93rem;font-weight:700;line-height:1.32;margin-bottom:7px;min-height:2.5em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .prate{display:flex;align-items:center;gap:5px;font-size:.76rem;color:var(--muted);margin-bottom:9px}
+  .pdiscount{position:absolute;top:10px;right:10px;background:#fff0; color:var(--accent-dark);background:#fff5f2;font-size:.7rem;font-weight:800;padding:3px 8px;border-radius:8px;z-index:2}
+  .pcard-body{padding:12px 13px 14px;display:flex;flex-direction:column;flex:1}
+  .pcat{font-size:.68rem;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+  .pname{font-size:.88rem;font-weight:600;line-height:1.35;margin-bottom:6px;min-height:2.5em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .prate{display:flex;align-items:center;gap:5px;font-size:.74rem;color:var(--muted);margin-bottom:8px}
   .prate .stars{color:var(--yellow);letter-spacing:1px}
-  .pprice-row{display:flex;align-items:baseline;gap:8px;margin-bottom:11px;flex-wrap:wrap}
-  .pprice{font-size:1.12rem;font-weight:800;color:var(--accent-dark)}
-  .pold{font-size:.82rem;color:#b8b8c0;text-decoration:line-through}
-  .padd{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;background:#eafaf7;color:var(--primary-dark);font-weight:700;font-size:.86rem;padding:11px;border-radius:12px;transition:.18s}
+  .pprice-row{display:flex;align-items:baseline;gap:7px;margin-bottom:10px;flex-wrap:wrap}
+  .pprice{font-size:1.08rem;font-weight:800;color:var(--accent-dark)}
+  .pold{font-size:.8rem;color:#b8b8c0;text-decoration:line-through}
+  .padd{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:7px;background:#eafaf7;color:var(--primary-dark);font-weight:700;font-size:.84rem;padding:10px;border-radius:10px;transition:.18s}
   .padd:hover{background:var(--primary);color:#fff}
   .padd:active{transform:scale(.97)}
 
-  .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
+  /* ── Browse view ── */
+  #browseView{display:none}
+  .browse-head{display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+  .browse-head h2{font-size:1.35rem;font-weight:800}
+  .browse-head h2 span{color:var(--primary)}
+  .back-home{font-size:.85rem;font-weight:700;color:var(--primary-dark)}
+  .browse-grid{background:transparent;padding:0}
+  .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);background:var(--card);border-radius:var(--radius)}
   .empty .ic{font-size:3.4rem;margin-bottom:12px}
+
+  /* ── Brand strip ── */
+  .brands{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin-bottom:24px}
+  .brands h3{font-size:1.05rem;font-weight:800;margin-bottom:16px;text-align:center}
+  .brand-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+  .brand-chip{display:flex;align-items:center;gap:8px;background:#f6f7f7;border-radius:30px;padding:10px 20px;font-weight:700;font-size:.88rem;color:#555;transition:.18s}
+  .brand-chip:hover{background:#eafaf7;color:var(--primary-dark);transform:translateY(-2px)}
 
   /* ── Cart drawer ── */
   .overlay{position:fixed;inset:0;background:rgba(30,30,38,.5);opacity:0;visibility:hidden;transition:.3s;z-index:100;backdrop-filter:blur(2px)}
@@ -141,7 +190,7 @@
   .citem-info{flex:1;min-width:0}
   .citem-info b{font-size:.86rem;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
   .citem-price{color:var(--accent-dark);font-weight:800;font-size:.92rem;margin-top:3px}
-  .qty{display:inline-flex;align-items:center;gap:0;margin-top:8px;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .qty{display:inline-flex;align-items:center;margin-top:8px;border:1px solid var(--line);border-radius:9px;overflow:hidden}
   .qty button{width:28px;height:28px;background:#f5f6f6;font-size:1rem;font-weight:700;color:#555;display:flex;align-items:center;justify-content:center;transition:.15s}
   .qty button:hover{background:var(--primary);color:#fff}
   .qty span{min-width:34px;text-align:center;font-weight:700;font-size:.86rem}
@@ -157,7 +206,6 @@
   .cart-total b{font-size:1.4rem;font-weight:800;color:var(--accent-dark)}
   .checkout-btn{width:100%;background:var(--accent);color:#fff;font-weight:800;font-size:1rem;padding:15px;border-radius:14px;box-shadow:0 10px 22px rgba(255,122,89,.34);transition:.2s;display:flex;align-items:center;justify-content:center;gap:9px}
   .checkout-btn:hover{background:var(--accent-dark);transform:translateY(-2px)}
-  .checkout-btn:disabled{background:#d8d8dd;box-shadow:none;cursor:not-allowed;transform:none}
 
   /* ── Checkout modal ── */
   .modal{position:fixed;inset:0;z-index:110;display:none;align-items:center;justify-content:center;padding:18px}
@@ -166,7 +214,7 @@
   @keyframes pop{from{transform:scale(.92) translateY(14px);opacity:0}to{transform:none;opacity:1}}
   .modal-head{display:flex;align-items:center;justify-content:space-between;padding:20px 26px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:2;border-radius:24px 24px 0 0}
   .modal-head h3{font-size:1.25rem;font-weight:800}
-  .checkout-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:0}
+  .checkout-grid{display:grid;grid-template-columns:1.15fr 1fr}
   .checkout-form{padding:24px 26px}
   .checkout-summary{padding:24px 26px;background:#f6f7f7;border-left:1px solid var(--line)}
   .field{margin-bottom:16px}
@@ -224,10 +272,10 @@
   .toast .ti{color:var(--primary);font-size:1.1rem}
 
   /* ── Footer ── */
-  footer{background:#23232a;color:#c7c7cf;margin-top:30px;padding:46px 0 26px}
+  footer{background:#23232a;color:#c7c7cf;margin-top:10px;padding:42px 0 24px}
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:34px}
   .foot-col h4{color:#fff;font-size:.95rem;font-weight:700;margin-bottom:16px}
-  .foot-brand .logo-badge{margin-bottom:14px}
+  .foot-brand .logo-badge{margin-bottom:14px;background:#33333d}
   .foot-brand p{font-size:.85rem;line-height:1.7;max-width:280px}
   .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
   .foot-col ul li{font-size:.86rem;transition:.15s}
@@ -237,7 +285,9 @@
   .foot-social{display:flex;gap:10px;margin-top:14px}
   .foot-social a{width:40px;height:40px;border-radius:11px;background:#33333d;display:flex;align-items:center;justify-content:center;font-size:1.15rem;transition:.2s}
   .foot-social a:hover{background:var(--primary);transform:translateY(-3px)}
-  .foot-bottom{border-top:1px solid #33333d;margin-top:34px;padding-top:20px;text-align:center;font-size:.8rem;color:#85858f}
+  .foot-pay{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .foot-pay span{background:#fff;border-radius:7px;padding:5px 9px;font-size:.72rem;font-weight:700;color:#444}
+  .foot-bottom{border-top:1px solid #33333d;margin-top:32px;padding-top:20px;text-align:center;font-size:.8rem;color:#85858f}
 
   /* ── Scroll top ── */
   .totop{position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-size:1.3rem;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(14px);transition:.25s;z-index:70}
@@ -245,109 +295,195 @@
   .totop:hover{background:var(--primary-dark)}
 
   /* ── Responsive ── */
-  @media(max-width:980px){
-    .grid{grid-template-columns:repeat(3,1fr)}
-    .trust{grid-template-columns:repeat(2,1fr)}
-    .foot-grid{grid-template-columns:1fr 1fr;gap:26px}
+  @media(max-width:1080px){
+    .hero-zone{grid-template-columns:1fr 280px}
+    .side-cats{display:none}
+    .grid{grid-template-columns:repeat(4,1fr)}
   }
-  @media(max-width:720px){
-    .hotline{display:none}
-    .head-row{flex-wrap:wrap;gap:12px;padding:11px 0}
+  @media(max-width:880px){
+    .hero-side{display:none}
+    .hero-zone{grid-template-columns:1fr}
+    .service{grid-template-columns:repeat(2,1fr)}
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:26px}
+    .topbar-right{display:none}
+  }
+  @media(max-width:640px){
+    .head-row{flex-wrap:wrap;gap:12px;padding:12px 0}
     .logo{order:1}
     .head-actions{order:2;margin-left:auto}
+    .haction.acc{display:none}
     .search{order:3;flex-basis:100%;max-width:none}
-    .catnav{top:118px}
-    .hero-card{padding:28px 24px;flex-direction:column;text-align:center;gap:8px}
-    .hero-text h1{font-size:1.8rem}
-    .hero-emoji{font-size:6rem;order:-1}
-    .hero-blob{display:none}
-    .checkout-grid{grid-template-columns:1fr}
-    .checkout-summary{border-left:none;border-top:1px solid var(--line)}
-    .sec-head h2{font-size:1.25rem}
-  }
-  @media(max-width:540px){
-    .grid{grid-template-columns:repeat(2,1fr);gap:13px}
-    .pcard-emoji{font-size:3.6rem}
-    .pname{font-size:.86rem}
-    .pprice{font-size:1rem}
-    .trust{grid-template-columns:1fr 1fr;gap:10px}
-    .trust-item{padding:12px}
-    .trust-item .ic{font-size:1.4rem}
-    .cart-btn span.lbl{display:none}
-    .hero-text h1{font-size:1.55rem}
+    .slide{padding:26px}
+    .slide-text h2{font-size:1.5rem}
+    .slide-emoji{font-size:5rem}
+    .slider{min-height:240px}
+    .slider-dots{left:26px}
+    .grid{grid-template-columns:repeat(2,1fr);gap:11px}
+    .pcard-emoji{font-size:3.4rem}
+    .block-title{font-size:1.05rem}
+    .service{grid-template-columns:1fr 1fr;gap:10px}
+    .service-item{padding:12px}
+    .allcat-btn span.lbl{display:none}
   }
 </style>
 </head>
 <body>
 
-<!-- Announcement -->
-<div class="announce"><span>🚚 Miễn phí giao hàng nội thành Hà Nội cho đơn từ 300.000đ · Cam kết chính hãng 100%</span></div>
+<!-- Top utility bar -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left"><span>🎁 Thành viên thân thiết tích điểm mọi đơn hàng</span></div>
+    <div class="topbar-right">
+      <a href="#">Hệ thống cửa hàng</a>
+      <a href="#">Tin khuyến mãi</a>
+      <a href="#">Tra cứu đơn hàng</a>
+      <a href="https://zalo.me/0936223622" target="_blank" rel="noopener">Liên hệ</a>
+    </div>
+  </div>
+</div>
 
-<!-- Header -->
-<header>
+<!-- Main header -->
+<header class="main-header">
   <div class="container head-row">
-    <a href="#" class="logo" onclick="filterCat('all');return false">
+    <a href="#" class="logo" onclick="goHome();return false">
       <div class="logo-badge">🍼</div>
-      <div class="logo-text"><b>Trang Anh <i>Baby</i></b><small>Mẹ tin chọn · Bé khỏe vui</small></div>
+      <div class="logo-text"><b>Trang Anh Baby</b><small>Mẹ tin chọn · Bé khỏe vui</small></div>
     </a>
     <div class="search">
-      <input type="text" id="searchInput" placeholder="Tìm sữa, bỉm, đồ dùng cho bé..." oninput="render()">
+      <input type="text" id="searchInput" placeholder="Bạn cần tìm sữa, bỉm, đồ dùng gì cho bé?" oninput="render()">
       <button onclick="document.getElementById('searchInput').focus()">🔍</button>
     </div>
     <div class="head-actions">
-      <a href="tel:0936223622" class="hotline">
+      <a href="tel:0936223622" class="haction">
         <span class="ic">📞</span>
-        <span><small>Hotline đặt hàng</small><b>0936 223 622</b></span>
+        <span><small>Hotline 8-21h30</small><b>0936 223 622</b></span>
       </a>
-      <button class="cart-btn" onclick="openCart()">
-        🛒 <span class="lbl">Giỏ hàng</span>
+      <button class="haction acc" onclick="toast('Tính năng tài khoản sẽ sớm ra mắt 🙂')">
+        <span class="ic">👤</span>
+        <span><small>Đăng nhập</small><b>Tài khoản</b></span>
+      </button>
+      <button class="haction cart-btn" onclick="openCart()">
+        <span class="ic">🛒</span>
+        <span><small>Giỏ hàng</small><b>Đơn hàng</b></span>
         <span class="cart-count" id="cartCount">0</span>
       </button>
     </div>
   </div>
-  <nav class="catnav">
-    <div class="catnav-inner" id="catnav"></div>
-  </nav>
 </header>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-card">
-      <div class="hero-blob b1"></div>
-      <div class="hero-blob b2"></div>
-      <div class="hero-text">
-        <span class="hero-tag">✨ Cửa hàng mẹ &amp; bé uy tín tại Hà Nội</span>
-        <h1>Chăm bé yêu<br>bằng những điều <em>tốt nhất</em></h1>
-        <p>Sữa, thực phẩm, bỉm tã và đồ dùng chính hãng — chọn lọc an toàn cho làn da và sức khỏe của con.</p>
-        <a href="#products" class="hero-cta">Mua sắm ngay 🛍️</a>
+<!-- Main nav -->
+<nav class="mainnav">
+  <div class="mainnav-inner">
+    <button class="allcat-btn" onclick="goHome();window.scrollTo({top:0})"><span class="bars"><i></i><i></i><i></i></span><span class="lbl">Danh mục</span></button>
+    <div class="navlinks" id="navlinks"></div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- ════════ HOME VIEW ════════ -->
+  <div id="homeView">
+
+    <!-- Hero zone: 3 columns -->
+    <section class="hero-zone">
+      <!-- left sidebar -->
+      <aside class="side-cats" id="sideCats"></aside>
+      <!-- main slider -->
+      <div class="slider" id="slider">
+        <div class="slide active">
+          <div class="slide-text">
+            <span class="slide-tag">⭐ Cửa hàng mẹ & bé uy tín Hà Nội</span>
+            <h2>Chăm bé yêu<br>bằng điều tốt nhất</h2>
+            <p>Sữa, thực phẩm, bỉm tã chính hãng — an toàn cho làn da & sức khỏe của con.</p>
+            <a href="#" class="slide-cta" onclick="filterCat('sua');return false">Mua sắm ngay 🛍️</a>
+          </div>
+          <div class="slide-emoji">🧸</div>
+        </div>
+        <div class="slide" style="background:linear-gradient(120deg,#fff3ee,#fdeef4)">
+          <div class="slide-text">
+            <span class="slide-tag">🔥 Flash Sale mỗi ngày</span>
+            <h2>Giảm đến 30%<br>sữa & bỉm hot</h2>
+            <p>Ưu đãi cực sốc khung giờ vàng, số lượng có hạn — nhanh tay mẹ nhé!</p>
+            <a href="#flash" class="slide-cta" onclick="goHome()">Săn deal ngay ⚡</a>
+          </div>
+          <div class="slide-emoji">🎁</div>
+        </div>
+        <div class="slide" style="background:linear-gradient(120deg,#e8faf7,#eef4ff)">
+          <div class="slide-text">
+            <span class="slide-tag">🚚 Giao nhanh tận nhà</span>
+            <h2>Free ship 2h<br>đơn từ 300k</h2>
+            <p>Đặt hàng trong vài chạm, giao tận cửa nội thành Hà Nội chỉ trong 2 giờ.</p>
+            <a href="#" class="slide-cta" onclick="filterCat('bim');return false">Xem bỉm tã 🧷</a>
+          </div>
+          <div class="slide-emoji">🚛</div>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
+        <button class="slider-arrow prev" onclick="slideNav(-1)">‹</button>
+        <button class="slider-arrow next" onclick="slideNav(1)">›</button>
       </div>
-      <div class="hero-emoji">🧸</div>
-    </div>
-  </div>
-</section>
+      <!-- side banners -->
+      <div class="hero-side">
+        <a href="#" class="promo" style="background:linear-gradient(135deg,#e8faf7,#d3f3ee)" onclick="filterCat('food');return false">
+          <small>ĂN DẶM KHỎE MẠNH</small><b>Thực phẩm cho bé</b><span class="go">Khám phá →</span><span class="pe">🍲</span>
+        </a>
+        <a href="#" class="promo" style="background:linear-gradient(135deg,#fff3ee,#ffe2d6)" onclick="filterCat('dochoi');return false">
+          <small>VUI HỌC MỖI NGÀY</small><b>Đồ chơi an toàn</b><span class="go">Khám phá →</span><span class="pe">🧸</span>
+        </a>
+        <a href="#" class="promo" style="background:linear-gradient(135deg,#fdeef4,#ffd9e6)" onclick="filterCat('mom');return false">
+          <small>YÊU THƯƠNG MẸ</small><b>Sản phẩm cho mẹ</b><span class="go">Khám phá →</span><span class="pe">🤱</span>
+        </a>
+      </div>
+    </section>
 
-<!-- Trust -->
-<section class="container">
-  <div class="trust">
-    <div class="trust-item"><span class="ic">✅</span><div><b>Chính hãng 100%</b><small>Cam kết hàng thật</small></div></div>
-    <div class="trust-item"><span class="ic">🚚</span><div><b>Giao nhanh 2h</b><small>Nội thành Hà Nội</small></div></div>
-    <div class="trust-item"><span class="ic">🔄</span><div><b>Đổi trả 7 ngày</b><small>Yên tâm mua sắm</small></div></div>
-    <div class="trust-item"><span class="ic">💬</span><div><b>Tư vấn tận tâm</b><small>Mẹ bỉm đồng hành</small></div></div>
-  </div>
-</section>
+    <!-- Service strip -->
+    <section class="service">
+      <div class="service-item"><span class="ic">✅</span><div><b>Chính hãng 100%</b><small>Cam kết hàng thật</small></div></div>
+      <div class="service-item"><span class="ic">🚚</span><div><b>Giao nhanh 2h</b><small>Nội thành Hà Nội</small></div></div>
+      <div class="service-item"><span class="ic">🔄</span><div><b>Đổi trả 7 ngày</b><small>Yên tâm mua sắm</small></div></div>
+      <div class="service-item"><span class="ic">💬</span><div><b>Tư vấn tận tâm</b><small>Mẹ bỉm đồng hành</small></div></div>
+    </section>
 
-<!-- Products -->
-<section class="container" id="products">
-  <div class="sec-head">
-    <div>
-      <h2>Sản phẩm <span>cho bé yêu</span></h2>
-      <p>Tuyển chọn an toàn, được các mẹ tin dùng</p>
-    </div>
-    <div class="result-count" id="resultCount"></div>
+    <!-- Flash sale block -->
+    <section class="block flash" id="flash">
+      <div class="block-head">
+        <div class="block-title"><span class="bi">⚡</span> FLASH SALE
+          <div class="countdown" id="countdown"><span class="cd">00</span><span class="sep">:</span><span class="cd">00</span><span class="sep">:</span><span class="cd">00</span></div>
+        </div>
+        <a href="#" class="block-seeall" onclick="filterCat('sale');return false">Xem tất cả →</a>
+      </div>
+      <div class="grid" id="flashGrid"></div>
+    </section>
+
+    <!-- Category blocks injected here -->
+    <div id="catBlocks"></div>
+
+    <!-- Brands -->
+    <section class="brands">
+      <h3>🏆 Thương hiệu được mẹ tin chọn</h3>
+      <div class="brand-row">
+        <span class="brand-chip">🥛 Arla</span>
+        <span class="brand-chip">🍼 Horizon</span>
+        <span class="brand-chip">🧷 Merries</span>
+        <span class="brand-chip">🩲 Moony</span>
+        <span class="brand-chip">🍲 Hiroshi</span>
+        <span class="brand-chip">🧸 Fisher</span>
+        <span class="brand-chip">🥄 Pigeon</span>
+      </div>
+    </section>
+
   </div>
-  <div class="grid" id="grid"></div>
-</section>
+
+  <!-- ════════ BROWSE VIEW ════════ -->
+  <div id="browseView">
+    <div class="browse-head">
+      <h2 id="browseTitle">Sản phẩm</h2>
+      <a href="#" class="back-home" onclick="goHome();return false">← Về trang chủ</a>
+    </div>
+    <div class="grid browse-grid" id="browseGrid"></div>
+  </div>
+
+</div>
 
 <!-- Footer -->
 <footer>
@@ -368,11 +504,12 @@
         <ul id="footCats"></ul>
       </div>
       <div class="foot-col">
-        <h4>Hỗ trợ</h4>
+        <h4>Hỗ trợ khách hàng</h4>
         <ul>
           <li><a href="#">Chính sách đổi trả</a></li>
           <li><a href="#">Hướng dẫn đặt hàng</a></li>
           <li><a href="#">Vận chuyển &amp; giao nhận</a></li>
+          <li><a href="#">Tích điểm thành viên</a></li>
           <li><a href="#">Câu hỏi thường gặp</a></li>
         </ul>
       </div>
@@ -384,6 +521,9 @@
           <li><span class="ic">✉️</span><a href="mailto:tranganhbabystore@gmail.com">tranganhbabystore@gmail.com</a></li>
           <li><span class="ic">🕘</span><span>Mở cửa: 8:00 – 21:30 hằng ngày</span></li>
         </ul>
+        <div class="foot-pay">
+          <span>COD</span><span>Chuyển khoản</span><span>Momo</span><span>VNPay</span>
+        </div>
       </div>
     </div>
     <div class="foot-bottom">© 2026 Trang Anh Baby Store · Thiết kế thân thiện cho mẹ và bé 💕</div>
@@ -407,9 +547,7 @@
 </aside>
 
 <!-- Checkout modal -->
-<div class="modal" id="checkoutModal">
-  <div class="modal-box" id="checkoutBox"></div>
-</div>
+<div class="modal" id="checkoutModal"><div class="modal-box" id="checkoutBox"></div></div>
 
 <!-- Toast -->
 <div class="toast" id="toast"><span class="ti">✔️</span><span id="toastMsg"></span></div>
@@ -422,14 +560,13 @@
    Sửa/thêm sản phẩm tại đây. img: đường dẫn ảnh (hoặc null để dùng icon).
    badge: 'sale' | 'hot' | 'new' | null */
 const CATS = [
-  {id:'all',   name:'Tất cả',           icon:'🌈'},
   {id:'sua',   name:'Sữa & Dinh dưỡng', icon:'🥛'},
   {id:'food',  name:'Thực phẩm cho bé',  icon:'🍼'},
   {id:'bim',   name:'Bỉm & Tã',          icon:'🧷'},
-  {id:'dodung',name:'Đồ dùng',           icon:'🍽️'},
+  {id:'dodung',name:'Đồ dùng cho bé',    icon:'🍽️'},
   {id:'giay',  name:'Giày dép',          icon:'👟'},
   {id:'dochoi',name:'Đồ chơi',           icon:'🧸'},
-  {id:'mom',   name:'Cho mẹ',            icon:'🤱'},
+  {id:'mom',   name:'Sản phẩm cho mẹ',   icon:'🤱'},
 ];
 
 const PRODUCTS = [
@@ -467,179 +604,207 @@ const FREE_SHIP_FROM = 300000;
 const SHIP_FEE = 25000;
 
 /* ════════ STATE ════════ */
-let currentCat = 'all';
+let currentCat = 'all';   // 'all' = home
 let cart = loadCart();
 
 function loadCart(){ try{ return JSON.parse(localStorage.getItem('tab_cart')||'[]'); }catch(e){ return []; } }
 function saveCart(){ localStorage.setItem('tab_cart', JSON.stringify(cart)); }
 const fmt = n => n.toLocaleString('vi-VN')+'đ';
 const prod = id => PRODUCTS.find(p=>p.id===id);
+const catName = id => (CATS.find(c=>c.id===id)||{}).name || '';
+const discountPct = p => p.old ? Math.round((1-p.price/p.old)*100) : 0;
 
-/* ════════ RENDER CATEGORIES ════════ */
-function buildCats(){
-  document.getElementById('catnav').innerHTML = CATS.map(c=>
-    `<button class="chip${c.id===currentCat?' active':''}" onclick="filterCat('${c.id}')">${c.icon} ${c.name}</button>`
-  ).join('');
-  document.getElementById('footCats').innerHTML = CATS.filter(c=>c.id!=='all').map(c=>
-    `<li><a href="#products" onclick="filterCat('${c.id}')">${c.icon} ${c.name}</a></li>`
-  ).join('');
-}
-function filterCat(id){
-  currentCat = id;
-  buildCats();
-  render();
-  document.getElementById('products').scrollIntoView({behavior:'smooth',block:'start'});
+/* ════════ NAV / SIDEBAR ════════ */
+function buildNav(){
+  document.getElementById('navlinks').innerHTML =
+    `<a href="#" class="${currentCat==='all'?'active':''}" onclick="goHome();return false">🏠 Trang chủ</a>` +
+    CATS.map(c=>`<a href="#" class="${c.id===currentCat?'active':''}" onclick="filterCat('${c.id}');return false">${c.icon} ${c.name}</a>`).join('') +
+    `<a href="#" onclick="filterCat('sale');return false"><span class="hot">🔥 Khuyến mãi</span></a>`;
+
+  document.getElementById('sideCats').innerHTML =
+    `<div class="side-cats-head">☰ Danh mục sản phẩm</div>` +
+    CATS.map(c=>`<a href="#" onclick="filterCat('${c.id}');return false"><span class="ci">${c.icon}</span> ${c.name}<span class="arrow">›</span></a>`).join('');
+
+  document.getElementById('footCats').innerHTML =
+    CATS.map(c=>`<li><a href="#" onclick="filterCat('${c.id}');return false">${c.icon} ${c.name}</a></li>`).join('');
 }
 
-/* ════════ RENDER PRODUCTS ════════ */
+/* ════════ PRODUCT CARD ════════ */
 function imgHTML(p, cls){
   if(p.img) return `<img src="${p.img}" alt="${p.name}" loading="lazy">`;
   const grads = ['#e8faf7','#fff3ee','#fdeef4','#fef7e0','#eef4ff','#f3f0ff'];
   const bg = grads[p.id % grads.length];
   return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,${bg},#ffffff)"><span class="${cls||'pcard-emoji'}">${p.emoji}</span></div>`;
 }
+function cardHTML(p){
+  const badge = p.badge ? `<span class="pbadge ${p.badge}">${p.badge==='sale'?'GIẢM GIÁ':p.badge==='hot'?'BÁN CHẠY':'MỚI VỀ'}</span>` : '';
+  const disc = discountPct(p) ? `<span class="pdiscount">-${discountPct(p)}%</span>` : '';
+  const old = p.old ? `<span class="pold">${fmt(p.old)}</span>` : '';
+  return `<div class="pcard">
+    <div class="pcard-img">${badge}${disc}${imgHTML(p)}</div>
+    <div class="pcard-body">
+      <div class="pcat">${catName(p.cat)}</div>
+      <div class="pname">${p.name}</div>
+      <div class="prate"><span class="stars">★★★★★</span> ${p.rate} · đã bán ${p.sold}</div>
+      <div class="pprice-row"><span class="pprice">${fmt(p.price)}</span>${old}</div>
+      <button class="padd" onclick="addToCart(${p.id})">🛒 Thêm vào giỏ</button>
+    </div>
+  </div>`;
+}
+
+/* ════════ RENDER (router: home vs browse) ════════ */
 function render(){
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
-  let list = PRODUCTS.filter(p => currentCat==='all' || p.cat===currentCat);
-  if(q) list = list.filter(p => p.name.toLowerCase().includes(q));
+  buildNav();
 
-  document.getElementById('resultCount').textContent = list.length+' sản phẩm';
-
-  const grid = document.getElementById('grid');
-  if(!list.length){
-    grid.innerHTML = `<div class="empty"><div class="ic">🔍</div><h3>Không tìm thấy sản phẩm</h3><p>Thử từ khóa khác hoặc chọn danh mục khác nhé!</p></div>`;
-    return;
+  // Searching or a specific category -> browse view
+  if(q || (currentCat!=='all')){
+    showBrowse(q);
+  } else {
+    showHome();
   }
-  grid.innerHTML = list.map(p=>{
-    const badge = p.badge ? `<span class="pbadge ${p.badge}">${p.badge==='sale'?'GIẢM GIÁ':p.badge==='hot'?'BÁN CHẠY':'MỚI VỀ'}</span>` : '';
-    const old = p.old ? `<span class="pold">${fmt(p.old)}</span>` : '';
-    return `<div class="pcard">
-      <div class="pcard-img">${badge}${imgHTML(p)}<button class="wish" onclick="toast('Đã thêm vào yêu thích 💖')">🤍</button></div>
-      <div class="pcard-body">
-        <div class="pcat">${CATS.find(c=>c.id===p.cat).name}</div>
-        <div class="pname">${p.name}</div>
-        <div class="prate"><span class="stars">★★★★★</span> ${p.rate} · đã bán ${p.sold}</div>
-        <div class="pprice-row"><span class="pprice">${fmt(p.price)}</span>${old}</div>
-        <button class="padd" onclick="addToCart(${p.id})">🛒 Thêm vào giỏ</button>
+}
+
+function showHome(){
+  document.getElementById('homeView').style.display='block';
+  document.getElementById('browseView').style.display='none';
+
+  // Flash sale = sản phẩm có giảm giá
+  const flash = PRODUCTS.filter(p=>p.old).slice(0,10);
+  document.getElementById('flashGrid').innerHTML = flash.map(cardHTML).join('');
+
+  // Mỗi danh mục 1 block (tối đa 5 sản phẩm)
+  document.getElementById('catBlocks').innerHTML = CATS.map(c=>{
+    const items = PRODUCTS.filter(p=>p.cat===c.id).slice(0,5);
+    if(!items.length) return '';
+    return `<section class="block">
+      <div class="block-head">
+        <div class="block-title"><span class="bi">${c.icon}</span> ${c.name}</div>
+        <a href="#" class="block-seeall" onclick="filterCat('${c.id}');return false">Xem tất cả →</a>
       </div>
-    </div>`;
+      <div class="grid">${items.map(cardHTML).join('')}</div>
+    </section>`;
   }).join('');
+}
+
+function showBrowse(q){
+  document.getElementById('homeView').style.display='none';
+  document.getElementById('browseView').style.display='block';
+
+  let list = PRODUCTS.slice();
+  let title = '';
+  if(currentCat==='sale'){ list = list.filter(p=>p.old); title='🔥 Đang khuyến mãi'; }
+  else if(currentCat!=='all'){ list = list.filter(p=>p.cat===currentCat); title = catName(currentCat); }
+  else { title = 'Tất cả sản phẩm'; }
+  if(q){ list = list.filter(p=>p.name.toLowerCase().includes(q)); title = `Kết quả cho "${document.getElementById('searchInput').value.trim()}"`; }
+
+  document.getElementById('browseTitle').innerHTML = `${title} <span style="color:var(--muted);font-size:.8rem;font-weight:600">(${list.length} sản phẩm)</span>`;
+  const grid = document.getElementById('browseGrid');
+  grid.innerHTML = list.length ? list.map(cardHTML).join('')
+    : `<div class="empty"><div class="ic">🔍</div><h3>Không tìm thấy sản phẩm</h3><p>Thử từ khóa khác hoặc chọn danh mục khác nhé!</p></div>`;
+}
+
+function filterCat(id){
+  currentCat = id;
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goHome(){
+  currentCat='all';
+  document.getElementById('searchInput').value='';
+  render();
+}
+
+/* ════════ SLIDER ════════ */
+let slideIdx=0, slideTimer;
+function buildSlider(){
+  const slides=document.querySelectorAll('.slide');
+  document.getElementById('sliderDots').innerHTML = Array.from(slides).map((_,i)=>`<button class="${i===0?'on':''}" onclick="goSlide(${i})"></button>`).join('');
+  slideTimer=setInterval(()=>slideNav(1),5000);
+}
+function goSlide(i){
+  const slides=document.querySelectorAll('.slide');
+  const dots=document.querySelectorAll('.slider-dots button');
+  slides[slideIdx].classList.remove('active'); dots[slideIdx].classList.remove('on');
+  slideIdx=(i+slides.length)%slides.length;
+  slides[slideIdx].classList.add('active'); dots[slideIdx].classList.add('on');
+}
+function slideNav(d){ goSlide(slideIdx+d); clearInterval(slideTimer); slideTimer=setInterval(()=>slideNav(1),5000); }
+
+/* ════════ COUNTDOWN (flash sale - tới cuối ngày) ════════ */
+function tickCountdown(){
+  const now=new Date(), end=new Date(); end.setHours(23,59,59,999);
+  let s=Math.floor((end-now)/1000);
+  const h=String(Math.floor(s/3600)).padStart(2,'0');
+  const m=String(Math.floor(s%3600/60)).padStart(2,'0');
+  const sec=String(s%60).padStart(2,'0');
+  const cds=document.querySelectorAll('#countdown .cd');
+  if(cds.length===3){ cds[0].textContent=h; cds[1].textContent=m; cds[2].textContent=sec; }
 }
 
 /* ════════ CART ════════ */
 function addToCart(id){
   const item = cart.find(i=>i.id===id);
-  if(item) item.qty++;
-  else cart.push({id, qty:1});
-  saveCart(); updateCart();
-  toast('Đã thêm vào giỏ hàng 🛒');
+  if(item) item.qty++; else cart.push({id, qty:1});
+  saveCart(); updateCart(); toast('Đã thêm vào giỏ hàng 🛒');
 }
-function changeQty(id, d){
-  const item = cart.find(i=>i.id===id);
-  if(!item) return;
-  item.qty += d;
-  if(item.qty<=0) cart = cart.filter(i=>i.id!==id);
+function changeQty(id,d){
+  const item=cart.find(i=>i.id===id); if(!item) return;
+  item.qty+=d; if(item.qty<=0) cart=cart.filter(i=>i.id!==id);
   saveCart(); updateCart();
 }
-function removeItem(id){ cart = cart.filter(i=>i.id!==id); saveCart(); updateCart(); }
-
+function removeItem(id){ cart=cart.filter(i=>i.id!==id); saveCart(); updateCart(); }
 function cartCount(){ return cart.reduce((s,i)=>s+i.qty,0); }
 function cartSubtotal(){ return cart.reduce((s,i)=>s+prod(i.id).price*i.qty,0); }
 function shipFee(){ const sub=cartSubtotal(); return (sub===0||sub>=FREE_SHIP_FROM)?0:SHIP_FEE; }
 
 function updateCart(){
-  const count = cartCount();
-  const badge = document.getElementById('cartCount');
-  badge.textContent = count;
-  badge.classList.toggle('show', count>0);
-  document.getElementById('drawerCount').textContent = count?`(${count} sản phẩm)`:'';
-
-  const wrap = document.getElementById('cartItems');
-  const foot = document.getElementById('cartFoot');
+  const count=cartCount();
+  const badge=document.getElementById('cartCount');
+  badge.textContent=count; badge.classList.toggle('show',count>0);
+  document.getElementById('drawerCount').textContent=count?`(${count} sản phẩm)`:'';
+  const wrap=document.getElementById('cartItems'), foot=document.getElementById('cartFoot');
   if(!cart.length){
-    wrap.innerHTML = `<div class="cart-empty"><div class="ic">🛒</div><b>Giỏ hàng đang trống</b><p style="font-size:.85rem;margin-top:6px">Hãy chọn vài món cho bé yêu nhé!</p><button onclick="closeCart()">Tiếp tục mua sắm</button></div>`;
-    foot.style.display='none';
-    return;
+    wrap.innerHTML=`<div class="cart-empty"><div class="ic">🛒</div><b>Giỏ hàng đang trống</b><p style="font-size:.85rem;margin-top:6px">Hãy chọn vài món cho bé yêu nhé!</p><button onclick="closeCart()">Tiếp tục mua sắm</button></div>`;
+    foot.style.display='none'; return;
   }
   foot.style.display='block';
-  wrap.innerHTML = cart.map(i=>{
-    const p = prod(i.id);
+  wrap.innerHTML=cart.map(i=>{
+    const p=prod(i.id);
     return `<div class="citem">
       <div class="citem-img">${imgHTML(p,'')}</div>
-      <div class="citem-info">
-        <b>${p.name}</b>
-        <div class="citem-price">${fmt(p.price)}</div>
-        <div class="qty">
-          <button onclick="changeQty(${p.id},-1)">−</button>
-          <span>${i.qty}</span>
-          <button onclick="changeQty(${p.id},1)">+</button>
-        </div>
+      <div class="citem-info"><b>${p.name}</b><div class="citem-price">${fmt(p.price)}</div>
+        <div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${i.qty}</span><button onclick="changeQty(${p.id},1)">+</button></div>
       </div>
       <button class="citem-del" onclick="removeItem(${p.id})" title="Xóa">🗑️</button>
     </div>`;
   }).join('');
-
-  const sub = cartSubtotal(), ship = shipFee();
-  document.getElementById('cartSubtotal').textContent = fmt(sub);
-  document.getElementById('cartShip').innerHTML = ship===0 ? '<b style="color:var(--primary)">Miễn phí</b>' : fmt(ship);
-  document.getElementById('cartTotal').textContent = fmt(sub+ship);
+  const sub=cartSubtotal(), ship=shipFee();
+  document.getElementById('cartSubtotal').textContent=fmt(sub);
+  document.getElementById('cartShip').innerHTML=ship===0?'<b style="color:var(--primary)">Miễn phí</b>':fmt(ship);
+  document.getElementById('cartTotal').textContent=fmt(sub+ship);
 }
 
 /* ════════ DRAWER / MODAL ════════ */
 function openCart(){ document.getElementById('drawer').classList.add('show'); document.getElementById('overlay').classList.add('show'); document.body.style.overflow='hidden'; }
 function closeCart(){ document.getElementById('drawer').classList.remove('show'); if(!document.getElementById('checkoutModal').classList.contains('show')){document.getElementById('overlay').classList.remove('show'); document.body.style.overflow='';} }
 function closeAll(){ closeCart(); closeCheckout(); }
-
-function openCheckout(){
-  if(!cart.length) return;
-  renderCheckout();
-  document.getElementById('drawer').classList.remove('show');
-  document.getElementById('checkoutModal').classList.add('show');
-  document.getElementById('overlay').classList.add('show');
-  document.body.style.overflow='hidden';
-}
+function openCheckout(){ if(!cart.length) return; renderCheckout(); document.getElementById('drawer').classList.remove('show'); document.getElementById('checkoutModal').classList.add('show'); document.getElementById('overlay').classList.add('show'); document.body.style.overflow='hidden'; }
 function closeCheckout(){ document.getElementById('checkoutModal').classList.remove('show'); document.getElementById('overlay').classList.remove('show'); document.body.style.overflow=''; }
 
 function renderCheckout(){
-  const sub = cartSubtotal(), ship = shipFee(), total = sub+ship;
-  const items = cart.map(i=>{
-    const p=prod(i.id);
-    return `<div class="sum-item">
-      <div class="si-img">${imgHTML(p,'')}</div>
-      <div class="si-info"><b>${p.name}</b><small>SL: ${i.qty} × ${fmt(p.price)}</small></div>
-      <div class="si-price">${fmt(p.price*i.qty)}</div>
-    </div>`;
-  }).join('');
-
-  document.getElementById('checkoutBox').innerHTML = `
-    <div class="modal-head">
-      <h3>📝 Thông tin đặt hàng</h3>
-      <button class="drawer-close" onclick="closeCheckout()">✕</button>
-    </div>
+  const sub=cartSubtotal(), ship=shipFee(), total=sub+ship;
+  const items=cart.map(i=>{const p=prod(i.id);return `<div class="sum-item"><div class="si-img">${imgHTML(p,'')}</div><div class="si-info"><b>${p.name}</b><small>SL: ${i.qty} × ${fmt(p.price)}</small></div><div class="si-price">${fmt(p.price*i.qty)}</div></div>`;}).join('');
+  document.getElementById('checkoutBox').innerHTML=`
+    <div class="modal-head"><h3>📝 Thông tin đặt hàng</h3><button class="drawer-close" onclick="closeCheckout()">✕</button></div>
     <div class="checkout-grid">
       <div class="checkout-form">
-        <div class="field">
-          <label>Họ và tên <span class="req">*</span></label>
-          <input type="text" id="ckName" placeholder="VD: Nguyễn Thị Hương">
-          <div class="field-msg" id="errName">Vui lòng nhập họ tên</div>
-        </div>
-        <div class="field">
-          <label>Số điện thoại <span class="req">*</span></label>
-          <input type="tel" id="ckPhone" placeholder="VD: 0936 223 622" inputmode="numeric">
-          <div class="field-msg" id="errPhone">Số điện thoại chưa hợp lệ (10 số)</div>
-        </div>
-        <div class="field">
-          <label>Địa chỉ nhận hàng <span class="req">*</span></label>
-          <input type="text" id="ckAddr" placeholder="Số nhà, đường, phường/xã, quận/huyện">
-          <div class="field-msg" id="errAddr">Vui lòng nhập địa chỉ giao hàng</div>
-        </div>
-        <div class="field">
-          <label>Ghi chú đơn hàng</label>
-          <textarea id="ckNote" placeholder="VD: Giao giờ hành chính, gọi trước khi đến..."></textarea>
-        </div>
-        <div class="field">
-          <label>Hình thức thanh toán</label>
-          <div class="pay-opts" id="payOpts">
+        <div class="field"><label>Họ và tên <span class="req">*</span></label><input type="text" id="ckName" placeholder="VD: Nguyễn Thị Hương"><div class="field-msg" id="errName">Vui lòng nhập họ tên</div></div>
+        <div class="field"><label>Số điện thoại <span class="req">*</span></label><input type="tel" id="ckPhone" placeholder="VD: 0936 223 622" inputmode="numeric"><div class="field-msg" id="errPhone">Số điện thoại chưa hợp lệ (10 số)</div></div>
+        <div class="field"><label>Địa chỉ nhận hàng <span class="req">*</span></label><input type="text" id="ckAddr" placeholder="Số nhà, đường, phường/xã, quận/huyện"><div class="field-msg" id="errAddr">Vui lòng nhập địa chỉ giao hàng</div></div>
+        <div class="field"><label>Ghi chú đơn hàng</label><textarea id="ckNote" placeholder="VD: Giao giờ hành chính, gọi trước khi đến..."></textarea></div>
+        <div class="field"><label>Hình thức thanh toán</label>
+          <div class="pay-opts">
             <label class="pay-opt sel"><input type="radio" name="pay" value="cod" checked onchange="selPay(this)"><span class="pi">💵</span><span><b>Thanh toán khi nhận hàng (COD)</b><small>Kiểm tra hàng rồi mới trả tiền</small></span></label>
             <label class="pay-opt"><input type="radio" name="pay" value="bank" onchange="selPay(this)"><span class="pi">🏦</span><span><b>Chuyển khoản ngân hàng</b><small>Nhân viên gửi thông tin sau khi đặt</small></span></label>
           </div>
@@ -659,40 +824,30 @@ function renderCheckout(){
 function selPay(el){ document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('sel')); el.closest('.pay-opt').classList.add('sel'); }
 
 function placeOrder(){
-  const name = document.getElementById('ckName');
-  const phone = document.getElementById('ckPhone');
-  const addr = document.getElementById('ckAddr');
-  let ok = true;
-  const check = (el, errId, cond)=>{
-    const e = document.getElementById(errId);
-    if(cond){ el.classList.add('err'); e.classList.add('show'); ok=false; }
-    else{ el.classList.remove('err'); e.classList.remove('show'); }
-  };
+  const name=document.getElementById('ckName'), phone=document.getElementById('ckPhone'), addr=document.getElementById('ckAddr');
+  let ok=true;
+  const check=(el,errId,cond)=>{const e=document.getElementById(errId); if(cond){el.classList.add('err');e.classList.add('show');ok=false;} else{el.classList.remove('err');e.classList.remove('show');}};
   check(name,'errName', name.value.trim().length<2);
   check(phone,'errPhone', !/^0\d{9}$/.test(phone.value.replace(/\s/g,'')));
   check(addr,'errAddr', addr.value.trim().length<5);
   if(!ok){ document.querySelector('.field input.err').scrollIntoView({behavior:'smooth',block:'center'}); return; }
 
-  const code = 'TAB'+Date.now().toString().slice(-6);
-  const total = cartSubtotal()+shipFee();
-  const orderText =
-`🧾 ĐƠN HÀNG ${code}
+  const code='TAB'+Date.now().toString().slice(-6);
+  const total=cartSubtotal()+shipFee();
+  const orderText=`🧾 ĐƠN HÀNG ${code}
 Khách: ${name.value.trim()} - ${phone.value.trim()}
 Địa chỉ: ${addr.value.trim()}
 ─────────────
 ${cart.map(i=>{const p=prod(i.id);return `• ${p.name} x${i.qty} = ${fmt(p.price*i.qty)}`;}).join('\n')}
 ─────────────
 TỔNG: ${fmt(total)} (${document.querySelector('input[name=pay]:checked').value==='cod'?'COD':'Chuyển khoản'})`;
-
-  // Lưu đơn vào localStorage (lịch sử cục bộ)
   try{
-    const orders = JSON.parse(localStorage.getItem('tab_orders')||'[]');
+    const orders=JSON.parse(localStorage.getItem('tab_orders')||'[]');
     orders.push({code, at:new Date().toISOString(), name:name.value.trim(), phone:phone.value.trim(), addr:addr.value.trim(), note:document.getElementById('ckNote').value.trim(), items:cart, total});
     localStorage.setItem('tab_orders', JSON.stringify(orders));
   }catch(e){}
-
-  lastOrderText = orderText;
-  document.getElementById('checkoutBox').innerHTML = `
+  lastOrderText=orderText;
+  document.getElementById('checkoutBox').innerHTML=`
     <div class="success">
       <div class="check">✓</div>
       <h3>Đặt hàng thành công!</h3>
@@ -706,32 +861,30 @@ TỔNG: ${fmt(total)} (${document.querySelector('input[name=pay]:checked').value
         <button class="sa-cont" onclick="finishOrder()">Tiếp tục mua sắm</button>
       </div>
     </div>`;
-  cart = []; saveCart(); updateCart();
+  cart=[]; saveCart(); updateCart();
 }
-let lastOrderText = '';
+let lastOrderText='';
 function copyOrder(){ try{ navigator.clipboard.writeText(lastOrderText); toast('Đã sao chép đơn — dán vào Zalo nhé 📋'); }catch(e){} }
-function finishOrder(){ closeCheckout(); }
+function finishOrder(){ closeCheckout(); goHome(); }
 
 /* ════════ TOAST ════════ */
 let toastTimer;
 function toast(msg){
-  const t = document.getElementById('toast');
-  document.getElementById('toastMsg').textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>t.classList.remove('show'), 2200);
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show'); clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
 }
 
 /* ════════ MISC ════════ */
-window.addEventListener('scroll', ()=>{
-  document.getElementById('totop').classList.toggle('show', window.scrollY>500);
-});
+window.addEventListener('scroll', ()=>{ document.getElementById('totop').classList.toggle('show', window.scrollY>500); });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeAll(); });
 
 /* ════════ INIT ════════ */
-buildCats();
 render();
 updateCart();
+buildSlider();
+tickCountdown(); setInterval(tickCountdown,1000);
 </script>
 </body>
 </html>
