@@ -1,0 +1,98 @@
+[
+  {
+    "ten": "Hồ Hoàn Kiếm",
+    "loai": "choi",
+    "vung": "Miền Bắc",
+    "tinh": "Hà Nội",
+    "toado": [21.0287, 105.8524],
+    "googleMap": "https://www.google.com/maps/search/?api=1&query=21.0287,105.8524",
+    "danhgia": 4.7,
+    "mota": "Trái tim của Hà Nội, đi bộ quanh hồ buổi tối rất mát. Cuối tuần có phố đi bộ.",
+    "anh": [],
+    "tags": ["hồ", "đi bộ", "trung tâm"]
+  },
+  {
+    "ten": "Phở Bát Đàn",
+    "loai": "an",
+    "vung": "Miền Bắc",
+    "tinh": "Hà Nội",
+    "toado": [21.0333, 105.8478],
+    "googleMap": "https://www.google.com/maps/search/?api=1&query=21.0333,105.8478",
+    "danhgia": 4.4,
+    "mota": "Phở bò truyền thống, phải xếp hàng tự bưng. Nước dùng đậm, bánh phở mềm.",
+    "anh": [],
+    "tags": ["phở", "bò", "ăn sáng"]
+  },
+  {
+    "ten": "Phố cổ Hội An",
+    "loai": "choi",
+    "vung": "Miền Trung",
+    "tinh": "Quảng Nam",
+    "toado": [15.8801, 108.3380],
+    "googleMap": "https://www.google.com/maps/search/?api=1&query=15.8801,108.3380",
+    "danhgia": 4.8,
+    "mota": "Phố đèn lồng, đẹp nhất lúc chập tối. Thả hoa đăng trên sông Hoài.",
+    "anh": [],
+    "tags": ["đèn lồng", "cổ", "check-in"]
+  },
+  {
+    "ten": "Bún bò Huế Bà Tuyết",
+    "loai": "an",
+    "vung": "Miền Trung",
+    "tinh": "Thừa Thiên Huế",
+    "toado": [16.4637, 107.5909],
+    "googleMap": "https://www.google.com/maps/search/?api=1&query=16.4637,107.5909",
+    "danhgia": 4.5,
+    "mota": "Bún bò chuẩn vị Huế, cay nồng, nước dùng thơm sả và mắm ruốc.",
+    "anh": [],
+    "tags": ["bún bò", "cay", "đặc sản"]
+  },
+  {
+    "ten": "Bà Nà Hills",
+    "loai": "choi",
+    "vung": "Miền Trung",
+    "tinh": "Đà Nẵng",
+    "toado": [15.9977, 107.9960],
+    "googleMap": "https://www.google.com/maps/search/?api=1&query=15.9977,107.9960",
+    "danhgia": 4.3,
+    "mota": "Cầu Vàng, làng Pháp, cáp treo dài. Nên đi sớm tránh đông và mây mù.",
+    "anh": [],
+    "tags": ["cầu vàng", "cáp treo", "núi"]
+  },
+  {
+    "ten": "Chợ Bến Thành",
+    "loai": "choi",
+    "vung": "Miền Nam",
+    "tinh": "TP. Hồ Chí Minh",
+    "toado": [10.7721, 106.6980],
+    "googleMap": "https://www.google.com/maps/search/?api=1&query=10.7721,106.6980",
+    "danhgia": 4.2,
+    "mota": "Biểu tượng Sài Gòn, mua đặc sản và ăn vặt. Chợ đêm quanh khu vực khá vui.",
+    "anh": [],
+    "tags": ["chợ", "mua sắm", "ăn vặt"]
+  },
+  {
+    "ten": "Cà phê vợt Cheo Leo",
+    "loai": "uong",
+    "vung": "Miền Nam",
+    "tinh": "TP. Hồ Chí Minh",
+    "toado": [10.7686, 106.6790],
+    "googleMap": "https://www.google.com/maps/search/?api=1&query=10.7686,106.6790",
+    "danhgia": 4.4,
+    "mota": "Quán cà phê vợt lâu đời nhất Sài Gòn, pha bằng vợt vải kiểu xưa.",
+    "anh": [],
+    "tags": ["cà phê", "vintage", "lâu đời"]
+  },
+  {
+    "ten": "Bãi Sao",
+    "loai": "choi",
+    "vung": "Miền Nam",
+    "tinh": "Kiên Giang (Phú Quốc)",
+    "toado": [10.0430, 104.0290],
+    "googleMap": "https://www.google.com/maps/search/?api=1&query=10.0430,104.0290",
+    "danhgia": 4.6,
+    "mota": "Bãi biển cát trắng mịn, nước trong xanh. Đẹp nhất buổi sáng khi vắng người.",
+    "anh": [],
+    "tags": ["biển", "cát trắng", "tắm biển"]
+  }
+]
