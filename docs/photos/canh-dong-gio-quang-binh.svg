@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Cánh đồng gió Quảng Bình">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fd0ef"/>
+      <stop offset="0.55" stop-color="#cdeaf7"/>
+      <stop offset="1" stop-color="#fdf3e0"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3d9bd4"/>
+      <stop offset="1" stop-color="#59b3e0"/>
+    </linearGradient>
+    <linearGradient id="dune" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2dfa6"/>
+      <stop offset="1" stop-color="#e6cd86"/>
+    </linearGradient>
+    <linearGradient id="dune2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ecd493"/>
+      <stop offset="1" stop-color="#d9bd71"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5b6470"/>
+      <stop offset="1" stop-color="#3f4650"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sky -->
+  <rect width="1200" height="675" fill="url(#sky)"/>
+  <!-- sun -->
+  <circle cx="935" cy="150" r="58" fill="#fff4d6" opacity="0.9"/>
+  <circle cx="935" cy="150" r="40" fill="#ffe9a8"/>
+  <!-- clouds -->
+  <g fill="#ffffff" opacity="0.85">
+    <ellipse cx="230" cy="120" rx="70" ry="24"/>
+    <ellipse cx="300" cy="132" rx="55" ry="20"/>
+    <ellipse cx="640" cy="90" rx="60" ry="20"/>
+    <ellipse cx="700" cy="100" rx="45" ry="16"/>
+  </g>
+
+  <!-- sea strip -->
+  <rect x="0" y="300" width="1200" height="70" fill="url(#sea)"/>
+  <g stroke="#ffffff" stroke-width="2" opacity="0.35">
+    <line x1="60" y1="330" x2="150" y2="330"/>
+    <line x1="300" y1="345" x2="410" y2="345"/>
+    <line x1="820" y1="335" x2="930" y2="335"/>
+  </g>
+
+  <!-- far dunes -->
+  <path d="M0 370 Q 200 320 420 360 T 820 350 T 1200 360 L1200 675 L0 675 Z" fill="url(#dune2)"/>
+  <!-- near dune -->
+  <path d="M0 470 Q 260 410 560 455 T 1200 460 L1200 675 L0 675 Z" fill="url(#dune)"/>
+
+  <!-- road: sweeping curve to horizon -->
+  <path d="M470 370 L560 370 L900 675 L250 675 Z" fill="url(#road)"/>
+  <!-- road edges -->
+  <path d="M470 370 L250 675" stroke="#eef1f4" stroke-width="4" opacity="0.8"/>
+  <path d="M560 370 L900 675" stroke="#eef1f4" stroke-width="4" opacity="0.8"/>
+  <!-- dashed center line -->
+  <g stroke="#ffd23f" stroke-width="6" stroke-dasharray="26 26" opacity="0.95">
+    <line x1="515" y1="372" x2="575" y2="675"/>
+  </g>
+
+  <!-- wind turbines -->
+  <!-- turbine helper drawn inline; blades rotate slowly -->
+  <g fill="#f7fbff" stroke="#cdd8e0" stroke-width="1.5">
+    <!-- far small -->
+    <g transform="translate(150,300)">
+      <rect x="-3" y="0" width="6" height="90" fill="#eef4f8"/>
+      <g transform="scale(0.55)">
+        <circle r="7" fill="#e7edf2"/>
+        <g>
+          <path d="M0 0 L6 -78 L-6 -70 Z"/>
+          <path d="M0 0 L70 40 L64 52 Z"/>
+          <path d="M0 0 L-70 40 L-64 52 Z"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="9s" repeatCount="indefinite"/>
+        </g>
+      </g>
+    </g>
+    <!-- mid -->
+    <g transform="translate(360,270)">
+      <rect x="-4" y="0" width="8" height="140" fill="#eef4f8"/>
+      <g transform="scale(0.8)">
+        <circle r="8" fill="#e7edf2"/>
+        <g>
+          <path d="M0 0 L8 -96 L-8 -86 Z"/>
+          <path d="M0 0 L86 50 L78 64 Z"/>
+          <path d="M0 0 L-86 50 L-78 64 Z"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="7s" repeatCount="indefinite"/>
+        </g>
+      </g>
+    </g>
+    <!-- big foreground right -->
+    <g transform="translate(870,235)">
+      <rect x="-6" y="0" width="12" height="230" fill="#f4f8fb"/>
+      <g>
+        <circle r="11" fill="#e7edf2"/>
+        <g>
+          <path d="M0 0 L11 -150 L-11 -135 Z"/>
+          <path d="M0 0 L135 78 L120 100 Z"/>
+          <path d="M0 0 L-135 78 L-120 100 Z"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="6s" repeatCount="indefinite"/>
+        </g>
+      </g>
+    </g>
+    <!-- tall left -->
+    <g transform="translate(1050,255)">
+      <rect x="-5" y="0" width="10" height="200" fill="#f4f8fb"/>
+      <g transform="scale(0.9)">
+        <circle r="9" fill="#e7edf2"/>
+        <g>
+          <path d="M0 0 L9 -120 L-9 -108 Z"/>
+          <path d="M0 0 L108 62 L96 80 Z"/>
+          <path d="M0 0 L-108 62 L-96 80 Z"/>
+          <animateTransform attributeName="transform" type="rotate" from="40" to="400" dur="8s" repeatCount="indefinite"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- caption chip -->
+  <g>
+    <rect x="40" y="600" width="360" height="44" rx="10" fill="rgba(20,30,40,0.55)"/>
+    <text x="60" y="628" font-family="system-ui, Arial, sans-serif" font-size="22" fill="#ffffff" font-weight="700">Cánh đồng gió Quảng Bình</text>
+  </g>
+</svg>

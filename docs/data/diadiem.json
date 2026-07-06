@@ -94,5 +94,17 @@
     "mota": "Bãi biển cát trắng mịn, nước trong xanh. Đẹp nhất buổi sáng khi vắng người.",
     "anh": [],
     "tags": ["biển", "cát trắng", "tắm biển"]
+  },
+  {
+    "ten": "Cánh đồng gió Quảng Bình",
+    "loai": "choi",
+    "vung": "Miền Trung",
+    "tinh": "Quảng Bình",
+    "toado": [17.2494396, 106.8318915],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=17.2494396,106.8318915",
+    "danhgia": 4.6,
+    "mota": "Cánh đồng điện gió ven biển, turbine trắng khổng lồ giữa đồi cát. Ngã ba đường nhựa ngay sát QL1, check-in cực chill. Toạ độ ngã ba đường nhựa; gần đó còn lối đất đá dăm 17.362889, 106.694667.",
+    "anh": ["photos/canh-dong-gio-quang-binh.svg"],
+    "tags": ["điện gió", "check-in", "biển", "đồi cát", "QL1"]
   }
 ]
