@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Bãi biển">
+  <defs>
+    <linearGradient id="skyB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7fc3e8"/>
+      <stop offset="1" stop-color="#d8f1fb"/>
+    </linearGradient>
+    <linearGradient id="seaB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0e7fa8"/>
+      <stop offset="0.5" stop-color="#20a7c9"/>
+      <stop offset="1" stop-color="#7ed4dc"/>
+    </linearGradient>
+    <linearGradient id="sandB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6e9c4"/>
+      <stop offset="1" stop-color="#ecd9a3"/>
+    </linearGradient>
+    <linearGradient id="hillB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4f8f5a"/>
+      <stop offset="1" stop-color="#356b41"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#skyB)"/>
+  <circle cx="980" cy="120" r="46" fill="#fff6dd" opacity="0.9"/>
+  <g fill="#ffffff" opacity="0.85">
+    <ellipse cx="250" cy="110" rx="70" ry="22"/>
+    <ellipse cx="320" cy="122" rx="52" ry="18"/>
+  </g>
+
+  <!-- headland island -->
+  <path d="M0 300 Q 160 220 340 290 Q 430 325 470 360 L0 360 Z" fill="url(#hillB)"/>
+  <path d="M760 320 Q 900 250 1050 300 Q 1150 335 1200 330 L1200 380 L760 380 Z" fill="url(#hillB)" opacity="0.9"/>
+
+  <!-- sea -->
+  <rect x="0" y="330" width="1200" height="180" fill="url(#seaB)"/>
+  <!-- shallow lagoon lighter -->
+  <path d="M0 470 Q 300 430 620 470 T 1200 470 L1200 510 L0 510 Z" fill="#a9e4e0" opacity="0.6"/>
+  <g stroke="#ffffff" stroke-width="3" opacity="0.4">
+    <line x1="120" y1="400" x2="240" y2="400"/>
+    <line x1="520" y1="420" x2="640" y2="420"/>
+    <line x1="900" y1="405" x2="1010" y2="405"/>
+  </g>
+
+  <!-- sand -->
+  <path d="M0 500 Q 300 470 640 505 T 1200 500 L1200 675 L0 675 Z" fill="url(#sandB)"/>
+  <!-- wet sand line -->
+  <path d="M0 512 Q 300 484 640 517 T 1200 512" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.5"/>
+  <!-- rocks -->
+  <g fill="#8a8f96">
+    <ellipse cx="250" cy="540" rx="46" ry="26"/>
+    <ellipse cx="300" cy="552" rx="34" ry="20"/>
+    <ellipse cx="215" cy="556" rx="26" ry="16"/>
+  </g>
+
+  <!-- palm tree -->
+  <g transform="translate(1000,470)">
+    <path d="M0 0 q 14 60 6 150" fill="none" stroke="#7a5230" stroke-width="12" stroke-linecap="round"/>
+    <g fill="#3f8f4e">
+      <path d="M0 -6 q -70 -22 -120 6 q 70 -6 120 14 Z"/>
+      <path d="M0 -6 q 70 -22 120 6 q -70 -6 -120 14 Z"/>
+      <path d="M0 -6 q -40 -60 -90 -70 q 40 30 82 78 Z"/>
+      <path d="M0 -6 q 40 -60 90 -70 q -40 30 -82 78 Z"/>
+      <path d="M0 -8 q 0 -60 -8 -96 q 20 40 20 96 Z"/>
+    </g>
+  </g>
+
+  <g>
+    <rect x="40" y="600" width="220" height="44" rx="10" fill="rgba(20,40,50,0.5)"/>
+    <text x="60" y="628" font-family="system-ui, Arial, sans-serif" font-size="22" fill="#ffffff" font-weight="700">Bãi biển</text>
+  </g>
+</svg>

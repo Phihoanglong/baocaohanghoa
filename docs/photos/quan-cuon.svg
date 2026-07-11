@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Quán ăn — món cuốn">
+  <defs>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b3813f"/>
+      <stop offset="1" stop-color="#8c5f2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#wood)"/>
+  <!-- wood planks -->
+  <g stroke="#7a5023" stroke-width="3" opacity="0.4">
+    <line x1="0" y1="150" x2="1200" y2="150"/>
+    <line x1="0" y1="340" x2="1200" y2="340"/>
+    <line x1="0" y1="530" x2="1200" y2="530"/>
+  </g>
+
+  <!-- banana-leaf platter -->
+  <ellipse cx="600" cy="360" rx="360" ry="185" fill="#3f7d38"/>
+  <ellipse cx="600" cy="352" rx="330" ry="165" fill="#4f9243"/>
+
+  <!-- fresh spring rolls (cuốn) -->
+  <g>
+    <g fill="#f2f4ee" stroke="#dfe6d6" stroke-width="2">
+      <rect x="360" y="300" width="150" height="42" rx="21" transform="rotate(-18 435 321)"/>
+      <rect x="410" y="345" width="150" height="42" rx="21" transform="rotate(-18 485 366)"/>
+      <rect x="460" y="390" width="150" height="42" rx="21" transform="rotate(-18 535 411)"/>
+    </g>
+    <!-- shrimp pink dots inside -->
+    <g fill="#f08a6a" opacity="0.85">
+      <circle cx="400" cy="316" r="7"/><circle cx="450" cy="361" r="7"/><circle cx="500" cy="406" r="7"/>
+    </g>
+    <!-- green herbs peeking -->
+    <g fill="#5aa04a">
+      <circle cx="500" cy="300" r="8"/><circle cx="548" cy="345" r="8"/><circle cx="596" cy="390" r="8"/>
+    </g>
+  </g>
+
+  <!-- dipping sauce bowl -->
+  <g transform="translate(760,360)">
+    <ellipse cx="0" cy="0" rx="78" ry="52" fill="#eef0ea"/>
+    <ellipse cx="0" cy="-4" rx="60" ry="38" fill="#c8622e"/>
+    <circle cx="-14" cy="-6" r="5" fill="#a33f16"/>
+    <circle cx="16" cy="4" r="5" fill="#e08a3a"/>
+  </g>
+
+  <!-- herbs plate -->
+  <g transform="translate(430,470)">
+    <ellipse cx="0" cy="0" rx="120" ry="46" fill="#eef0ea"/>
+    <g fill="#4f9243">
+      <circle cx="-60" cy="-4" r="16"/><circle cx="-30" cy="6" r="18"/>
+      <circle cx="4" cy="-6" r="17"/><circle cx="40" cy="6" r="16"/><circle cx="72" cy="-2" r="15"/>
+    </g>
+  </g>
+
+  <!-- chopsticks -->
+  <g stroke="#e7d8b0" stroke-width="7" stroke-linecap="round">
+    <line x1="880" y1="470" x2="1080" y2="360"/>
+    <line x1="892" y1="488" x2="1092" y2="378"/>
+  </g>
+
+  <g>
+    <rect x="40" y="600" width="240" height="44" rx="10" fill="rgba(0,0,0,0.5)"/>
+    <text x="60" y="628" font-family="system-ui, Arial, sans-serif" font-size="22" fill="#ffffff" font-weight="700">Quán ăn miền Trung</text>
+  </g>
+</svg>

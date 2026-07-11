@@ -255,7 +255,99 @@
       "check-in",
       "Lộ Diêu"
     ],
-    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=%C4%90%C3%A8o%20L%E1%BB%99%20Di%C3%AAu%20Ho%C3%A0i%20Nh%C6%A1n%20B%C3%ACnh%20%C4%90%E1%BB%8Bnh",
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=B%E1%BA%BFn%20T%C3%A0u%20Kh%C3%B4ng%20S%E1%BB%91%20L%E1%BB%99%20Di%C3%AAu%20Ho%C3%A0i%20Nh%C6%A1n%20B%C3%ACnh%20%C4%90%E1%BB%8Bnh",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Cuốn Là Ghiền (Nghệ Sĩ Quán)",
+    "loai": "an",
+    "vung": "Miền Trung",
+    "tinh": "Đà Nẵng",
+    "toado": [
+      16.06,
+      108.22
+    ],
+    "danhgia": 4.5,
+    "mota": "Quán cuốn nổi tiếng Đà Nẵng: thịt heo cuốn bánh tráng, cá hấp, nem lụi... món ngon vùng miền. Nhiều rau sống, chấm mắm nêm.",
+    "anh": [
+      "photos/quan-cuon.svg"
+    ],
+    "tags": [
+      "cuốn",
+      "bánh tráng",
+      "mắm nêm",
+      "Đà Nẵng"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=Cu%E1%BB%91n%20L%C3%A0%20Ghi%E1%BB%81n%20%C4%90%C3%A0%20N%E1%BA%B5ng",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Làng chài Ninh Vân",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Khánh Hoà",
+    "toado": [
+      12.55,
+      109.28
+    ],
+    "danhgia": 4.6,
+    "mota": "Bãi biển hoang sơ, nước trong. Đường vào hơi khó nhưng rất đáng. Mốc tìm đường: search 'Cây Gạo Cổ Thụ' để đến làng chài Ninh Vân.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "biển",
+      "hoang sơ",
+      "làng chài",
+      "Cây Gạo Cổ Thụ"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=C%C3%A2y%20G%E1%BA%A1o%20C%E1%BB%95%20Th%E1%BB%A5%20Ninh%20V%C3%A2n%20Kh%C3%A1nh%20H%C3%B2a",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Biển Tân Cảnh Dương",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Thừa Thiên Huế",
+    "toado": [
+      16.3,
+      108.05
+    ],
+    "danhgia": 4.6,
+    "mota": "Bãi biển Chân Mây - Lăng Cô, nước xanh ngọc, cắm trại / camping được. Nên đặt chỗ lưu trú trước vì ít chỗ ở. Đẹp nhất tháng 4–7.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "biển",
+      "camping",
+      "Lăng Cô",
+      "Chân Mây"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=Bi%E1%BB%83n%20T%C3%A2n%20C%E1%BA%A3nh%20D%C6%B0%C6%A1ng%20L%C4%83ng%20C%C3%B4%20Hu%E1%BA%BF",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Mũi Trèo",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Quảng Trị",
+    "toado": [
+      17.05,
+      107.1
+    ],
+    "danhgia": 4.5,
+    "mota": "Mũi đá nhô ra biển ở Vĩnh Linh, Quảng Trị. Bãi rất đẹp, cắm trại lý tưởng. Biển ở đây lạnh hơi nhanh.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "cắm trại",
+      "biển",
+      "Vĩnh Linh",
+      "check-in"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=M%C5%A9i%20Tr%C3%A8o%20V%C4%A9nh%20Linh%20Qu%E1%BA%A3ng%20Tr%E1%BB%8B",
     "toado_ước_lượng": true
   }
 ]
