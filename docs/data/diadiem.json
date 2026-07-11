@@ -349,5 +349,213 @@
     ],
     "googleMap": "https://www.google.com/maps/dir/?api=1&destination=M%C5%A9i%20Tr%C3%A8o%20V%C4%A9nh%20Linh%20Qu%E1%BA%A3ng%20Tr%E1%BB%8B",
     "toado_ước_lượng": true
+  },
+  {
+    "ten": "Làng chài Nhơn Lý",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Bình Định (Quy Nhơn)",
+    "toado": [
+      13.83,
+      109.34
+    ],
+    "danhgia": 4.6,
+    "mota": "Làng chài mộc mạc cách Quy Nhơn ~20km. Gần Kỳ Co, Eo Gió, con đường đá xanh sống ảo, bãi Dứa, Safari FLC. Góc nào cũng có ảnh đẹp.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "làng chài",
+      "Eo Gió",
+      "Kỳ Co",
+      "check-in",
+      "Quy Nhơn"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=L%C3%A0ng%20ch%C3%A0i%20Nh%C6%A1n%20L%C3%BD%20Quy%20Nh%C6%A1n",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Nhà hàng Yến Nhi (Nhơn Hội)",
+    "loai": "an",
+    "vung": "Miền Trung",
+    "tinh": "Bình Định (Quy Nhơn)",
+    "toado": [
+      13.79,
+      109.29
+    ],
+    "danhgia": 4.5,
+    "mota": "Hải sản dân địa phương hay ăn, ở Nhơn Hội (cách Nhơn Lý ~6km). Chuyên lẩu cua khe đá (~400k/nồi 2 người), tôm sú chiên khoai lang lạ miệng. Cua tươi, chủ quán có tâm.",
+    "anh": [
+      "photos/quan-cuon.svg"
+    ],
+    "tags": [
+      "hải sản",
+      "lẩu cua",
+      "Nhơn Hội",
+      "Quy Nhơn"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=Nh%C3%A0%20h%C3%A0ng%20Y%E1%BA%BFn%20Nhi%20Nh%C6%A1n%20H%E1%BB%99i%20Quy%20Nh%C6%A1n",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Chài Village (Nhơn Lý)",
+    "loai": "o",
+    "vung": "Miền Trung",
+    "tinh": "Bình Định (Quy Nhơn)",
+    "toado": [
+      13.828,
+      109.338
+    ],
+    "danhgia": 4.6,
+    "mota": "Homestay view trực diện biển ở Nhơn Lý, ~1.200k/căn 4 người. Gợi ý khác gần đó: Eo Gió Có Homestay, La Beach House, Santori Thiên Phú; khu Trung Lương có Nhà Của Ba, Nhà Ba Cơm Má.",
+    "anh": [
+      "photos/homestay-ven-bien.svg"
+    ],
+    "tags": [
+      "homestay",
+      "view biển",
+      "Nhơn Lý",
+      "lưu trú"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=Ch%C3%A0i%20Village%20Nh%C6%A1n%20L%C3%BD%20Quy%20Nh%C6%A1n",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Bãi Choi (Phú Yên)",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Phú Yên",
+    "toado": [
+      13.3,
+      109.29
+    ],
+    "danhgia": 4.6,
+    "mota": "Bãi biển trong xanh, nước nông an toàn, đang hot với dân HCM. Các bãi ở Phú Yên nước trong vắt.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "biển",
+      "nước trong",
+      "Phú Yên",
+      "check-in"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=B%C3%A3i%20Choi%20Ph%C3%BA%20Y%C3%AAn",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Hòn Yến (Phú Yên)",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Phú Yên",
+    "toado": [
+      13.305,
+      109.295
+    ],
+    "danhgia": 4.6,
+    "mota": "Đảo yến nổi tiếng Tuy An, Phú Yên. Đẹp nhất khi thuỷ triều rút lộ rạn san hô. Check-in cực chất.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "đảo",
+      "san hô",
+      "Tuy An",
+      "Phú Yên"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=H%C3%B2n%20Y%E1%BA%BFn%20Ph%C3%BA%20Y%C3%AAn",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Cù Lao Mái Nhà (Phú Yên)",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Phú Yên",
+    "toado": [
+      13.35,
+      109.32
+    ],
+    "danhgia": 4.5,
+    "mota": "Đảo hoang sơ ở Tuy An, biển trong, cắm trại / lặn ngắm san hô. Đi tàu từ bờ ra.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "đảo",
+      "hoang sơ",
+      "cắm trại",
+      "Phú Yên"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=C%C3%B9%20Lao%20M%C3%A1i%20Nh%C3%A0%20Ph%C3%BA%20Y%C3%AAn",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Đảo Cù Dù (Cảnh Dương)",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Thừa Thiên Huế",
+    "toado": [
+      16.27,
+      108.08
+    ],
+    "danhgia": 4.6,
+    "mota": "Đảo nhỏ ngoài khơi Cảnh Dương (Lăng Cô), nước trong thấy tận đáy, cá bơi quanh chân. Đi tàu từ bến ~5h30 sáng (anh Thắng 0982913199). Nhớ mang kính bơi.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "đảo",
+      "lặn ngắm cá",
+      "Cảnh Dương",
+      "Huế"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=%C4%90%E1%BA%A3o%20C%C3%B9%20D%C3%B9%20C%E1%BA%A3nh%20D%C6%B0%C6%A1ng%20L%C4%83ng%20C%C3%B4%20Hu%E1%BA%BF",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Tân Cảnh Motel (Cảnh Dương)",
+    "loai": "o",
+    "vung": "Miền Trung",
+    "tinh": "Thừa Thiên Huế",
+    "toado": [
+      16.3,
+      108.05
+    ],
+    "danhgia": 4.4,
+    "mota": "Motel sát biển Cảnh Dương, gần bến tàu đi đảo Cù Dù, đi bộ vài bước ra biển. SĐT: 0332 407 062. Quanh đó còn Cảnh Dương Motel, Phú Quý, Family.",
+    "anh": [
+      "photos/homestay-ven-bien.svg"
+    ],
+    "tags": [
+      "motel",
+      "sát biển",
+      "Cảnh Dương",
+      "lưu trú"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=T%C3%A2n%20C%E1%BA%A3nh%20Motel%20C%E1%BA%A3nh%20D%C6%B0%C6%A1ng%20L%C4%83ng%20C%C3%B4%20Hu%E1%BA%BF",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Bãi Đông (đảo Nghi Sơn)",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Thanh Hoá",
+    "toado": [
+      19.34,
+      105.78
+    ],
+    "danhgia": 4.5,
+    "mota": "Bãi biển hoang sơ ở đảo Nghi Sơn (Biện Sơn), thị xã Nghi Sơn, Thanh Hoá. Nước trong, ít người biết.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "biển",
+      "đảo Nghi Sơn",
+      "Thanh Hoá",
+      "check-in"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=B%C3%A3i%20%C4%90%C3%B4ng%20Nghi%20S%C6%A1n%20Thanh%20H%C3%B3a",
+    "toado_ước_lượng": true
   }
 ]

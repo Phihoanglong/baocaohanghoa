@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Homestay ven biển">
+  <defs>
+    <linearGradient id="skyH" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd9a0"/>
+      <stop offset="0.5" stop-color="#ffe9c6"/>
+      <stop offset="1" stop-color="#dff2f4"/>
+    </linearGradient>
+    <linearGradient id="seaH" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c7fa6"/>
+      <stop offset="1" stop-color="#57bcc8"/>
+    </linearGradient>
+    <linearGradient id="deckH" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c79a5c"/>
+      <stop offset="1" stop-color="#a97f43"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#skyH)"/>
+  <circle cx="880" cy="150" r="52" fill="#fff2cf" opacity="0.95"/>
+  <circle cx="880" cy="150" r="36" fill="#ffe09a"/>
+
+  <!-- sea -->
+  <rect x="0" y="300" width="1200" height="130" fill="url(#seaH)"/>
+  <g stroke="#ffffff" stroke-width="3" opacity="0.35">
+    <line x1="120" y1="340" x2="250" y2="340"/>
+    <line x1="560" y1="360" x2="690" y2="360"/>
+    <line x1="900" y1="345" x2="1030" y2="345"/>
+  </g>
+  <!-- sun glitter -->
+  <g stroke="#ffe6ad" stroke-width="3" opacity="0.6">
+    <line x1="860" y1="330" x2="900" y2="330"/>
+    <line x1="850" y1="352" x2="910" y2="352"/>
+  </g>
+
+  <!-- deck -->
+  <rect x="0" y="430" width="1200" height="245" fill="url(#deckH)"/>
+  <g stroke="#8f6a38" stroke-width="3" opacity="0.5">
+    <line x1="0" y1="470" x2="1200" y2="470"/><line x1="0" y1="520" x2="1200" y2="520"/>
+    <line x1="0" y1="575" x2="1200" y2="575"/><line x1="0" y1="630" x2="1200" y2="630"/>
+  </g>
+
+  <!-- beach bungalow (right) -->
+  <g transform="translate(150,150)">
+    <!-- posts -->
+    <rect x="30" y="250" width="14" height="60" fill="#7a5a30"/>
+    <rect x="300" y="250" width="14" height="60" fill="#7a5a30"/>
+    <!-- body -->
+    <rect x="10" y="150" width="330" height="120" rx="8" fill="#f3ead4"/>
+    <!-- roof (thatched) -->
+    <path d="M-20 155 L175 70 L370 155 Z" fill="#8a5a34"/>
+    <path d="M-20 155 L175 70 L370 155 Z" fill="none" stroke="#6e4526" stroke-width="4"/>
+    <!-- door -->
+    <rect x="150" y="195" width="55" height="75" rx="4" fill="#6e4b28"/>
+    <!-- windows -->
+    <rect x="45" y="185" width="70" height="55" rx="4" fill="#8fd0e0"/>
+    <rect x="240" y="185" width="70" height="55" rx="4" fill="#8fd0e0"/>
+    <rect x="45" y="185" width="70" height="55" rx="4" fill="none" stroke="#f3ead4" stroke-width="4"/>
+    <rect x="240" y="185" width="70" height="55" rx="4" fill="none" stroke="#f3ead4" stroke-width="4"/>
+    <!-- warm light -->
+    <rect x="158" y="203" width="39" height="60" fill="#ffd98a" opacity="0.5"/>
+  </g>
+
+  <!-- palm tree left of deck -->
+  <g transform="translate(1010,300)">
+    <path d="M0 0 q 16 80 8 200" fill="none" stroke="#7a5230" stroke-width="14" stroke-linecap="round"/>
+    <g fill="#3f8f4e">
+      <path d="M0 -6 q -80 -22 -130 8 q 76 -8 130 16 Z"/>
+      <path d="M0 -6 q 80 -22 130 8 q -76 -8 -130 16 Z"/>
+      <path d="M0 -8 q -44 -64 -96 -74 q 44 32 88 84 Z"/>
+      <path d="M0 -8 q 44 -64 96 -74 q -44 32 -88 84 Z"/>
+    </g>
+  </g>
+
+  <!-- two beach chairs -->
+  <g fill="#e9573f">
+    <g transform="translate(560,540)"><rect x="-30" y="-8" width="60" height="14" rx="4"/><rect x="-30" y="-40" width="14" height="40" rx="4"/></g>
+    <g transform="translate(650,540)"><rect x="-30" y="-8" width="60" height="14" rx="4"/><rect x="-30" y="-40" width="14" height="40" rx="4"/></g>
+  </g>
+  <g fill="#f0c34a"><ellipse cx="605" cy="500" rx="24" ry="6"/><rect x="603" y="470" width="4" height="30"/></g>
+
+  <g>
+    <rect x="40" y="600" width="250" height="44" rx="10" fill="rgba(20,30,40,0.5)"/>
+    <text x="60" y="628" font-family="system-ui, Arial, sans-serif" font-size="22" fill="#ffffff" font-weight="700">Homestay ven biển</text>
+  </g>
+</svg>
