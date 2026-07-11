@@ -21,8 +21,9 @@
     <div class="group" id="loaiFilters">
       <span class="lbl">Loại:</span>
       <button data-loai="all" class="chip active">Tất cả</button>
-      <button data-loai="choi" class="chip">🌄 Chơi</button>
+      <button data-loai="checkin" class="chip">📸 Check-in</button>
       <button data-loai="an" class="chip">🍜 Ăn</button>
+      <button data-loai="o" class="chip">🏨 Ở</button>
       <button data-loai="uong" class="chip">☕ Uống</button>
     </div>
     <div class="group" id="vungFilters">
@@ -47,7 +48,7 @@
       <p>Mở file <code>docs/data/diadiem.json</code> trong repo và thêm một khối như dưới đây (nhớ dấu phẩy giữa các khối):</p>
       <pre>{
   "ten": "Tên quán / điểm đến",
-  "loai": "an",              // an | uong | choi
+  "loai": "an",              // checkin | an | o | uong
   "vung": "Miền Nam",        // Miền Bắc | Miền Trung | Miền Nam
   "tinh": "TP. Hồ Chí Minh",
   "toado": [10.7725, 106.6980],   // [vĩ độ, kinh độ]

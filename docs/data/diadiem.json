@@ -1,110 +1,261 @@
 [
   {
     "ten": "Hồ Hoàn Kiếm",
-    "loai": "choi",
+    "loai": "checkin",
     "vung": "Miền Bắc",
     "tinh": "Hà Nội",
-    "toado": [21.0287, 105.8524],
-    "googleMap": "https://www.google.com/maps/search/?api=1&query=21.0287,105.8524",
+    "toado": [
+      21.0287,
+      105.8524
+    ],
     "danhgia": 4.7,
-    "mota": "Trái tim của Hà Nội, đi bộ quanh hồ buổi tối rất mát. Cuối tuần có phố đi bộ.",
+    "mota": "Trái tim Hà Nội, đi bộ quanh hồ buổi tối rất mát. Cuối tuần có phố đi bộ.",
     "anh": [],
-    "tags": ["hồ", "đi bộ", "trung tâm"]
+    "tags": [
+      "hồ",
+      "đi bộ",
+      "trung tâm"
+    ]
   },
   {
     "ten": "Phở Bát Đàn",
     "loai": "an",
     "vung": "Miền Bắc",
     "tinh": "Hà Nội",
-    "toado": [21.0333, 105.8478],
-    "googleMap": "https://www.google.com/maps/search/?api=1&query=21.0333,105.8478",
+    "toado": [
+      21.0333,
+      105.8478
+    ],
     "danhgia": 4.4,
-    "mota": "Phở bò truyền thống, phải xếp hàng tự bưng. Nước dùng đậm, bánh phở mềm.",
+    "mota": "Phở bò truyền thống, xếp hàng tự bưng. Nước dùng đậm, bánh phở mềm.",
     "anh": [],
-    "tags": ["phở", "bò", "ăn sáng"]
+    "tags": [
+      "phở",
+      "bò",
+      "ăn sáng"
+    ]
   },
   {
     "ten": "Phố cổ Hội An",
-    "loai": "choi",
+    "loai": "checkin",
     "vung": "Miền Trung",
     "tinh": "Quảng Nam",
-    "toado": [15.8801, 108.3380],
-    "googleMap": "https://www.google.com/maps/search/?api=1&query=15.8801,108.3380",
+    "toado": [
+      15.8801,
+      108.338
+    ],
     "danhgia": 4.8,
     "mota": "Phố đèn lồng, đẹp nhất lúc chập tối. Thả hoa đăng trên sông Hoài.",
     "anh": [],
-    "tags": ["đèn lồng", "cổ", "check-in"]
+    "tags": [
+      "đèn lồng",
+      "cổ",
+      "check-in"
+    ]
   },
   {
     "ten": "Bún bò Huế Bà Tuyết",
     "loai": "an",
     "vung": "Miền Trung",
     "tinh": "Thừa Thiên Huế",
-    "toado": [16.4637, 107.5909],
-    "googleMap": "https://www.google.com/maps/search/?api=1&query=16.4637,107.5909",
+    "toado": [
+      16.4637,
+      107.5909
+    ],
     "danhgia": 4.5,
-    "mota": "Bún bò chuẩn vị Huế, cay nồng, nước dùng thơm sả và mắm ruốc.",
+    "mota": "Bún bò chuẩn vị Huế, cay nồng, thơm sả và mắm ruốc.",
     "anh": [],
-    "tags": ["bún bò", "cay", "đặc sản"]
+    "tags": [
+      "bún bò",
+      "cay",
+      "đặc sản"
+    ]
   },
   {
     "ten": "Bà Nà Hills",
-    "loai": "choi",
+    "loai": "checkin",
     "vung": "Miền Trung",
     "tinh": "Đà Nẵng",
-    "toado": [15.9977, 107.9960],
-    "googleMap": "https://www.google.com/maps/search/?api=1&query=15.9977,107.9960",
+    "toado": [
+      15.9977,
+      107.996
+    ],
     "danhgia": 4.3,
     "mota": "Cầu Vàng, làng Pháp, cáp treo dài. Nên đi sớm tránh đông và mây mù.",
     "anh": [],
-    "tags": ["cầu vàng", "cáp treo", "núi"]
+    "tags": [
+      "cầu vàng",
+      "cáp treo",
+      "núi"
+    ]
   },
   {
     "ten": "Chợ Bến Thành",
-    "loai": "choi",
+    "loai": "checkin",
     "vung": "Miền Nam",
     "tinh": "TP. Hồ Chí Minh",
-    "toado": [10.7721, 106.6980],
-    "googleMap": "https://www.google.com/maps/search/?api=1&query=10.7721,106.6980",
+    "toado": [
+      10.7721,
+      106.698
+    ],
     "danhgia": 4.2,
     "mota": "Biểu tượng Sài Gòn, mua đặc sản và ăn vặt. Chợ đêm quanh khu vực khá vui.",
     "anh": [],
-    "tags": ["chợ", "mua sắm", "ăn vặt"]
+    "tags": [
+      "chợ",
+      "mua sắm",
+      "ăn vặt"
+    ]
   },
   {
     "ten": "Cà phê vợt Cheo Leo",
     "loai": "uong",
     "vung": "Miền Nam",
     "tinh": "TP. Hồ Chí Minh",
-    "toado": [10.7686, 106.6790],
-    "googleMap": "https://www.google.com/maps/search/?api=1&query=10.7686,106.6790",
+    "toado": [
+      10.7686,
+      106.679
+    ],
     "danhgia": 4.4,
     "mota": "Quán cà phê vợt lâu đời nhất Sài Gòn, pha bằng vợt vải kiểu xưa.",
     "anh": [],
-    "tags": ["cà phê", "vintage", "lâu đời"]
+    "tags": [
+      "cà phê",
+      "vintage",
+      "lâu đời"
+    ]
   },
   {
     "ten": "Bãi Sao",
-    "loai": "choi",
+    "loai": "checkin",
     "vung": "Miền Nam",
     "tinh": "Kiên Giang (Phú Quốc)",
-    "toado": [10.0430, 104.0290],
-    "googleMap": "https://www.google.com/maps/search/?api=1&query=10.0430,104.0290",
+    "toado": [
+      10.043,
+      104.029
+    ],
     "danhgia": 4.6,
     "mota": "Bãi biển cát trắng mịn, nước trong xanh. Đẹp nhất buổi sáng khi vắng người.",
     "anh": [],
-    "tags": ["biển", "cát trắng", "tắm biển"]
+    "tags": [
+      "biển",
+      "cát trắng",
+      "tắm biển"
+    ]
   },
   {
     "ten": "Cánh đồng gió Quảng Bình",
-    "loai": "choi",
+    "loai": "checkin",
     "vung": "Miền Trung",
     "tinh": "Quảng Bình",
-    "toado": [17.2494396, 106.8318915],
-    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=17.2494396,106.8318915",
+    "toado": [
+      17.2494396,
+      106.8318915
+    ],
     "danhgia": 4.6,
-    "mota": "Cánh đồng điện gió ven biển, turbine trắng khổng lồ giữa đồi cát. Ngã ba đường nhựa ngay sát QL1, check-in cực chill. Toạ độ ngã ba đường nhựa; gần đó còn lối đất đá dăm 17.362889, 106.694667.",
-    "anh": ["photos/canh-dong-gio-quang-binh.svg"],
-    "tags": ["điện gió", "check-in", "biển", "đồi cát", "QL1"]
+    "mota": "Cánh đồng điện gió ven biển, turbine trắng khổng lồ giữa đồi cát. Ngã ba đường nhựa sát QL1, check-in cực chill.",
+    "anh": [
+      "photos/canh-dong-gio-quang-binh.svg"
+    ],
+    "tags": [
+      "điện gió",
+      "check-in",
+      "biển",
+      "đồi cát",
+      "QL1"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=17.2494396,106.8318915"
+  },
+  {
+    "ten": "Đỉnh Cu Vơ",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Quảng Trị (Hướng Hoá)",
+    "toado": [
+      16.68,
+      106.73
+    ],
+    "danhgia": 4.7,
+    "mota": "Điểm săn mây & cánh đồng điện gió Hướng Hoá. Đường lên có đoạn hơi dốc nhưng xe con đi được. Gần sân bay Tà Cơn, thác Tà Puồng, cửa khẩu Lao Bảo.",
+    "anh": [
+      "photos/canh-dong-gio-quang-binh.svg"
+    ],
+    "tags": [
+      "săn mây",
+      "điện gió",
+      "check-in",
+      "Hướng Hoá"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=%C4%90%E1%BB%89nh%20Cu%20V%C6%A1%20H%C6%B0%E1%BB%9Bng%20H%C3%B3a%20Qu%E1%BA%A3ng%20Tr%E1%BB%8B",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Quán đặc sản Lào (gần chợ Đồng Mỹ)",
+    "loai": "an",
+    "vung": "Miền Trung",
+    "tinh": "Quảng Bình (Đồng Hới)",
+    "toado": [
+      17.478,
+      106.599
+    ],
+    "danhgia": 4.5,
+    "mota": "Món Lào nướng, xôi, gà nướng, uống Beerlao. Địa chỉ: gần chợ Đồng Mỹ, đầu đường Nguyễn Khuyến, Đồng Hới.",
+    "anh": [
+      "photos/quan-an-dac-san-lao.svg"
+    ],
+    "tags": [
+      "đặc sản Lào",
+      "gà nướng",
+      "Beerlao",
+      "Đồng Hới"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=%C4%90%E1%BA%B7c%20s%E1%BA%A3n%20L%C3%A0o%20Nguy%E1%BB%85n%20Khuy%E1%BA%BFn%20%C4%90%E1%BB%93ng%20H%E1%BB%9Bi%20Qu%E1%BA%A3ng%20B%C3%ACnh",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Dốc Hoàng Hôn (Mũi Né)",
+    "loai": "checkin",
+    "vung": "Miền Nam",
+    "tinh": "Bình Thuận",
+    "toado": [
+      10.95,
+      108.29
+    ],
+    "danhgia": 4.6,
+    "mota": "Cung đường ven biển cong đẹp ở Mũi Né, ngắm hoàng hôn cực chill. Đường Võ Nguyên Giáp hướng Hòn Rơm.",
+    "anh": [
+      "photos/cung-duong-ven-bien.svg"
+    ],
+    "tags": [
+      "ven biển",
+      "hoàng hôn",
+      "check-in",
+      "Mũi Né"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=D%E1%BB%91c%20Ho%C3%A0ng%20H%C3%B4n%20M%C5%A9i%20N%C3%A9%20B%C3%ACnh%20Thu%E1%BA%ADn",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Đèo Lộ Diêu",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Bình Định (Hoài Nhơn)",
+    "toado": [
+      14.43,
+      109.14
+    ],
+    "danhgia": 4.7,
+    "mota": "Cung đường ven biển mới toanh, nối Mũi Gành & di tích bến tàu không số Lộ Diêu. Cảnh biển - đồi cát cực đẹp.",
+    "anh": [
+      "photos/cung-duong-ven-bien.svg"
+    ],
+    "tags": [
+      "ven biển",
+      "đèo",
+      "check-in",
+      "Lộ Diêu"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=%C4%90%C3%A8o%20L%E1%BB%99%20Di%C3%AAu%20Ho%C3%A0i%20Nh%C6%A1n%20B%C3%ACnh%20%C4%90%E1%BB%8Bnh",
+    "toado_ước_lượng": true
   }
 ]

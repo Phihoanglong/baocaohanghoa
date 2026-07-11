@@ -1,8 +1,9 @@
 /* Bản đồ ăn chơi Việt Nam — vanilla JS + Leaflet */
 const LOAI = {
-  choi: { label: "Chơi", emoji: "🌄", color: "#2e7d32" },
-  an:   { label: "Ăn",   emoji: "🍜", color: "#e8590c" },
-  uong: { label: "Uống", emoji: "☕", color: "#1565c0" },
+  checkin: { label: "Check-in", emoji: "📸", color: "#2e7d32" },
+  an:      { label: "Ăn",       emoji: "🍜", color: "#e8590c" },
+  o:       { label: "Ở",        emoji: "🏨", color: "#7c3aed" },
+  uong:    { label: "Uống",     emoji: "☕", color: "#1565c0" },
 };
 
 const state = { data: [], loai: "all", vung: "all", q: "", markers: new Map(), active: null };
