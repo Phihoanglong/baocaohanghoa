@@ -557,5 +557,143 @@
     ],
     "googleMap": "https://www.google.com/maps/dir/?api=1&destination=B%C3%A3i%20%C4%90%C3%B4ng%20Nghi%20S%C6%A1n%20Thanh%20H%C3%B3a",
     "toado_ước_lượng": true
+  },
+  {
+    "ten": "Eo biển Kỳ Xuân",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Hà Tĩnh",
+    "toado": [
+      18.15,
+      106.3
+    ],
+    "danhgia": 4.7,
+    "mota": "Biển Kỳ Xuân (Kỳ Anh, Hà Tĩnh) nước trong xanh, đá lớn lên ảnh đẹp, tắm được cả giữa trưa. Bãi đẹp: NH Bao Cấp 1994 (cát dài, đá lớn), NH Dân Hương (biển thoải, camping), bãi Cù Kỳ đang hot.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "biển",
+      "Kỳ Anh",
+      "camping",
+      "check-in",
+      "Hà Tĩnh"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=Eo%20bi%E1%BB%83n%20K%E1%BB%B3%20Xu%C3%A2n%20K%E1%BB%B3%20Anh%20H%C3%A0%20T%C4%A9nh",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Nhà hàng TimLam 38 (Kỳ Xuân)",
+    "loai": "an",
+    "vung": "Miền Trung",
+    "tinh": "Hà Tĩnh",
+    "toado": [
+      18.16,
+      106.295
+    ],
+    "danhgia": 4.4,
+    "mota": "Nhà hàng hải sản ở biển Kỳ Xuân, dân địa phương ghé, ổn thực sự.",
+    "anh": [
+      "photos/quan-cuon.svg"
+    ],
+    "tags": [
+      "hải sản",
+      "Kỳ Xuân",
+      "Hà Tĩnh"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=Nh%C3%A0%20h%C3%A0ng%20TimLam%2038%20K%E1%BB%B3%20Xu%C3%A2n%20H%C3%A0%20T%C4%A9nh",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Rì Rào Homestay Kỳ Xuân",
+    "loai": "o",
+    "vung": "Miền Trung",
+    "tinh": "Hà Tĩnh",
+    "toado": [
+      18.145,
+      106.3
+    ],
+    "danhgia": 4.5,
+    "mota": "Homestay đẹp ở Kỳ Xuân, nằm giữa nhà hàng TimLam và bãi Cù Kỳ. LH: 0914855918.",
+    "anh": [
+      "photos/homestay-ven-bien.svg"
+    ],
+    "tags": [
+      "homestay",
+      "Kỳ Xuân",
+      "view biển",
+      "lưu trú"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=R%C3%AC%20R%C3%A0o%20Homestay%20K%E1%BB%B3%20Xu%C3%A2n%20H%C3%A0%20T%C4%A9nh",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Biển Thiên Cầm",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Hà Tĩnh",
+    "toado": [
+      18.24,
+      106.2
+    ],
+    "danhgia": 4.4,
+    "mota": "Bãi biển nổi tiếng ở Cẩm Xuyên, Hà Tĩnh, cách Kỳ Xuân ~20km theo đường ven biển. Nhiều khách sạn, thuận tiện nghỉ dưỡng.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "biển",
+      "Thiên Cầm",
+      "Cẩm Xuyên",
+      "Hà Tĩnh"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=Bi%E1%BB%83n%20Thi%C3%AAn%20C%E1%BA%A7m%20C%E1%BA%A9m%20Xuy%C3%AAn%20H%C3%A0%20T%C4%A9nh",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Bãi Đá Nhảy",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Quảng Bình",
+    "toado": [
+      17.63,
+      106.46
+    ],
+    "danhgia": 4.5,
+    "mota": "Bãi biển với quần thể đá kỳ thú ở Bố Trạch, Quảng Bình, ngay QL1. Cảnh đẹp, dừng chân check-in tiện đường.",
+    "anh": [
+      "photos/bai-bien.svg"
+    ],
+    "tags": [
+      "biển",
+      "đá",
+      "Bố Trạch",
+      "Quảng Bình"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=B%C3%A3i%20%C4%90%C3%A1%20Nh%E1%BA%A3y%20B%E1%BB%91%20Tr%E1%BA%A1ch%20Qu%E1%BA%A3ng%20B%C3%ACnh",
+    "toado_ước_lượng": true
+  },
+  {
+    "ten": "Quán Hồng Hà (Đá Nhảy)",
+    "loai": "an",
+    "vung": "Miền Trung",
+    "tinh": "Quảng Bình",
+    "toado": [
+      17.632,
+      106.458
+    ],
+    "danhgia": 4.3,
+    "mota": "Quán hải sản gần bãi Đá Nhảy, đồ ngon giá rẻ, dân địa phương giới thiệu.",
+    "anh": [
+      "photos/quan-cuon.svg"
+    ],
+    "tags": [
+      "hải sản",
+      "Đá Nhảy",
+      "giá rẻ",
+      "Quảng Bình"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=Qu%C3%A1n%20H%E1%BB%93ng%20H%C3%A0%20%C4%90%C3%A1%20Nh%E1%BA%A3y%20Qu%E1%BA%A3ng%20B%C3%ACnh",
+    "toado_ước_lượng": true
   }
 ]
