@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Phòng nghỉ / căn hộ">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f6f86"/>
+      <stop offset="1" stop-color="#24596e"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c79b62"/>
+      <stop offset="1" stop-color="#b0854e"/>
+    </linearGradient>
+    <linearGradient id="cityview" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfe6f5"/>
+      <stop offset="1" stop-color="#eaf6fb"/>
+    </linearGradient>
+  </defs>
+
+  <!-- wall + floor -->
+  <rect width="1200" height="470" fill="url(#wall)"/>
+  <rect y="470" width="1200" height="205" fill="url(#floor)"/>
+  <g stroke="#9d743f" stroke-width="3" opacity="0.4">
+    <line x1="0" y1="530" x2="1200" y2="530"/><line x1="0" y1="600" x2="1200" y2="600"/>
+  </g>
+
+  <!-- big window with city view -->
+  <g>
+    <rect x="690" y="70" width="440" height="360" rx="6" fill="#12303c"/>
+    <rect x="704" y="84" width="412" height="332" fill="url(#cityview)"/>
+    <!-- skyline -->
+    <g fill="#9fc3d4" opacity="0.9">
+      <rect x="720" y="250" width="46" height="166"/>
+      <rect x="778" y="210" width="40" height="206"/>
+      <rect x="828" y="270" width="52" height="146"/>
+      <rect x="892" y="190" width="44" height="226"/>
+      <rect x="948" y="250" width="50" height="166"/>
+      <rect x="1010" y="220" width="44" height="196"/>
+      <rect x="1066" y="270" width="42" height="146"/>
+    </g>
+    <circle cx="1060" cy="140" r="26" fill="#ffe9a8"/>
+    <!-- window frame divider -->
+    <line x1="910" y1="84" x2="910" y2="416" stroke="#12303c" stroke-width="10"/>
+    <line x1="704" y1="250" x2="1116" y2="250" stroke="#12303c" stroke-width="10"/>
+  </g>
+
+  <!-- framed picture -->
+  <rect x="120" y="120" width="150" height="110" rx="6" fill="#efe7d6" stroke="#d8cbb0" stroke-width="6"/>
+  <path d="M132 210 L180 160 L210 195 L245 150 L258 210 Z" fill="#8bb98d"/>
+  <circle cx="150" cy="150" r="12" fill="#f0c04a"/>
+
+  <!-- bed -->
+  <g>
+    <rect x="120" y="360" width="470" height="150" rx="10" fill="#3a4a55"/>       <!-- base -->
+    <rect x="120" y="330" width="470" height="60" rx="10" fill="#5a6b76"/>        <!-- headboard top -->
+    <rect x="140" y="360" width="430" height="90" rx="8" fill="#eef1f4"/>          <!-- mattress/duvet -->
+    <rect x="150" y="352" width="150" height="60" rx="10" fill="#ffffff"/>         <!-- pillow -->
+    <rect x="315" y="352" width="150" height="60" rx="10" fill="#ffffff"/>         <!-- pillow -->
+    <rect x="140" y="430" width="430" height="24" rx="6" fill="#c85a3a"/>          <!-- runner -->
+  </g>
+  <!-- nightstand + lamp -->
+  <rect x="600" y="420" width="70" height="90" rx="6" fill="#7a5230"/>
+  <g transform="translate(635,420)">
+    <rect x="-4" y="-40" width="8" height="40" fill="#3a4a55"/>
+    <path d="M-24 -40 L24 -40 L14 -68 L-14 -68 Z" fill="#ffd98a"/>
+  </g>
+  <!-- plant -->
+  <g transform="translate(1130,470)">
+    <rect x="-26" y="0" width="52" height="60" rx="8" fill="#b5642f"/>
+    <g fill="#3f8f4e"><ellipse cx="0" cy="-20" rx="34" ry="46"/><ellipse cx="-24" cy="-6" rx="20" ry="34"/><ellipse cx="24" cy="-6" rx="20" ry="34"/></g>
+  </g>
+
+  <g>
+    <rect x="40" y="600" width="280" height="46" rx="10" fill="rgba(10,20,28,0.55)"/>
+    <text x="60" y="630" font-family="system-ui, Arial, sans-serif" font-size="22" fill="#ffffff" font-weight="700">Căn hộ / phòng nghỉ</text>
+  </g>
+</svg>

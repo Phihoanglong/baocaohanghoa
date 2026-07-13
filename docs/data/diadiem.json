@@ -695,5 +695,30 @@
     ],
     "googleMap": "https://www.google.com/maps/dir/?api=1&destination=Qu%C3%A1n%20H%E1%BB%93ng%20H%C3%A0%20%C4%90%C3%A1%20Nh%E1%BA%A3y%20Qu%E1%BA%A3ng%20B%C3%ACnh",
     "toado_ước_lượng": true
+  },
+  {
+    "ten": "Căn hộ mini 63 Đường 2/9 (Đà Nẵng)",
+    "loai": "o",
+    "vung": "Miền Trung",
+    "tinh": "Đà Nẵng",
+    "toado": [
+      16.045,
+      108.223
+    ],
+    "danhgia": 4.4,
+    "mota": "Căn hộ mini / dorm gần trung tâm Đà Nẵng, cách cầu Rồng 5–7 phút đi xe. Căn 1 ngủ 450k, 2 ngủ 750k, dorm 8 giường từ 100k/người, có thuê theo giờ. Bếp đầy đủ, thang máy, máy giặt, chỗ đỗ xe. Vị trí 63 đường 2/9. Zalo/ĐT: 090.195.6699 – 090.113.8899.",
+    "anh": [
+      "photos/phong-nghi.svg"
+    ],
+    "tags": [
+      "căn hộ",
+      "dorm",
+      "Đà Nẵng",
+      "cầu Rồng",
+      "giá rẻ",
+      "theo giờ"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=63%20%C4%91%C6%B0%E1%BB%9Dng%202%20th%C3%A1ng%209%20%C4%90%C3%A0%20N%E1%BA%B5ng",
+    "toado_ước_lượng": true
   }
 ]
