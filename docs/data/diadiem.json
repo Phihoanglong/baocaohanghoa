@@ -720,5 +720,32 @@
     ],
     "googleMap": "https://www.google.com/maps/dir/?api=1&destination=63%20%C4%91%C6%B0%E1%BB%9Dng%202%20th%C3%A1ng%209%20%C4%90%C3%A0%20N%E1%BA%B5ng",
     "toado_ước_lượng": true
+  },
+  {
+    "ten": "Bãi Vịnh Hoà",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Phú Yên",
+    "toado": [
+      13.47,
+      109.29
+    ],
+    "danhgia": 4.8,
+    "mota": "Bãi biển hoang vu, nước trong, cát mịn, dễ tắm — đẹp nhất nhóm review. Có home sát biển đi vài bước ra tắm. Lưu ý: chưa có nước ngọt nên nước tắm sinh hoạt hơi đục.",
+    "anh": [
+      "photos/bai-vinh-hoa-1.jpg",
+      "photos/bai-vinh-hoa-2.jpg",
+      "photos/bai-vinh-hoa-3.jpg",
+      "photos/bai-vinh-hoa-4.jpg"
+    ],
+    "tags": [
+      "biển",
+      "hoang sơ",
+      "cát mịn",
+      "Phú Yên",
+      "Sông Cầu"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=B%C3%A3i%20bi%E1%BB%83n%20V%E1%BB%8Bnh%20H%C3%B2a%20Xu%C3%A2n%20Th%E1%BB%8Bnh%20S%C3%B4ng%20C%E1%BA%A7u%20Ph%C3%BA%20Y%C3%AAn",
+    "toado_ước_lượng": true
   }
 ]
