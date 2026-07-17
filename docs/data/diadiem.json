@@ -747,5 +747,52 @@
     ],
     "googleMap": "https://www.google.com/maps/dir/?api=1&destination=B%C3%A3i%20bi%E1%BB%83n%20V%E1%BB%8Bnh%20H%C3%B2a%20Xu%C3%A2n%20Th%E1%BB%8Bnh%20S%C3%B4ng%20C%E1%BA%A7u%20Ph%C3%BA%20Y%C3%AAn",
     "toado_ước_lượng": true
+  },
+  {
+    "ten": "Mũi Si",
+    "loai": "checkin",
+    "vung": "Miền Trung",
+    "tinh": "Quảng Trị",
+    "toado": [
+      17.0447833,
+      107.1148512
+    ],
+    "danhgia": 4.6,
+    "mota": "Mũi đá nhô ra biển ở Cửa Tùng, Vĩnh Linh, Quảng Trị. Biển xanh trong, view rừng phi lao, check-in / cắm trại đẹp. Địa chỉ: 24V7+WW9 Cửa Tùng.",
+    "anh": [
+      "photos/mui-si-1.jpg"
+    ],
+    "tags": [
+      "biển",
+      "mũi đá",
+      "Cửa Tùng",
+      "cắm trại",
+      "Quảng Trị"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=17.0447833,107.1148512"
+  },
+  {
+    "ten": "Mũi Si Homestay (Cửa Tùng)",
+    "loai": "o",
+    "vung": "Miền Trung",
+    "tinh": "Quảng Trị",
+    "toado": [
+      17.0455,
+      107.113
+    ],
+    "danhgia": 4.5,
+    "mota": "Homestay ngay Mũi Si, Cửa Tùng, Quảng Trị — có các bungalow hình thùng gỗ trong vườn sát biển. Hotline: 0364.550.355 – 0975.617.365.",
+    "anh": [
+      "photos/homestay-ven-bien.svg"
+    ],
+    "tags": [
+      "homestay",
+      "bungalow",
+      "Cửa Tùng",
+      "Mũi Si",
+      "lưu trú"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=M%C5%A9i%20Si%20Homestay%20C%E1%BB%ADa%20T%C3%B9ng%20Qu%E1%BA%A3ng%20Tr%E1%BB%8B",
+    "toado_ước_lượng": true
   }
 ]
