@@ -794,5 +794,28 @@
     ],
     "googleMap": "https://www.google.com/maps/dir/?api=1&destination=M%C5%A9i%20Si%20Homestay%20C%E1%BB%ADa%20T%C3%B9ng%20Qu%E1%BA%A3ng%20Tr%E1%BB%8B",
     "toado_ước_lượng": true
+  },
+  {
+    "ten": "Cà Phê Muối (142 Đặng Thái Thân)",
+    "loai": "uong",
+    "vung": "Miền Trung",
+    "tinh": "Thừa Thiên Huế",
+    "toado": [
+      16.47,
+      107.578
+    ],
+    "danhgia": 4.4,
+    "mota": "Quán cà phê muối ở Huế, giá bình dân: cà phê muối 15k, yaourt cacao 20k. Địa chỉ: 142 Đặng Thái Thân, TP Huế. SĐT: 0911867869.",
+    "anh": [
+      "photos/ca-phe.svg"
+    ],
+    "tags": [
+      "cà phê muối",
+      "Huế",
+      "bình dân",
+      "yaourt"
+    ],
+    "googleMap": "https://www.google.com/maps/dir/?api=1&destination=C%C3%A0%20Ph%C3%AA%20Mu%E1%BB%91i%20142%20%C4%90%E1%BA%B7ng%20Th%C3%A1i%20Th%C3%A2n%20Hu%E1%BA%BF",
+    "toado_ước_lượng": true
   }
 ]
